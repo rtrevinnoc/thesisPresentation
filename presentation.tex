@@ -401,30 +401,103 @@
     \end{columns}
 \end{frame}
 
-\begin{frame}{Trajectory Reference Generation}
-    \begin{contentblock}{StepperController}
-    A Python-based \texttt{StepperController} generates reference states.
-    \end{contentblock}
-    \begin{itemize}
-        \item Wafer stage constant scanning velocity: $v_{w,scan} = 0.8$ m/s
-        \item Reticle stage velocity: $v_{r,scan} = 3.2$ m/s (4:1 demagnification ratio)
-        \item Max acceleration for wafer transients: $a_{w,max} = 20$ m/s$^2$
-        \item Evaluates centripetal and Coriolis effects during fast turnarounds.
-    \end{itemize}
+\begin{frame}{Mapas de Defectos}
+    \begin{columns}
+        \column{.6\textwidth}
+        \begin{itemize}
+            \item Conjunto de datos industrial en \textbf{WM811K} (\cite{Wu2015_WM811K}).
+            \item Existen diferentes tipos de error: \textit{central}, \textit{anular}, \textit{anillo periférico}, \textit{rayadura}, \textit{saturado}.
+            \item Entrenamos una red neuronal convolucional (CNN) para la clasificación del error en la oblea a partir del mapa de defectos.
+        \end{itemize}
+        \column{.4\textwidth}
+        \begin{center}
+          \includegraphics[width=\linewidth]{pictures/mapa.png}
+        \end{center}
+    \end{columns}
 \end{frame}
 
-\section{Next Steps}
+\begin{frame}{Trayectorias de Alto Orden}
+    \begin{columns}
+        \column{.6\textwidth}
+        \begin{itemize}
+            \item Trayectorias de referencias con derivadas de orden superior acotadas (\textit{snap} finito).
+            \item Reducción de la excitación de modos estructurales de bajo amortiguamiento.
+            \item Mejora en el seguimiento de la trayectoria, que representa a su vez una disminución del error de sincronización (\textit{overlay}) (\cite{Al-Rawashdeh2023_Trajectories}).
+        \end{itemize}
+        \column{.4\textwidth}
+        \begin{center}
+          \resizebox{0.75\linewidth}{!}{
+          \begin{tikzpicture}[
+            every node/.style={font=\fontsize{4pt}{4pt}\selectfont},
+            wafer/.style={draw=kit-blue100, line width=0.6pt, fill=kit-blue!5},
+            die/.style={draw=mnnwInk, line width=0.3pt, fill=white, postaction={pattern=north east lines, pattern color=mnnwMute!40}},
+            square/.style={draw=mnnwInk, line width=0.8pt},
+            fillet/.style={draw=mnnwSignal, line width=0.8pt},
+            meander/.style={draw=opticsEdge, line width=0.8pt},
+            axis/.style={draw=mnnwInk, -Stealth}
+          ]
+            
+            % Wafer boundary
+            \draw[wafer] (0,0) circle (2.2cm);
+            
+            % Grid of dies clipped to wafer
+            \begin{scope}
+              \clip (0,0) circle (2.2cm);
+              \foreach \x in {-1.75,-1.25,...,1.75} {
+                \foreach \y in {-1.75,-1.25,...,1.75} {
+                  \draw[die] (\x-0.2,\y-0.2) rectangle (\x+0.2,\y+0.2);
+                }
+              }
+            \end{scope}
 
-\begin{frame}{Next Steps}
+            % Trajectories for Column 1 to Column 2 transition
+            % Common Scan Up (Productive)
+            \draw[mnnwInk, line width=0.8pt, dashed] (-1.25, -1.75) -- (-1.25, -1.25);
+            
+            % Square Profile
+            \draw[square] (-1.25, -1.25) -- (-1.25, -1.0) -- (-0.75, -1.0) -- (-0.75, -1.25);
+            
+            % Fillet Profile
+            \draw[fillet] (-1.25, -1.25) -- (-1.25, -1.12) 
+                          arc(180:90:0.12) -- (-0.87, -1.0) 
+                          arc(90:0:0.12) -- (-0.75, -1.12) 
+                          -- (-0.75, -1.25);
+            
+            % Meander Profile
+            \draw[meander] (-1.25, -1.25) to[out=90, in=180] (-1.0, -1.0) to[out=0, in=90] (-0.75, -1.25);
+
+            % Common Scan Down (Productive)
+            \draw[mnnwInk, line width=0.8pt, dashed] (-0.75, -1.25) -- (-0.75, -1.75);
+
+            % Legend
+            % \begin{scope}[shift={(0.8, 1.2)}]
+            %   \draw[square] (0, 0.6) -- (0.3, 0.6) node[right, font=\tiny] {Square};
+            %   \draw[fillet] (0, 0.3) -- (0.3, 0.3) node[right, font=\tiny] {Fillet};
+            %   \draw[meander] (0, 0) -- (0.3, 0) node[right, font=\tiny] {Meander};
+            % \end{scope}
+
+            % Axes
+            \draw[axis] (0,0) -- (0.4,0) node[right] {$x$};
+            \draw[axis] (0,0) -- (0,0.4) node[above] {$y$};
+
+          \end{tikzpicture}
+          }
+        \end{center}
+    \end{columns}
+\end{frame}
+
+\section{Trabajo posterior}
+
+\begin{frame}{Siguientes pasos...}
     \begin{itemize}
-        \item Design yield-aware higher-order scanning trajectories.
-        \item Inject proposed trajectories into the MuJoCo simulation.
-        \item Analyze overlay performance and residual settling time.
-        \item Compare with classical S-curve and low-order polynomials.
+        \item Implementar un controlador no-lineal en el simulador (\cite{Heertjes2025_NonlinearControl}).
+        \item Integrar un estimador de parametros para el controlador.
+        \item Conectar la generación de trayectorias con la clasificación del defecto de la oblea (\cite{Yang2018_Yield}).
+        \item Comparar resultados con trayectorias polinomiales de menor orden (\cite{Al-Rawashdeh2023_Trajectories}).
     \end{itemize}
     \vspace{0.5cm}
     \begin{center}
-    \textit{Thank you for your attention.}
+    \textit{Gracias por su atención.}
     \end{center}
 \end{frame}
 

@@ -1,19 +1,19 @@
 # Fdb version 4
-["biber build/presentation"] 1778892010.36467 "build/presentation.bcf" "build/presentation.bbl" "build/presentation" 1778897495.75956 0
-  "../fullThesis/bibliografia.bib" 1778086040.44227 3339 53a35f68cc53aa88508f89b7e6806cb7 ""
-  "build/presentation.bcf" 1778897494.89512 108971 a09555cd8f1d324107b12b7ba3033271 "xelatex"
+["biber build/presentation"] 1778952540.92768 "build/presentation.bcf" "build/presentation.bbl" "build/presentation" 1778952590.17374 0
+  "../fullThesis/bibliografia.bib" 1778952380.55422 8683 c4f3830942ddadb4c30aa43c2f75459d ""
+  "build/presentation.bcf" 1778952588.91859 109361 7213cbfac414a4c1c0e28ae72fd83fbf "xelatex"
   (generated)
   "build/presentation.bbl"
   "build/presentation.blg"
   (rewritten before read)
-["xdvipdfmx"] 1778897495.06304 "build/presentation.xdv" "build/presentation.pdf" "build/presentation" 1778897495.76208 0
-  "build/presentation.xdv" 1778897494.8969 344872 193a9d22aa9899f794a392c9f6487312 "xelatex"
+["xdvipdfmx"] 1778952589.10983 "build/presentation.xdv" "build/presentation.pdf" "build/presentation" 1778952590.17737 0
+  "build/presentation.xdv" 1778952588.9202 432804 0600c75650daed166f68b24b738e0b95 "xelatex"
   (generated)
   "build/presentation.pdf"
   (rewritten before read)
-["xelatex"] 1778897491.01895 "/Users/rtrevinnoc/maestria/tesis/presentation/presentation.tex" "build/presentation.xdv" "presentation" 1778897495.75965 0
+["xelatex"] 1778952582.43747 "/Users/rtrevinnoc/maestria/tesis/presentation/presentation.tex" "build/presentation.xdv" "presentation" 1778952590.17383 0
   "../fullThesis/pictures/scanning_3d.png" 1778086168.40331 22192 ea28bcc84a1601d66b0e12ffaf7f8001 ""
-  "/Users/rtrevinnoc/maestria/tesis/presentation/presentation.tex" 1778897489.65601 23387 8a1fd48b34de6e3fc9e342b412c5cc8e ""
+  "/Users/rtrevinnoc/maestria/tesis/presentation/presentation.tex" 1778952573.57639 26772 9ebbbfdb52dd748cf3ce201206e0dd13 ""
   "/usr/local/texlive/2026/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2026/texmf-dist/fonts/tfm/adobe/zapfding/pzdr.tfm" 1136768653 1528 f853c4d1b4e0550255e02831fdc8496f ""
   "/usr/local/texlive/2026/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
@@ -259,17 +259,18 @@
   "/usr/local/texlive/2026/texmf-dist/web2c/texmf.cnf" 1770478701 43630 e9fa012910491fe5ae08a72c3c2997a7 ""
   "/usr/local/texlive/2026/texmf-var/web2c/xetex/xelatex.fmt" 1774209578 5948559 ca66a59f4cdd4ce9709bed46018cb9cb ""
   "/usr/local/texlive/2026/texmf.cnf" 1774209515 577 648cd9f92f9c0eac486f4c71c85cfbbe ""
-  "build/presentation.aux" 1778897494.88998 5009 702e838f0cfcaa609766257ac7f79f5f "xelatex"
-  "build/presentation.bbl" 1778892012.72089 7417 7a9ac9810bb18ae477d43a360258815c "biber build/presentation"
-  "build/presentation.nav" 1778897494.89659 2343 595c18e00aa3df21ab3984f7c246b8fa "xelatex"
-  "build/presentation.out" 1778897494.89153 558 7f38799303d4cd26c80f0dc135410c26 "xelatex"
-  "build/presentation.run.xml" 1778897494.89645 2415 6f9db1cad6be6f8ac3736daa4c19eebf "xelatex"
-  "build/presentation.toc" 1778897494.89667 186 700783912c50f6a1b0090883e8c4ea0b "xelatex"
-  "build/presentation.vrb" 1778897493.64095 7265 c2000d2082f02f6f82a2dd2d9dea8204 "xelatex"
+  "build/presentation.aux" 1778952588.91191 6152 5b0bf36703841f21882ca9bed7afdac7 "xelatex"
+  "build/presentation.bbl" 1778952543.44981 18562 a5d72e2c9347c976fb5b25b3194a4af5 "biber build/presentation"
+  "build/presentation.nav" 1778952588.92009 2541 09856f87c6c051325d4d4b4c97ef00d3 "xelatex"
+  "build/presentation.out" 1778952588.9141 593 f35049d1513ccb6ca7f0e7a25e1b5e51 "xelatex"
+  "build/presentation.run.xml" 1778952588.91994 2415 6f9db1cad6be6f8ac3736daa4c19eebf "xelatex"
+  "build/presentation.toc" 1778952588.92013 193 fd9192640d0f1d01f69eb927cedab7c6 "xelatex"
+  "build/presentation.vrb" 1778952586.28025 7265 c2000d2082f02f6f82a2dd2d9dea8204 "xelatex"
   "logos/banner_2020_kit.jpg" 1778891060 96829 85768f4cdeb65dd60527bc69363a24ba ""
   "logos/fime.eps" 1778871418.15854 648690 d6eb6f8154dd82b9a61fa14d51453666 ""
   "logos/uanl.eps" 1778871418.14844 11523393 e377b799cd332dc0d2e2eb9fa74873c6 ""
-  "presentation.tex" 1778897489.65601 23387 8a1fd48b34de6e3fc9e342b412c5cc8e ""
+  "pictures/mapa.png" 1778941526.63283 13120 c4157d13749a9476c78395c48bf07b72 ""
+  "presentation.tex" 1778952573.57639 26772 9ebbbfdb52dd748cf3ce201206e0dd13 ""
   "sdqbeamer.cls" 1778891060 32729 25ddf09757a8e5ffc28babc874d47f95 ""
   (generated)
   "build/presentation.aux"
