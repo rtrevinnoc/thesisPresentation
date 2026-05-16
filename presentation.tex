@@ -9,7 +9,8 @@
 \title[Mecatrónica]{Optimización de Trayectorias de Orden Superior Informadas por el Rendimiento de la Oblea para Sistemas \textit{Step-and-Scan}}
 \subtitle{Seminario I} 
 \author[R. Treviño]{Roberto Treviño Cervantes}
-\date{\today}
+\newcommand{\shorttoday}{\ifnum\day<10 0\fi\number\day/\ifnum\month<10 0\fi\number\month/\number\year}
+\date[\shorttoday]{\today}
 
 \usepackage[citestyle=authoryear,bibstyle=numeric,hyperref,backend=biber]{biblatex}
 \addbibresource{../fullThesis/bibliografia.bib}
@@ -390,7 +391,7 @@
     \begin{columns}
         \column{.6\textwidth}
         \begin{itemize}
-            \item Implementación del modelo en \textbf{MuJoCo} \cite{todorov2012mujoco}.
+            \item Implementación del modelo en \textbf{MuJoCo} (\cite{todorov2012mujoco}).
             \item Permite ejecutar las trayectorias y seguir el error de posicionamiento a través del promedio móvil (MA) y la desviación estándar móvil (MSD).
             \item Actualmente modelamos los parámetros propuestos en \cite{Al-Rawashdeh2022_Caracterization}.
             \item La identificación de un error de posicionamiento que supera el umbral establecido en la literatura (MA $\geq$ 1nm, MSD $\geq$ 7nm) nos indica una degradación crítica en el \textit{overlay}, que compromete el funcionamiento del IC y, por consiguiente, el rendimiento de la oblea o \textit{yield}.
