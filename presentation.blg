@@ -1,0 +1,15 @@
+[0] Config.pm:328> INFO - This is Biber 2.21
+[0] Config.pm:331> INFO - Logfile is 'presentation.blg'
+[36] biber-darwin:342> INFO - === Fri May 15, 2026, 19:11:27
+[44] Biber.pm:421> INFO - Reading 'presentation.bcf'
+[81] Biber.pm:1002> INFO - Found 4 citekeys in bib section 0
+[89] Biber.pm:4487> INFO - Processing section 0
+[94] Biber.pm:4678> INFO - Looking for bibtex file '../fullThesis/bibliografia.bib' for section 0
+[95] bibtex.pm:1713> INFO - LaTeX decoding ...
+[99] bibtex.pm:1519> INFO - Found BibTeX data source '../fullThesis/bibliografia.bib'
+[128] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[128] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[128] Biber.pm:4307> INFO - Sorting list 'nty/global//global/global/global' of type 'entry' with template 'nty' and locale 'en-US'
+[129] Biber.pm:4313> INFO - No sort tailoring available for locale 'en-US'
+[131] bbl.pm:676> INFO - Writing 'presentation.bbl' with encoding 'UTF-8'
+[132] bbl.pm:779> INFO - Output to presentation.bbl

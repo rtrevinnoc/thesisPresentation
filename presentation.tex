@@ -1,0 +1,438 @@
+\documentclass[en,16:9,navbarinline,bigfoot]{sdqbeamer} 
+ 
+\titleimage{banner_2020_kit}
+
+\groupname{Facultad de Ingeniería Mecánica y Eléctrica}
+\groupnamewidth{75mm}
+
+\title[Mecátronica]{Optimización de Trayectorias de Orden Superior Informadas por el Rendimiento de la Oblea para Sistemas \textit{Step-and-Scan}}
+\subtitle{Seminario I} 
+\author[R. Treviño]{Roberto Treviño Cervantes}
+\date{\today}
+
+\usepackage[citestyle=authoryear,bibstyle=numeric,hyperref,backend=biber]{biblatex}
+\addbibresource{../fullThesis/bibliografia.bib}
+\bibhang1em
+
+\usepackage{tikz}
+\usetikzlibrary{decorations.pathmorphing,patterns,arrows.meta,calc,positioning}
+
+%%%%%%% ---- COLOR PALETTE --------
+\definecolor{mnnwInk}     {HTML}{0A0A0A}
+\definecolor{mnnwSignal}  {HTML}{0A84FF}
+\definecolor{mnnwHair}    {HTML}{C9C9C9}
+\definecolor{mnnwMute}    {HTML}{6F6F6F}
+\definecolor{reticleFill} {HTML}{DCE6F7}  
+\definecolor{reticleEdge} {HTML}{4F6F9F}
+\definecolor{reticleFlex} {HTML}{EEF3FB}  
+\definecolor{waferFill}   {HTML}{F5DCDC}  
+\definecolor{waferEdge}   {HTML}{9F4F4F}
+\definecolor{waferFlex}   {HTML}{FBEEEE}
+\definecolor{opticsFill}  {HTML}{E7DCF5}  
+\definecolor{opticsEdge}  {HTML}{6F4F9F}
+\definecolor{opticsFlex}  {HTML}{F3EEFB}
+\definecolor{frameFill}   {HTML}{D9E8D2}  
+\definecolor{frameEdge}   {HTML}{4F7F3F}
+\definecolor{lensFill}    {HTML}{EEEEEE}
+
+\tikzset{
+  hdamper/.pic={
+    \draw[line width=0.5pt, mnnwInk] (-0.45,0)            -- (-0.18,0);
+    \draw[line width=0.5pt, mnnwInk] (-0.18,-0.11) rectangle (0.18,0.11);
+    \draw[line width=0.5pt, mnnwInk] (0,-0.11)            -- (0,0.11);
+    \draw[line width=0.5pt, mnnwInk] (0.18,0)             -- (0.45,0);
+  },
+  vdamper/.pic={
+    \draw[line width=0.5pt, mnnwInk] (0,-0.45)            -- (0,-0.18);
+    \draw[line width=0.5pt, mnnwInk] (-0.11,-0.18) rectangle (0.11,0.18);
+    \draw[line width=0.5pt, mnnwInk] (-0.11,0)            -- (0.11,0);
+    \draw[line width=0.5pt, mnnwInk] (0,0.18)             -- (0,0.45);
+  },
+}
+\newcommand{\hdamperLong}[3]{%
+  \pgfmathsetmacro{\xa}{#1}\pgfmathsetmacro{\xb}{#2}\pgfmathsetmacro{\yy}{#3}
+  \pgfmathsetmacro{\Lcyl}{(\xb-\xa)*0.55}
+  \pgfmathsetmacro{\xcylR}{\xa+\Lcyl}
+  \pgfmathsetmacro{\xpisR}{\xb}
+  \draw[line width=0.5pt, mnnwInk] (\xa,\yy-0.13) -- (\xa,\yy+0.13);
+  \draw[line width=0.5pt, mnnwInk] (\xa,\yy+0.13) -- (\xcylR,\yy+0.13);
+  \draw[line width=0.5pt, mnnwInk] (\xa,\yy-0.13) -- (\xcylR,\yy-0.13);
+  \pgfmathsetmacro{\xpiston}{\xa+\Lcyl*0.70}
+  \draw[line width=0.5pt, mnnwInk] (\xpiston,\yy-0.11) -- (\xpiston,\yy+0.11);
+  \draw[line width=0.5pt, mnnwInk] (\xpiston,\yy) -- (\xpisR,\yy);
+}
+\newcommand{\vdamperLong}[3]{%
+  \pgfmathsetmacro{\xx}{#1}\pgfmathsetmacro{\ya}{#2}\pgfmathsetmacro{\yb}{#3}
+  \pgfmathsetmacro{\Lcyl}{(\yb-\ya)*0.55}
+  \pgfmathsetmacro{\ycylT}{\ya+\Lcyl}
+  \draw[line width=0.5pt, mnnwInk] (\xx-0.13,\ya) -- (\xx+0.13,\ya);
+  \draw[line width=0.5pt, mnnwInk] (\xx-0.13,\ya) -- (\xx-0.13,\ycylT);
+  \draw[line width=0.5pt, mnnwInk] (\xx+0.13,\ya) -- (\xx+0.13,\ycylT);
+  \pgfmathsetmacro{\ypiston}{\ya+\Lcyl*0.70}
+  \draw[line width=0.5pt, mnnwInk] (\xx-0.11,\ypiston) -- (\xx+0.11,\ypiston);
+  \draw[line width=0.5pt, mnnwInk] (\xx,\ypiston) -- (\xx,\yb);
+}
+
+\def\getfirstchar#1#2\relax{#1}
+\newcommand{\chainrow}[8]{%
+  \edef\styleName{#2}%
+  \def\currColor{mnnwMute}%
+  \edef\firstChar{\expandafter\getfirstchar\styleName\relax}%
+  \if\firstChar w\def\currColor{waferEdge}\fi
+  \if\firstChar o\def\currColor{opticsEdge}\fi
+  \if\firstChar r\def\currColor{reticleEdge}\fi
+  \pgfmathparse{abs(#3 - \lastX) < 0.001 ? 1 : 0}
+  \ifnum\pgfmathresult=1
+    \pgfmathparse{abs(#3) < 0.001 ? 1 : 0}
+    \ifnum\pgfmathresult=1 \def\lineColor{frameEdge} \else \def\lineColor{\currColor} \fi
+    \draw[line width=0.35pt, \lineColor] (#3, \lastSpringY) -- (#3, #1-0.62);
+  \fi
+  \node[#2, inner xsep=6pt] (blk) at (#4,#1) {#5};
+  \node[ghost, inner xsep=6pt] at (#3,#1) {\phantom{#5}};
+  \draw[hsp] (#3, #1+0.62) -- (#4, #1+0.62);
+  \draw[line width=0.35pt, mnnwInk] (#3, #1+0.275) -- (#3, #1+0.62);
+  \draw[line width=0.35pt, mnnwInk] (#4, #1+0.275) -- (#4, #1+0.62);
+  \draw[line width=0.35pt, mnnwInk] (#3, #1-0.275) -- (#3, #1-0.62);
+  \draw[line width=0.35pt, mnnwInk] (#4, #1-0.275) -- (#4, #1-0.62);
+  \hdamperLong{#3}{#4}{#1-0.62}
+  \pgfmathsetmacro{\lblSide}{#4 > #3 ? #3 : #3}
+  \pgfmathsetmacro{\lblAnch}{#4 > #3 ? "east" : "west"}
+  \node[lbl, anchor=\lblAnch] at (\lblSide, #1+0.62) {#6}; 
+  \node[lbl, anchor=\lblAnch] at (\lblSide, #1-0.62) {#7}; 
+  \pgfmathsetmacro{\fSide}{#4 > #3 ? #4 : #4}
+  \pgfmathsetmacro{\fAnch}{#4 > #3 ? "west" : "east"}
+  \node[ftn, anchor=\fAnch] at (\fSide, #1-0.525) {#8};
+  \draw[darr] (#3, #1-0.275) -- (#4, #1-0.275);
+  \pgfmathsetmacro{\newSpringY}{#1+0.62}
+  \xdef\lastSpringY{\newSpringY}
+  \pgfmathsetmacro{\newX}{#4}
+  \xdef\lastX{\newX}
+}
+
+%% Logo and Layout Settings
+\kitlogo{uanl}
+\grouplogo{fime}
+\kitslogan{}
+
+% Custom Title Frame Command to replace \KITtitleframe
+\newcommand{\UANLtitleframe}{%
+  \begin{frame}[plain]
+    % Larger logos for the title page only
+    \begin{textblock*}{18mm}(7.3mm,6.7mm)
+      \includegraphics[width=18mm]{logos/uanl.eps}%
+    \end{textblock*}%
+    \begin{textblock*}{22mm}(\dimexpr\paperwidth-22.3mm\relax,6.7mm)
+      \includegraphics[width=22mm,height=22mm,keepaspectratio]{logos/fime.eps}%
+    \end{textblock*}%
+    \begin{textblock*}{\dimexpr\paperwidth-2\kitinnermargin\relax}[0,.5](7.3mm,35mm)
+      {\usebeamerfont{title}\inserttitle}%
+    \end{textblock*}%
+    \begin{textblock*}{\dimexpr\paperwidth-2\kitinnermargin\relax}[0,.5](7.3mm,45mm)
+      {\usebeamerfont{subtitle}\insertsubtitle}%
+    \end{textblock*}%
+    \begin{textblock*}{\dimexpr\paperwidth-2\kitinnermargin\relax}[0,.5](7.3mm,52mm)
+      {\usebeamerfont{author}\insertauthor\ \textbar\ \insertdate}%
+    \end{textblock*}%
+    \begin{textblock*}{\paperwidth}(2mm,60mm)
+      \centering\includegraphics[height=30mm]{logos/banner_2020_kit.jpg}%
+    \end{textblock*}%
+  \end{frame}
+}
+
+% Simplified tiny side-by-side logos for frametitle
+\setbeamertemplate{frametitle}{%
+  \begin{textblock*}{120mm}[0,1](7.3mm,15mm)
+    {\usebeamerfont{frametitle}\insertframetitle}%
+  \end{textblock*}%
+  \begin{textblock*}{12mm}[1,1](\dimexpr\paperwidth-12.3mm\relax,15mm)
+    \includegraphics[width=8mm]{logos/uanl.eps}%
+  \end{textblock*}%
+  \begin{textblock*}{8mm}[1,1](\dimexpr\paperwidth-7.3mm\relax,15mm)
+    \includegraphics[width=10mm]{logos/fime.eps}%
+  \end{textblock*}%
+  \vspace{18mm}
+}
+
+\begin{document}
+
+\UANLtitleframe
+
+\begin{frame}{Índice}
+\tableofcontents
+\end{frame}
+
+\section{Introducción}
+
+\begin{frame}{Fabricación de Circuitos Integrados}
+    \begin{itemize}
+        \item La \textit{ley de Moore} impulsa a la industria de semiconductores a reducir de manera exponencial el rendimiento de los dispositivos electronicos.
+        \item Este dramático incremento en el rendimiento, implica la constante reducción en el tamaño de los componentes discretos en un circuito integraod (IC).
+        \item La impresión de los patrones que componen cada capa del circuito se realiza mediante la exposición de la \textit{foto-máscara} en el proceso de \textbf{fotolitografía}.
+        \item La dimensión crítica (CD) se está reduciendo a 18nm para la litografía de ultravioleta extrema (EUV), sin embargo, los dispositivos electrónicos de consumo masivo se fabrican a dimensiones de 38nm en sistemas de litografía de ultravioleta profunda (DUV).
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{El Proceso \textit{Step-and-Scan}}
+    \begin{columns}
+        \column{.6\textwidth}
+        \begin{itemize}
+            \item En lugar de exponer la oblea completa en un solo \textit{flash}, las herramientas de litografía modernas realizan un barrido de exposición (\textit{scan}).
+            \item Por lo tanto, el movimiento de la \textbf{reticula} y la \textbf{oblea} debe estar sincronizado en direcciones opuestas.
+            \item Debido a la tasa de reducción del lente, la reticula debe moverse $4\times$ más rápido.
+            \item De esta manera, cada segmento de la oblea recibe en promedio la misma dosis de iluminación.
+        \end{itemize}
+        \column{.4\textwidth}
+        \begin{center}
+          \resizebox{0.75\linewidth}{!}{
+          \begin{tikzpicture}[
+            every node/.style={font=\fontsize{4pt}{4pt}\selectfont},
+            wafer/.style={draw=kit-blue100, line width=0.6pt, fill=kit-blue!5},
+            die/.style={draw=mnnwInk, line width=0.3pt, fill=white, postaction={pattern=north east lines, pattern color=mnnwMute!40}},
+            scan/.style={draw=kit-red100, line width=0.8pt, dashed, -{Stealth[scale=0.5]}},
+            stepArrow/.style={draw=kit-lightgreen100, line width=0.8pt, -{Stealth[scale=0.5]}},
+            traverse/.style={draw=mnnwInk, line width=0.5pt, dotted, -{Stealth[scale=0.5]}},
+            point/.style={circle, fill=kit-blue100, inner sep=1pt}
+          ]
+            
+            % Wafer boundary
+            \draw[wafer] (0,0) circle (2.2cm);
+            
+            % Grid of dies clipped to wafer
+            \begin{scope}
+              \clip (0,0) circle (2.2cm);
+              \foreach \x in {-1.75,-1.25,...,1.75} {
+                \foreach \y in {-1.75,-1.25,...,1.75} {
+                  \draw[die] (\x-0.2,\y-0.2) rectangle (\x+0.2,\y+0.2);
+                }
+              }
+            \end{scope}
+
+            % 2: Scan Up
+            \draw[scan] (-1.25, -1.75) -- (-1.25, -1.25) node[midway, left, text=kit-red100] {};
+            
+            % 3: Step Right (to Column 2)
+            \draw[stepArrow] (-1.25, -1.25) -- (-0.75, -1.25) node[midway, above, text=kit-lightgreen100] {};
+            
+            % 4: Scan Down (Column 2)
+            \draw[scan] (-0.75, -1.25) -- (-0.75, -1.75) node[midway, right, text=kit-red100] {};
+            
+            % 5: Step Right (to Column 3)
+            \draw[stepArrow] (-0.75, -1.75) -- (-0.25, -1.75) node[midway, below, text=kit-lightgreen100] {};
+            
+            % 6: Scan Up (Column 3)
+            \draw[scan] (-0.25, -1.75) -- (-0.25, -1.25) node[midway, left, text=kit-red100] {};
+            
+            % 7: Step Right (to Column 4)
+            \draw[stepArrow] (-0.25, -1.25) -- (0.25, -1.25) node[midway, above, text=kit-lightgreen100] {};
+            
+            % 8: Scan Down (Column 4)
+            \draw[scan] (0.25, -1.25) -- (0.25, -1.75) node[midway, right, text=kit-red100] {};
+            
+            % Axes
+            \draw[draw=mnnwInk, -Stealth] (0,0) -- (0.4,0) node[right] {$x$};
+            \draw[draw=mnnwInk, -Stealth] (0,0) -- (0,0.4) node[above] {$y$};
+
+          \end{tikzpicture}
+          }
+        \end{center}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Productividad vs. \textit{Overlay}}
+    \begin{blueblock}{Overlay (nm)}
+        Puesto que un solo IC consiste de múltiples capas que interactuan entre si, el \textit{overlay} es la desviación entre cada una que debe ser minimizada para asegurar su interconexión (\cite{Schmidt2012_UltraPrecision}).
+    \end{blueblock}
+    
+    \begin{greenblock}{Productividad (Obleas por Hora)}
+        El alto costo de capital en un entorno de alto volumen conlleva la producción continua.
+    \end{greenblock}
+
+    \vspace{0.3cm}
+    El tiempo de asentamiento se encuentra inversamente relacionado con la productividad, sin embargo es necesario para esperar a que se reduzcan las vibraciones residuales que afectan directamente el \textit{overlay} (\cite{Butler2011_PositionControl}).
+    Es necesario encontrar trayectorias de referencia que minimizen el tiempo de asentamiento, y a su vez, la excitación de la resonancia estructural.
+\end{frame}
+
+\section{Modelo}
+
+\begin{frame}{Sistema multicuerpo}
+    El modelo, propuesto en \cite{Al-Rawashdeh2022_Caracterization}, esta compuesto por un marco base que relaciona la dinámica de tres cadenas seriales:
+    \begin{itemize}
+        \item \textbf{Cadena de la reticula ($j=1$):} desliza la fotomáscara bajo la fuente de iluminación.
+        \item \textbf{Cadena de optica ($j=2$):} conecta el lente y el marco de metrología.
+        \item \textbf{Cadena de la oblea ($j=3$):} desliza la oblea debajo del lente.
+    \end{itemize}
+    \vspace{0.2cm}
+    Las cadenas móviles ($j=1,3$) se integran por dos etapas: primero, un motor de carrera larga de exactitud moderada que lleva encima la segunda etapa, un motor de carrera corto implementado con un actuador de Lorentz de amplio ancho de banda y mayor exactitud.
+\end{frame}
+
+\begin{frame}[fragile]{Topologia}
+    \begin{columns}
+        \column{.7\textwidth}
+        \begin{itemize}
+            \item Un cuerpo $i$ en la cadena $j$ tiene un desplazamiento $f_{i_j}$ respecto al cuerpo $i-1$.
+            \item El desplazamiento absoluto $f^0_{i_j}$ del mismo cuerpo $i$ respecto al marco base $(i=1)$ está expresado por una suma recursiva.
+            \item La flexibilidad estructural de la estructura esta modelada mediante un sistema resorte-amortiguador ($K_{i_j}, C_{i_j}$) para cada cuerpo $i$ con $i+1$ en la cadena $j$.
+            \item Los actuadores están representados, a su vez, por dos segmentos que consideran el estator y la parte móvil.
+        \end{itemize}
+        \column{.3\textwidth}
+        \begin{center}
+          \resizebox{0.65\textwidth}{!}{
+          \begin{tikzpicture}[scale=1, transform shape,
+            every node/.style    ={font=\small},
+            rfrm/.style          ={draw=frameEdge, line width=0.6pt, fill=frameFill, minimum height=0.80cm, font=\small\bfseries, inner sep=2pt},
+            rblk/.style          ={draw=reticleEdge, line width=0.5pt, fill=reticleFill, minimum height=0.55cm, font=\footnotesize, text=mnnwInk, inner sep=2.5pt},
+            rflx/.style          ={draw=reticleEdge, line width=0.4pt, fill=reticleFlex, minimum height=0.42cm, font=\scriptsize, text=mnnwInk, inner sep=2pt, dashed},
+            wblk/.style          ={draw=waferEdge, line width=0.5pt, fill=waferFill, minimum height=0.55cm, font=\footnotesize, text=mnnwInk, inner sep=2.5pt},
+            wflx/.style          ={draw=waferEdge, line width=0.4pt, fill=waferFlex, minimum height=0.42cm, font=\scriptsize, text=mnnwInk, inner sep=2pt, dashed},
+            oblk/.style          ={draw=opticsEdge, line width=0.5pt, fill=opticsFill, minimum height=0.55cm, font=\footnotesize, text=mnnwInk, inner sep=2.5pt},
+            oflx/.style          ={draw=opticsEdge, line width=0.4pt, fill=opticsFlex, minimum height=0.42cm, font=\scriptsize, text=mnnwInk, inner sep=2pt, dashed},
+            ghost/.style         ={draw=mnnwHair, dashed, line width=0.35pt, fill=none, minimum height=0.55cm},
+            hsp/.style           ={line width=0.5pt, mnnwInk, decorate, decoration={zigzag, segment length=3.6pt, amplitude=2pt, pre length=2pt, post length=2pt}},
+            vsp/.style           ={line width=0.5pt, mnnwInk, decorate, decoration={zigzag, segment length=3.6pt, amplitude=2pt, pre length=2pt, post length=2pt}},
+            darr/.style          ={Stealth-Stealth, line width=0.5pt, mnnwSignal},
+            lbl/.style           ={font=\scriptsize, text=mnnwInk},
+            ftn/.style           ={font=\scriptsize, text=mnnwSignal},
+            axis/.style          ={dashed, line width=0.4pt, mnnwMute},
+            pillar/.style        ={fill=black!8, draw=mnnwHair, line width=0.3pt},
+            hatchfloor/.style    ={pattern=north east lines, pattern color=mnnwMute},
+          ]
+          
+          \def\xLeft{-8.0}\def\xRight{8.0}
+          \def\xPilL{-7.4}\def\xPilR{7.4}
+          \def\yFloor{0}
+          \def\yBase{1.4}
+          \def\yWa{3.4}\def\yWb{5.4}\def\yWc{7.4}\def\yWd{9.4}\def\yWe{11.4}\def\yWf{13.4}
+          \def\yOa{17.2}\def\yOb{19.2}\def\yOc{21.2}
+          \def\yRa{25.2}\def\yRb{27.2}\def\yRc{29.2}\def\yRd{31.2}\def\yRe{33.2}\def\yRf{35.2}
+          \def\yTop{35.5}
+          \def\yShA{15.4}\def\yShB{23.2}
+          
+          \filldraw[hatchfloor, draw=mnnwInk, line width=0.7pt]
+            (\xRight, 0) -- (\xLeft-0.6, 0) -- (\xLeft-0.6, \yWb) -- (\xLeft-1.1, \yWb) 
+            -- (\xLeft-1.1, -0.5) -- (\xRight, -0.5) -- cycle;
+          \node[lbl, anchor=west] at (\xRight+0.08,0.20) {$\mathcal{F}_0$};
+          \node[lbl, anchor=east, text=mnnwMute] at (\xLeft-1.1-0.08,-0.18) {Floor};
+          \draw[axis] (0,-0.05) -- (0,\yTop);
+          
+          \filldraw[draw=frameEdge, line width=0.6pt, fill=frameFill]
+            (7.8, \yBase-0.4) -- (-7.8, \yBase-0.4) -- (-7.8, \yTop) -- (-7.4, \yTop)
+            -- (-7.4, \yShB+0.4) -- (7.8, \yShB+0.4) -- (7.8, \yShB-0.4) -- (-7.4, \yShB-0.4)
+            -- (-7.4, \yShA+0.4) -- (7.8, \yShA+0.4) -- (7.8, \yShA-0.4) -- (-7.4, \yShA-0.4)
+            -- (-7.4, \yBase+0.4) -- (7.8, \yBase+0.4) -- cycle;
+          \node[font=\small\bfseries, text=mnnwInk] at (0, \yBase) {Base Frame $\;(\mathcal{F}_1)$};
+          \def\lblX{\xLeft-1.2} 
+          \hdamperLong{\xLeft-0.6}{-7.8}{2.5}
+          \node[lbl, above=2pt] at ({(\xLeft-0.6-7.8)/2}, 2.5) {$C_1$};
+          \draw[hsp] (\xLeft-0.6, 2.0) -- (-7.8, 2.0) node[midway, below=4pt, lbl] {$K_1$};
+          
+          \pgfmathsetmacro{\shelfW}{\yBase+0.4}
+          \xdef\lastSpringY{\shelfW} \xdef\lastX{0}
+          \chainrow{\yWa}{wblk}{0}{ 0.9}{\textbf{Wafer LS} $(i_3{=}2)$}{$K_{2,3}$}{$C_{2,3}$}{$f_{2,3}$}
+          \chainrow{\yWb}{wflx}{0.9}{ 1.8}{flex coupling $(i_3{=}3)$}{$K_{3,3}$}{$C_{3,3}$}{$f_{3,3}$}
+          \chainrow{\yWc}{wblk}{1.8}{ 2.7}{\textbf{Wafer SS} $(i_3{=}4)$}{$K_{4,3}$}{$C_{4,3}$}{$f_{4,3}$}
+          \chainrow{\yWd}{wflx}{2.7}{ 3.6}{flex coupling $(i_3{=}5)$}{$K_{5,3}$}{$C_{5,3}$}{$f_{5,3}$}
+          \chainrow{\yWe}{wblk}{3.6}{ 4.5}{\textbf{Wafer Stage} $(i_3{=}6)$}{$K_{6,3}$}{$C_{6,3}$}{$f_{6,3}$}
+          \chainrow{\yWf}{wblk}{4.5}{ 5.4}{\textbf{Die} $(N_3{=}7)$}{$K_{N_3,3}$}{$C_{N_3,3}$}{$f_{N_3,3}$}
+          
+          \pgfmathsetmacro{\shelfO}{\yShA+0.4}
+          \xdef\lastSpringY{\shelfO} \xdef\lastX{0}
+          \chainrow{\yOa}{oblk}{0}{-0.9}{\textbf{Metrology Frame} $(i_2{=}2)$}{$K_{2,2}$}{$C_{2,2}$}{$f_{2,2}$}
+          \chainrow{\yOb}{oblk}{-0.9}{-1.8}{Optics Box $(i_2{=}3)$}{$K_{3,2}$}{$C_{3,2}$}{$f_{3,2}$}
+          \chainrow{\yOc}{oblk}{-1.8}{-2.7}{Lens Element $(i_2{=}4)$}{$K_{4,2}$}{$C_{4,2}$}{$f_{4,2}$}
+          
+          \pgfmathsetmacro{\shelfR}{\yShB+0.4}
+          \xdef\lastSpringY{\shelfR} \xdef\lastX{0}
+          \chainrow{\yRa}{rblk}{0}{-0.9}{\textbf{Reticle LS} $(i_1{=}2)$}{$K_{2,1}$}{$C_{2,1}$}{$f_{2,1}$}
+          \chainrow{\yRb}{rflx}{-0.9}{-1.8}{flex coupling $(i_1{=}3)$}{$K_{3,1}$}{$C_{3,1}$}{$f_{3,1}$}
+          \chainrow{\yRc}{rblk}{-1.8}{-2.7}{\textbf{Reticle SS} $(i_1{=}4)$}{$K_{4,1}$}{$C_{4,1}$}{$f_{4,1}$}
+          \chainrow{\yRd}{rflx}{-2.7}{-3.6}{flex coupling $(i_1{=}5)$}{$K_{5,1}$}{$C_{5,1}$}{$f_{5,1}$}
+          \chainrow{\yRe}{rblk}{-3.6}{-4.5}{\textbf{Reticle Stage} $(i_1{=}6)$}{$K_{6,1}$}{$C_{6,1}$}{$f_{6,1}$}
+          \chainrow{\yRf}{rblk}{-4.5}{-5.4}{\textbf{Mask} $(N_1{=}7)$}{$K_{N_1,1}$}{$C_{N_1,1}$}{$f_{N_1,1}$}
+          
+          \draw[line width=0.4pt, waferEdge]   (\xPilR+0.30,\yWa-0.30) -- (\xPilR+0.30,\yWf+0.30);
+          \node[font=\scriptsize\bfseries, text=waferEdge, rotate=-90, anchor=south] at (\xPilR+0.55,{(\yWa+\yWf)/2}) {Wafer chain $(j{=}3)$};
+          \draw[line width=0.4pt, opticsEdge]  (\xPilR+0.30,\yOa-0.30) -- (\xPilR+0.30,\yOc+0.30);
+          \node[font=\scriptsize\bfseries, text=opticsEdge, rotate=-90, anchor=south] at (\xPilR+0.55,{(\yOa+\yOc)/2}) {Optics chain $(j{=}2)$};
+          \draw[line width=0.4pt, reticleEdge] (\xPilR+0.30,\yRa-0.30) -- (\xPilR+0.30,\yRf+0.30);
+          \node[font=\scriptsize\bfseries, text=reticleEdge, rotate=-90, anchor=south] at (\xPilR+0.55,{(\yRa+\yRf)/2}) {Reticle chain $(j{=}1)$};
+          \end{tikzpicture}
+          }
+        \end{center}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Dinámica}
+    \begin{itemize}
+        \item Limitamos el movimiento $f_{i_{j_x}}$, $f_{i_{j_y}}$ y la rotación $\theta_z$ planar.
+        \item Consideramos 16 cuerpos ($N_1=7$, $N_2=4$, $N_3=7$) que requieren 6 estados para su descripción:
+        \begin{equation}
+            x =
+            \begin{bmatrix}
+                \underbrace{x_1, \ldots, x_6}_{\text{marco base (i=1)}} \;,\;
+                \underbrace{x_7, \ldots, x_{6N_1}}_{\text{cadena 1: cuerpos } 2 \to N_1} \;,\;
+                \underbrace{\ldots}_{\text{chain 2}} \;,\;
+                \underbrace{\ldots}_{\text{chain 3}}
+            \end{bmatrix}^T
+        \end{equation}
+        \item Para un cuerpo ($2 < i < N_j$):
+        \begin{align}
+            \ddot{\mathbf{x}}_{2p-1} &= 
+            \frac{1}{\bar{m}_{i_j}} \Big[ u^0_{i_j} - {}^0\bar{C}_{i_j}\dot{\mathbf{x}}_{2p-1} - {}^0\bar{K}_{i_j}\mathbf{x}_{2p-1} + {}^0\hat{C}_{(i+1)_j}\dot{\mathbf{x}}_{2p+1} + {}^0\hat{K}_{(i+1)_j}\mathbf{x}_{2p+1} \Big] \notag \\
+            &\quad - \frac{1}{\bar{m}_{(i-1)_j}} \Big[ u^0_{(i-1)_j} - {}^0\bar{C}_{(i-1)_j}\dot{\mathbf{x}}_{2p-3} - {}^0\bar{K}_{(i-1)_j}\mathbf{x}_{2p-3} + {}^0\hat{C}_{i_j}\dot{\mathbf{x}}_{2p-1} + {}^0\hat{K}_{i_j}\mathbf{x}_{2p-1} \Big] \\
+        \end{align}
+    \end{itemize}
+\end{frame}
+
+\section{Metodología}
+
+\begin{frame}{Simulación}
+    \begin{columns}
+        \column{.6\textwidth}
+        \begin{itemize}
+            \item Implementación del modelo en \textbf{MuJoCo} \cite{todorov2012mujoco}.
+            \item Permite ejecutar las trayectorias, y seguir el error de posicionamiento a través del promedio móvil (MA) y la desviación estandar móvil (MSD).
+            \item Actualmente modelamos los parametros propuestos en \cite{Al-Rawashdeh2022_Caracterization}.
+            \item La identificación de un error de posicionamiento que supera el umbral establecido en la literatura (MA $\geq$ 1nm, MSD $\geq$ 7nm) nos indica una degradación crítica en el \textit{overlay}, que compromete el funcionamiento del IC y, por consiguiente, el rendimiento de la oblea o \textit{yield}.
+        \end{itemize}
+        \column{.4\textwidth}
+        \begin{center}
+          \includegraphics[width=\linewidth]{../fullThesis/pictures/scanning_3d.png}
+        \end{center}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Trajectory Reference Generation}
+    \begin{contentblock}{StepperController}
+    A Python-based \texttt{StepperController} generates reference states.
+    \end{contentblock}
+    \begin{itemize}
+        \item Wafer stage constant scanning velocity: $v_{w,scan} = 0.8$ m/s
+        \item Reticle stage velocity: $v_{r,scan} = 3.2$ m/s (4:1 demagnification ratio)
+        \item Max acceleration for wafer transients: $a_{w,max} = 20$ m/s$^2$
+        \item Evaluates centripetal and Coriolis effects during fast turnarounds.
+    \end{itemize}
+\end{frame}
+
+\section{Next Steps}
+
+\begin{frame}{Next Steps}
+    \begin{itemize}
+        \item Design yield-aware higher-order scanning trajectories.
+        \item Inject proposed trajectories into the MuJoCo simulation.
+        \item Analyze overlay performance and residual settling time.
+        \item Compare with classical S-curve and low-order polynomials.
+    \end{itemize}
+    \vspace{0.5cm}
+    \begin{center}
+    \textit{Thank you for your attention.}
+    \end{center}
+\end{frame}
+
+\appendix
+\beginbackup
+\begin{frame}[allowframebreaks]{References}
+\printbibliography
+\end{frame}
+\backupend
+
+\end{document}
