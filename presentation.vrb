@@ -1,10 +1,10 @@
-\frametitle{Topologia}
+\frametitle{Topología}
 \begin{columns}
         \column{.7\textwidth}
         \begin{itemize}
             \item Un cuerpo $i$ en la cadena $j$ tiene un desplazamiento $f_{i_j}$ respecto al cuerpo $i-1$.
             \item El desplazamiento absoluto $f^0_{i_j}$ del mismo cuerpo $i$ respecto al marco base $(i=1)$ está expresado por una suma recursiva.
-            \item La flexibilidad estructural de la estructura esta modelada mediante un sistema resorte-amortiguador ($K_{i_j}, C_{i_j}$) para cada cuerpo $i$ con $i+1$ en la cadena $j$.
+            \item La flexibilidad de la estructura está modelada mediante un sistema resorte-amortiguador ($K_{i_j}, C_{i_j}$) para cada cuerpo $i$ con $i+1$ en la cadena $j$.
             \item Los actuadores están representados, a su vez, por dos segmentos que consideran el estator y la parte móvil.
         \end{itemize}
         \column{.3\textwidth}
@@ -44,7 +44,7 @@
             (\xRight, 0) -- (\xLeft-0.6, 0) -- (\xLeft-0.6, \yWb) -- (\xLeft-1.1, \yWb)
             -- (\xLeft-1.1, -0.5) -- (\xRight, -0.5) -- cycle;
           \node[lbl, anchor=west] at (\xRight+0.08,0.20) {$\mathcal{F}_0$};
-          \node[lbl, anchor=east, text=mnnwMute] at (\xLeft-1.1-0.08,-0.18) {Floor};
+          \node[lbl, anchor=east, text=mnnwMute] at (\xLeft-1.1-0.08,-0.18) {Piso};
           \draw[axis] (0,-0.05) -- (0,\yTop);
 
           \filldraw[draw=frameEdge, line width=0.6pt, fill=frameFill]
@@ -52,7 +52,7 @@
             -- (-7.4, \yShB+0.4) -- (7.8, \yShB+0.4) -- (7.8, \yShB-0.4) -- (-7.4, \yShB-0.4)
             -- (-7.4, \yShA+0.4) -- (7.8, \yShA+0.4) -- (7.8, \yShA-0.4) -- (-7.4, \yShA-0.4)
             -- (-7.4, \yBase+0.4) -- (7.8, \yBase+0.4) -- cycle;
-          \node[font=\small\bfseries, text=mnnwInk] at (0, \yBase) {Base Frame $\;(\mathcal{F}_1)$};
+          \node[font=\small\bfseries, text=mnnwInk] at (0, \yBase) {Marco Base $\;(\mathcal{F}_1)$};
           \def\lblX{\xLeft-1.2}
           \hdamperLong{\xLeft-0.6}{-7.8}{2.5}
           \node[lbl, above=2pt] at ({(\xLeft-0.6-7.8)/2}, 2.5) {$C_1$};
@@ -60,34 +60,34 @@
 
           \pgfmathsetmacro{\shelfW}{\yBase+0.4}
           \xdef\lastSpringY{\shelfW} \xdef\lastX{0}
-          \chainrow{\yWa}{wblk}{0}{ 0.9}{\textbf{Wafer LS} $(i_3{=}2)$}{$K_{2,3}$}{$C_{2,3}$}{$f_{2,3}$}
-          \chainrow{\yWb}{wflx}{0.9}{ 1.8}{flex coupling $(i_3{=}3)$}{$K_{3,3}$}{$C_{3,3}$}{$f_{3,3}$}
-          \chainrow{\yWc}{wblk}{1.8}{ 2.7}{\textbf{Wafer SS} $(i_3{=}4)$}{$K_{4,3}$}{$C_{4,3}$}{$f_{4,3}$}
-          \chainrow{\yWd}{wflx}{2.7}{ 3.6}{flex coupling $(i_3{=}5)$}{$K_{5,3}$}{$C_{5,3}$}{$f_{5,3}$}
-          \chainrow{\yWe}{wblk}{3.6}{ 4.5}{\textbf{Wafer Stage} $(i_3{=}6)$}{$K_{6,3}$}{$C_{6,3}$}{$f_{6,3}$}
-          \chainrow{\yWf}{wblk}{4.5}{ 5.4}{\textbf{Die} $(N_3{=}7)$}{$K_{N_3,3}$}{$C_{N_3,3}$}{$f_{N_3,3}$}
+          \chainrow{\yWa}{wblk}{0}{ 0.9}{\textbf{Oblea LS} $(i_3{=}2)$}{$K_{2,3}$}{$C_{2,3}$}{$f_{2,3}$}
+          \chainrow{\yWb}{wflx}{0.9}{ 1.8}{Acoplamiento flexible $(i_3{=}3)$}{$K_{3,3}$}{$C_{3,3}$}{$f_{3,3}$}
+          \chainrow{\yWc}{wblk}{1.8}{ 2.7}{\textbf{Oblea SS} $(i_3{=}4)$}{$K_{4,3}$}{$C_{4,3}$}{$f_{4,3}$}
+          \chainrow{\yWd}{wflx}{2.7}{ 3.6}{Acoplamiento flexible $(i_3{=}5)$}{$K_{5,3}$}{$C_{5,3}$}{$f_{5,3}$}
+          \chainrow{\yWe}{wblk}{3.6}{ 4.5}{\textbf{Plataforma de la Oblea} $(i_3{=}6)$}{$K_{6,3}$}{$C_{6,3}$}{$f_{6,3}$}
+          \chainrow{\yWf}{wblk}{4.5}{ 5.4}{\textbf{Dado} $(N_3{=}7)$}{$K_{N_3,3}$}{$C_{N_3,3}$}{$f_{N_3,3}$}
 
           \pgfmathsetmacro{\shelfO}{\yShA+0.4}
           \xdef\lastSpringY{\shelfO} \xdef\lastX{0}
-          \chainrow{\yOa}{oblk}{0}{-0.9}{\textbf{Metrology Frame} $(i_2{=}2)$}{$K_{2,2}$}{$C_{2,2}$}{$f_{2,2}$}
-          \chainrow{\yOb}{oblk}{-0.9}{-1.8}{Optics Box $(i_2{=}3)$}{$K_{3,2}$}{$C_{3,2}$}{$f_{3,2}$}
-          \chainrow{\yOc}{oblk}{-1.8}{-2.7}{Lens Element $(i_2{=}4)$}{$K_{4,2}$}{$C_{4,2}$}{$f_{4,2}$}
+          \chainrow{\yOa}{oblk}{0}{-0.9}{\textbf{Marco de Metrología} $(i_2{=}2)$}{$K_{2,2}$}{$C_{2,2}$}{$f_{2,2}$}
+          \chainrow{\yOb}{oblk}{-0.9}{-1.8}{Caja de Óptica $(i_2{=}3)$}{$K_{3,2}$}{$C_{3,2}$}{$f_{3,2}$}
+          \chainrow{\yOc}{oblk}{-1.8}{-2.7}{Lente $(i_2{=}4)$}{$K_{4,2}$}{$C_{4,2}$}{$f_{4,2}$}
 
           \pgfmathsetmacro{\shelfR}{\yShB+0.4}
           \xdef\lastSpringY{\shelfR} \xdef\lastX{0}
-          \chainrow{\yRa}{rblk}{0}{-0.9}{\textbf{Reticle LS} $(i_1{=}2)$}{$K_{2,1}$}{$C_{2,1}$}{$f_{2,1}$}
-          \chainrow{\yRb}{rflx}{-0.9}{-1.8}{flex coupling $(i_1{=}3)$}{$K_{3,1}$}{$C_{3,1}$}{$f_{3,1}$}
-          \chainrow{\yRc}{rblk}{-1.8}{-2.7}{\textbf{Reticle SS} $(i_1{=}4)$}{$K_{4,1}$}{$C_{4,1}$}{$f_{4,1}$}
-          \chainrow{\yRd}{rflx}{-2.7}{-3.6}{flex coupling $(i_1{=}5)$}{$K_{5,1}$}{$C_{5,1}$}{$f_{5,1}$}
-          \chainrow{\yRe}{rblk}{-3.6}{-4.5}{\textbf{Reticle Stage} $(i_1{=}6)$}{$K_{6,1}$}{$C_{6,1}$}{$f_{6,1}$}
-          \chainrow{\yRf}{rblk}{-4.5}{-5.4}{\textbf{Mask} $(N_1{=}7)$}{$K_{N_1,1}$}{$C_{N_1,1}$}{$f_{N_1,1}$}
+          \chainrow{\yRa}{rblk}{0}{-0.9}{\textbf{Retícula LS} $(i_1{=}2)$}{$K_{2,1}$}{$C_{2,1}$}{$f_{2,1}$}
+          \chainrow{\yRb}{rflx}{-0.9}{-1.8}{Acoplamiento flexible $(i_1{=}3)$}{$K_{3,1}$}{$C_{3,1}$}{$f_{3,1}$}
+          \chainrow{\yRc}{rblk}{-1.8}{-2.7}{\textbf{Retícula SS} $(i_1{=}4)$}{$K_{4,1}$}{$C_{4,1}$}{$f_{4,1}$}
+          \chainrow{\yRd}{rflx}{-2.7}{-3.6}{Acoplamiento flexible $(i_1{=}5)$}{$K_{5,1}$}{$C_{5,1}$}{$f_{5,1}$}
+          \chainrow{\yRe}{rblk}{-3.6}{-4.5}{\textbf{Plataforma de la Retícula} $(i_1{=}6)$}{$K_{6,1}$}{$C_{6,1}$}{$f_{6,1}$}
+          \chainrow{\yRf}{rblk}{-4.5}{-5.4}{\textbf{Fotomáscara} $(N_1{=}7)$}{$K_{N_1,1}$}{$C_{N_1,1}$}{$f_{N_1,1}$}
 
           \draw[line width=0.4pt, waferEdge]   (\xPilR+0.30,\yWa-0.30) -- (\xPilR+0.30,\yWf+0.30);
-          \node[font=\scriptsize\bfseries, text=waferEdge, rotate=-90, anchor=south] at (\xPilR+0.55,{(\yWa+\yWf)/2}) {Wafer chain $(j{=}3)$};
+          \node[font=\scriptsize\bfseries, text=waferEdge, rotate=-90, anchor=south] at (\xPilR+0.55,{(\yWa+\yWf)/2}) {Cadena de la oblea $(j{=}3)$};
           \draw[line width=0.4pt, opticsEdge]  (\xPilR+0.30,\yOa-0.30) -- (\xPilR+0.30,\yOc+0.30);
-          \node[font=\scriptsize\bfseries, text=opticsEdge, rotate=-90, anchor=south] at (\xPilR+0.55,{(\yOa+\yOc)/2}) {Optics chain $(j{=}2)$};
+          \node[font=\scriptsize\bfseries, text=opticsEdge, rotate=-90, anchor=south] at (\xPilR+0.55,{(\yOa+\yOc)/2}) {Cadena de óptica $(j{=}2)$};
           \draw[line width=0.4pt, reticleEdge] (\xPilR+0.30,\yRa-0.30) -- (\xPilR+0.30,\yRf+0.30);
-          \node[font=\scriptsize\bfseries, text=reticleEdge, rotate=-90, anchor=south] at (\xPilR+0.55,{(\yRa+\yRf)/2}) {Reticle chain $(j{=}1)$};
+          \node[font=\scriptsize\bfseries, text=reticleEdge, rotate=-90, anchor=south] at (\xPilR+0.55,{(\yRa+\yRf)/2}) {Cadena de la retícula $(j{=}1)$};
           \end{tikzpicture}
           }
         \end{center}

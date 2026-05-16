@@ -1,3 +1,4 @@
+\babel@toc {spanish}{}\relax 
 \beamer@sectionintoc {1}{Introducción}{3}{0}{1}
 \beamer@sectionintoc {2}{Modelo}{6}{0}{2}
 \beamer@sectionintoc {3}{Metodología}{9}{0}{3}

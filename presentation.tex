@@ -1,11 +1,12 @@
 \documentclass[en,16:9,navbarinline,bigfoot]{sdqbeamer} 
+\usepackage[spanish]{babel}
  
 \titleimage{banner_2020_kit}
 
 \groupname{Facultad de Ingeniería Mecánica y Eléctrica}
 \groupnamewidth{75mm}
 
-\title[Mecátronica]{Optimización de Trayectorias de Orden Superior Informadas por el Rendimiento de la Oblea para Sistemas \textit{Step-and-Scan}}
+\title[Mecatrónica]{Optimización de Trayectorias de Orden Superior Informadas por el Rendimiento de la Oblea para Sistemas \textit{Step-and-Scan}}
 \subtitle{Seminario I} 
 \author[R. Treviño]{Roberto Treviño Cervantes}
 \date{\today}
@@ -165,10 +166,10 @@
 
 \begin{frame}{Fabricación de Circuitos Integrados}
     \begin{itemize}
-        \item La \textit{ley de Moore} impulsa a la industria de semiconductores a reducir de manera exponencial el rendimiento de los dispositivos electronicos.
-        \item Este dramático incremento en el rendimiento, implica la constante reducción en el tamaño de los componentes discretos en un circuito integraod (IC).
-        \item La impresión de los patrones que componen cada capa del circuito se realiza mediante la exposición de la \textit{foto-máscara} en el proceso de \textbf{fotolitografía}.
-        \item La dimensión crítica (CD) se está reduciendo a 18nm para la litografía de ultravioleta extrema (EUV), sin embargo, los dispositivos electrónicos de consumo masivo se fabrican a dimensiones de 38nm en sistemas de litografía de ultravioleta profunda (DUV).
+        \item La \textit{ley de Moore} impulsa a la industria de semiconductores a reducir de manera exponencial el rendimiento de los dispositivos electrónicos.
+        \item Este dramático incremento en el rendimiento implica la constante reducción en el tamaño de los componentes discretos en un circuito integrado (IC).
+        \item La impresión de los patrones que componen cada capa del circuito se realiza mediante la exposición de la \textit{fotomáscara} en el proceso de \textbf{fotolitografía}.
+        \item La dimensión crítica (CD) se está reduciendo a 18nm para la litografía de ultravioleta extrema (EUV); sin embargo, los dispositivos electrónicos de consumo masivo se fabrican a dimensiones de 38nm en sistemas de litografía de ultravioleta profunda (DUV).
     \end{itemize}
 \end{frame}
 
@@ -177,8 +178,8 @@
         \column{.6\textwidth}
         \begin{itemize}
             \item En lugar de exponer la oblea completa en un solo \textit{flash}, las herramientas de litografía modernas realizan un barrido de exposición (\textit{scan}).
-            \item Por lo tanto, el movimiento de la \textbf{reticula} y la \textbf{oblea} debe estar sincronizado en direcciones opuestas.
-            \item Debido a la tasa de reducción del lente, la reticula debe moverse $4\times$ más rápido.
+            \item Por lo tanto, el movimiento de la \textbf{retícula} y la \textbf{oblea} debe estar sincronizado en direcciones opuestas.
+            \item Debido a la tasa de reducción del lente, la retícula debe moverse $4\times$ más rápido.
             \item De esta manera, cada segmento de la oblea recibe en promedio la misma dosis de iluminación.
         \end{itemize}
         \column{.4\textwidth}
@@ -240,7 +241,7 @@
 
 \begin{frame}{Productividad vs. \textit{Overlay}}
     \begin{blueblock}{Overlay (nm)}
-        Puesto que un solo IC consiste de múltiples capas que interactuan entre si, el \textit{overlay} es la desviación entre cada una que debe ser minimizada para asegurar su interconexión (\cite{Schmidt2012_UltraPrecision}).
+        Puesto que un solo IC consiste de múltiples capas que interactúan entre sí, el \textit{overlay} esxpresa la desviación entre cada una que debe ser minimizada para asegurar su interconexión (\cite{Schmidt2012_UltraPrecision}).
     \end{blueblock}
     
     \begin{greenblock}{Productividad (Obleas por Hora)}
@@ -248,30 +249,30 @@
     \end{greenblock}
 
     \vspace{0.3cm}
-    El tiempo de asentamiento se encuentra inversamente relacionado con la productividad, sin embargo es necesario para esperar a que se reduzcan las vibraciones residuales que afectan directamente el \textit{overlay} (\cite{Butler2011_PositionControl}).
-    Es necesario encontrar trayectorias de referencia que minimizen el tiempo de asentamiento, y a su vez, la excitación de la resonancia estructural.
+    El tiempo de asentamiento se encuentra inversamente relacionado con la productividad; sin embargo, es necesario para esperar a que se reduzcan las vibraciones residuales que afectan directamente el \textit{overlay} (\cite{Butler2011_PositionControl}).
+    Es necesario encontrar trayectorias de referencia que minimicen el tiempo de asentamiento y, a su vez, la excitación de la resonancia estructural.
 \end{frame}
 
 \section{Modelo}
 
 \begin{frame}{Sistema multicuerpo}
-    El modelo, propuesto en \cite{Al-Rawashdeh2022_Caracterization}, esta compuesto por un marco base que relaciona la dinámica de tres cadenas seriales:
+    El modelo, propuesto en \cite{Al-Rawashdeh2022_Caracterization}, está compuesto por un marco base que relaciona la dinámica de tres cadenas seriales:
     \begin{itemize}
-        \item \textbf{Cadena de la reticula ($j=1$):} desliza la fotomáscara bajo la fuente de iluminación.
-        \item \textbf{Cadena de optica ($j=2$):} conecta el lente y el marco de metrología.
+        \item \textbf{Cadena de la retícula ($j=1$):} desliza la fotomáscara bajo la fuente de iluminación.
+        \item \textbf{Cadena de óptica ($j=2$):} conecta el lente y el marco de metrología.
         \item \textbf{Cadena de la oblea ($j=3$):} desliza la oblea debajo del lente.
     \end{itemize}
     \vspace{0.2cm}
-    Las cadenas móviles ($j=1,3$) se integran por dos etapas: primero, un motor de carrera larga de exactitud moderada que lleva encima la segunda etapa, un motor de carrera corto implementado con un actuador de Lorentz de amplio ancho de banda y mayor exactitud.
+    Las cadenas móviles ($j=1,3$) se integran por dos etapas: primero, un motor de carrera larga de exactitud moderada que lleva encima la segunda etapa, un motor de carrera corta implementado con un actuador de Lorentz de amplio ancho de banda y mayor exactitud.
 \end{frame}
 
-\begin{frame}[fragile]{Topologia}
+\begin{frame}[fragile]{Topología}
     \begin{columns}
         \column{.7\textwidth}
         \begin{itemize}
             \item Un cuerpo $i$ en la cadena $j$ tiene un desplazamiento $f_{i_j}$ respecto al cuerpo $i-1$.
             \item El desplazamiento absoluto $f^0_{i_j}$ del mismo cuerpo $i$ respecto al marco base $(i=1)$ está expresado por una suma recursiva.
-            \item La flexibilidad estructural de la estructura esta modelada mediante un sistema resorte-amortiguador ($K_{i_j}, C_{i_j}$) para cada cuerpo $i$ con $i+1$ en la cadena $j$.
+            \item La flexibilidad de la estructura está modelada mediante un sistema resorte-amortiguador ($K_{i_j}, C_{i_j}$) para cada cuerpo $i$ con $i+1$ en la cadena $j$.
             \item Los actuadores están representados, a su vez, por dos segmentos que consideran el estator y la parte móvil.
         \end{itemize}
         \column{.3\textwidth}
@@ -311,7 +312,7 @@
             (\xRight, 0) -- (\xLeft-0.6, 0) -- (\xLeft-0.6, \yWb) -- (\xLeft-1.1, \yWb) 
             -- (\xLeft-1.1, -0.5) -- (\xRight, -0.5) -- cycle;
           \node[lbl, anchor=west] at (\xRight+0.08,0.20) {$\mathcal{F}_0$};
-          \node[lbl, anchor=east, text=mnnwMute] at (\xLeft-1.1-0.08,-0.18) {Floor};
+          \node[lbl, anchor=east, text=mnnwMute] at (\xLeft-1.1-0.08,-0.18) {Piso};
           \draw[axis] (0,-0.05) -- (0,\yTop);
           
           \filldraw[draw=frameEdge, line width=0.6pt, fill=frameFill]
@@ -319,7 +320,7 @@
             -- (-7.4, \yShB+0.4) -- (7.8, \yShB+0.4) -- (7.8, \yShB-0.4) -- (-7.4, \yShB-0.4)
             -- (-7.4, \yShA+0.4) -- (7.8, \yShA+0.4) -- (7.8, \yShA-0.4) -- (-7.4, \yShA-0.4)
             -- (-7.4, \yBase+0.4) -- (7.8, \yBase+0.4) -- cycle;
-          \node[font=\small\bfseries, text=mnnwInk] at (0, \yBase) {Base Frame $\;(\mathcal{F}_1)$};
+          \node[font=\small\bfseries, text=mnnwInk] at (0, \yBase) {Marco Base $\;(\mathcal{F}_1)$};
           \def\lblX{\xLeft-1.2} 
           \hdamperLong{\xLeft-0.6}{-7.8}{2.5}
           \node[lbl, above=2pt] at ({(\xLeft-0.6-7.8)/2}, 2.5) {$C_1$};
@@ -327,34 +328,34 @@
           
           \pgfmathsetmacro{\shelfW}{\yBase+0.4}
           \xdef\lastSpringY{\shelfW} \xdef\lastX{0}
-          \chainrow{\yWa}{wblk}{0}{ 0.9}{\textbf{Wafer LS} $(i_3{=}2)$}{$K_{2,3}$}{$C_{2,3}$}{$f_{2,3}$}
-          \chainrow{\yWb}{wflx}{0.9}{ 1.8}{flex coupling $(i_3{=}3)$}{$K_{3,3}$}{$C_{3,3}$}{$f_{3,3}$}
-          \chainrow{\yWc}{wblk}{1.8}{ 2.7}{\textbf{Wafer SS} $(i_3{=}4)$}{$K_{4,3}$}{$C_{4,3}$}{$f_{4,3}$}
-          \chainrow{\yWd}{wflx}{2.7}{ 3.6}{flex coupling $(i_3{=}5)$}{$K_{5,3}$}{$C_{5,3}$}{$f_{5,3}$}
-          \chainrow{\yWe}{wblk}{3.6}{ 4.5}{\textbf{Wafer Stage} $(i_3{=}6)$}{$K_{6,3}$}{$C_{6,3}$}{$f_{6,3}$}
-          \chainrow{\yWf}{wblk}{4.5}{ 5.4}{\textbf{Die} $(N_3{=}7)$}{$K_{N_3,3}$}{$C_{N_3,3}$}{$f_{N_3,3}$}
+          \chainrow{\yWa}{wblk}{0}{ 0.9}{\textbf{Oblea LS} $(i_3{=}2)$}{$K_{2,3}$}{$C_{2,3}$}{$f_{2,3}$}
+          \chainrow{\yWb}{wflx}{0.9}{ 1.8}{Acoplamiento flexible $(i_3{=}3)$}{$K_{3,3}$}{$C_{3,3}$}{$f_{3,3}$}
+          \chainrow{\yWc}{wblk}{1.8}{ 2.7}{\textbf{Oblea SS} $(i_3{=}4)$}{$K_{4,3}$}{$C_{4,3}$}{$f_{4,3}$}
+          \chainrow{\yWd}{wflx}{2.7}{ 3.6}{Acoplamiento flexible $(i_3{=}5)$}{$K_{5,3}$}{$C_{5,3}$}{$f_{5,3}$}
+          \chainrow{\yWe}{wblk}{3.6}{ 4.5}{\textbf{Plataforma de la Oblea} $(i_3{=}6)$}{$K_{6,3}$}{$C_{6,3}$}{$f_{6,3}$}
+          \chainrow{\yWf}{wblk}{4.5}{ 5.4}{\textbf{Dado} $(N_3{=}7)$}{$K_{N_3,3}$}{$C_{N_3,3}$}{$f_{N_3,3}$}
           
           \pgfmathsetmacro{\shelfO}{\yShA+0.4}
           \xdef\lastSpringY{\shelfO} \xdef\lastX{0}
-          \chainrow{\yOa}{oblk}{0}{-0.9}{\textbf{Metrology Frame} $(i_2{=}2)$}{$K_{2,2}$}{$C_{2,2}$}{$f_{2,2}$}
-          \chainrow{\yOb}{oblk}{-0.9}{-1.8}{Optics Box $(i_2{=}3)$}{$K_{3,2}$}{$C_{3,2}$}{$f_{3,2}$}
-          \chainrow{\yOc}{oblk}{-1.8}{-2.7}{Lens Element $(i_2{=}4)$}{$K_{4,2}$}{$C_{4,2}$}{$f_{4,2}$}
+          \chainrow{\yOa}{oblk}{0}{-0.9}{\textbf{Marco de Metrología} $(i_2{=}2)$}{$K_{2,2}$}{$C_{2,2}$}{$f_{2,2}$}
+          \chainrow{\yOb}{oblk}{-0.9}{-1.8}{Caja de Óptica $(i_2{=}3)$}{$K_{3,2}$}{$C_{3,2}$}{$f_{3,2}$}
+          \chainrow{\yOc}{oblk}{-1.8}{-2.7}{Lente $(i_2{=}4)$}{$K_{4,2}$}{$C_{4,2}$}{$f_{4,2}$}
           
           \pgfmathsetmacro{\shelfR}{\yShB+0.4}
           \xdef\lastSpringY{\shelfR} \xdef\lastX{0}
-          \chainrow{\yRa}{rblk}{0}{-0.9}{\textbf{Reticle LS} $(i_1{=}2)$}{$K_{2,1}$}{$C_{2,1}$}{$f_{2,1}$}
-          \chainrow{\yRb}{rflx}{-0.9}{-1.8}{flex coupling $(i_1{=}3)$}{$K_{3,1}$}{$C_{3,1}$}{$f_{3,1}$}
-          \chainrow{\yRc}{rblk}{-1.8}{-2.7}{\textbf{Reticle SS} $(i_1{=}4)$}{$K_{4,1}$}{$C_{4,1}$}{$f_{4,1}$}
-          \chainrow{\yRd}{rflx}{-2.7}{-3.6}{flex coupling $(i_1{=}5)$}{$K_{5,1}$}{$C_{5,1}$}{$f_{5,1}$}
-          \chainrow{\yRe}{rblk}{-3.6}{-4.5}{\textbf{Reticle Stage} $(i_1{=}6)$}{$K_{6,1}$}{$C_{6,1}$}{$f_{6,1}$}
-          \chainrow{\yRf}{rblk}{-4.5}{-5.4}{\textbf{Mask} $(N_1{=}7)$}{$K_{N_1,1}$}{$C_{N_1,1}$}{$f_{N_1,1}$}
+          \chainrow{\yRa}{rblk}{0}{-0.9}{\textbf{Retícula LS} $(i_1{=}2)$}{$K_{2,1}$}{$C_{2,1}$}{$f_{2,1}$}
+          \chainrow{\yRb}{rflx}{-0.9}{-1.8}{Acoplamiento flexible $(i_1{=}3)$}{$K_{3,1}$}{$C_{3,1}$}{$f_{3,1}$}
+          \chainrow{\yRc}{rblk}{-1.8}{-2.7}{\textbf{Retícula SS} $(i_1{=}4)$}{$K_{4,1}$}{$C_{4,1}$}{$f_{4,1}$}
+          \chainrow{\yRd}{rflx}{-2.7}{-3.6}{Acoplamiento flexible $(i_1{=}5)$}{$K_{5,1}$}{$C_{5,1}$}{$f_{5,1}$}
+          \chainrow{\yRe}{rblk}{-3.6}{-4.5}{\textbf{Plataforma de la Retícula} $(i_1{=}6)$}{$K_{6,1}$}{$C_{6,1}$}{$f_{6,1}$}
+          \chainrow{\yRf}{rblk}{-4.5}{-5.4}{\textbf{Fotomáscara} $(N_1{=}7)$}{$K_{N_1,1}$}{$C_{N_1,1}$}{$f_{N_1,1}$}
           
           \draw[line width=0.4pt, waferEdge]   (\xPilR+0.30,\yWa-0.30) -- (\xPilR+0.30,\yWf+0.30);
-          \node[font=\scriptsize\bfseries, text=waferEdge, rotate=-90, anchor=south] at (\xPilR+0.55,{(\yWa+\yWf)/2}) {Wafer chain $(j{=}3)$};
+          \node[font=\scriptsize\bfseries, text=waferEdge, rotate=-90, anchor=south] at (\xPilR+0.55,{(\yWa+\yWf)/2}) {Cadena de la oblea $(j{=}3)$};
           \draw[line width=0.4pt, opticsEdge]  (\xPilR+0.30,\yOa-0.30) -- (\xPilR+0.30,\yOc+0.30);
-          \node[font=\scriptsize\bfseries, text=opticsEdge, rotate=-90, anchor=south] at (\xPilR+0.55,{(\yOa+\yOc)/2}) {Optics chain $(j{=}2)$};
+          \node[font=\scriptsize\bfseries, text=opticsEdge, rotate=-90, anchor=south] at (\xPilR+0.55,{(\yOa+\yOc)/2}) {Cadena de óptica $(j{=}2)$};
           \draw[line width=0.4pt, reticleEdge] (\xPilR+0.30,\yRa-0.30) -- (\xPilR+0.30,\yRf+0.30);
-          \node[font=\scriptsize\bfseries, text=reticleEdge, rotate=-90, anchor=south] at (\xPilR+0.55,{(\yRa+\yRf)/2}) {Reticle chain $(j{=}1)$};
+          \node[font=\scriptsize\bfseries, text=reticleEdge, rotate=-90, anchor=south] at (\xPilR+0.55,{(\yRa+\yRf)/2}) {Cadena de la retícula $(j{=}1)$};
           \end{tikzpicture}
           }
         \end{center}
@@ -370,8 +371,8 @@
             \begin{bmatrix}
                 \underbrace{x_1, \ldots, x_6}_{\text{marco base (i=1)}} \;,\;
                 \underbrace{x_7, \ldots, x_{6N_1}}_{\text{cadena 1: cuerpos } 2 \to N_1} \;,\;
-                \underbrace{\ldots}_{\text{chain 2}} \;,\;
-                \underbrace{\ldots}_{\text{chain 3}}
+                \underbrace{\ldots}_{\text{cadena 2}} \;,\;
+                \underbrace{\ldots}_{\text{cadena 3}}
             \end{bmatrix}^T
         \end{equation}
         \item Para un cuerpo ($2 < i < N_j$):
@@ -390,8 +391,8 @@
         \column{.6\textwidth}
         \begin{itemize}
             \item Implementación del modelo en \textbf{MuJoCo} \cite{todorov2012mujoco}.
-            \item Permite ejecutar las trayectorias, y seguir el error de posicionamiento a través del promedio móvil (MA) y la desviación estandar móvil (MSD).
-            \item Actualmente modelamos los parametros propuestos en \cite{Al-Rawashdeh2022_Caracterization}.
+            \item Permite ejecutar las trayectorias y seguir el error de posicionamiento a través del promedio móvil (MA) y la desviación estándar móvil (MSD).
+            \item Actualmente modelamos los parámetros propuestos en \cite{Al-Rawashdeh2022_Caracterization}.
             \item La identificación de un error de posicionamiento que supera el umbral establecido en la literatura (MA $\geq$ 1nm, MSD $\geq$ 7nm) nos indica una degradación crítica en el \textit{overlay}, que compromete el funcionamiento del IC y, por consiguiente, el rendimiento de la oblea o \textit{yield}.
         \end{itemize}
         \column{.4\textwidth}
@@ -420,9 +421,9 @@
     \begin{columns}
         \column{.6\textwidth}
         \begin{itemize}
-            \item Trayectorias de referencias con derivadas de orden superior acotadas (\textit{snap} finito).
+            \item Trayectorias de referencia con derivadas de orden superior acotadas (\textit{snap} finito).
             \item Reducción de la excitación de modos estructurales de bajo amortiguamiento.
-            \item Mejora en el seguimiento de la trayectoria, que representa a su vez una disminución del error de sincronización (\textit{overlay}) (\cite{Al-Rawashdeh2023_Trajectories}).
+            \item Mejora en el seguimiento de la trayectoria, lo que representa a su vez una disminución del error de sincronización (\textit{overlay}) (\cite{Al-Rawashdeh2023_Trajectories}).
         \end{itemize}
         \column{.4\textwidth}
         \begin{center}
@@ -471,9 +472,9 @@
 
             % Legend
             % \begin{scope}[shift={(0.8, 1.2)}]
-            %   \draw[square] (0, 0.6) -- (0.3, 0.6) node[right, font=\tiny] {Square};
-            %   \draw[fillet] (0, 0.3) -- (0.3, 0.3) node[right, font=\tiny] {Fillet};
-            %   \draw[meander] (0, 0) -- (0.3, 0) node[right, font=\tiny] {Meander};
+            %   \draw[square] (0, 0.6) -- (0.3, 0.6) node[right, font=\tiny] {Cuadrada};
+            %   \draw[fillet] (0, 0.3) -- (0.3, 0.3) node[right, font=\tiny] {Redondeada};
+            %   \draw[meander] (0, 0) -- (0.3, 0) node[right, font=\tiny] {Meandro};
             % \end{scope}
 
             % Axes
@@ -490,8 +491,8 @@
 
 \begin{frame}{Siguientes pasos...}
     \begin{itemize}
-        \item Implementar un controlador no-lineal en el simulador (\cite{Heertjes2025_NonlinearControl}).
-        \item Integrar un estimador de parametros para el controlador.
+        \item Implementar un controlador no lineal en el simulador (\cite{Heertjes2025_NonlinearControl}).
+        \item Integrar un estimador de parámetros para el controlador.
         \item Conectar la generación de trayectorias con la clasificación del defecto de la oblea (\cite{Yang2018_Yield}).
         \item Comparar resultados con trayectorias polinomiales de menor orden (\cite{Al-Rawashdeh2023_Trajectories}).
     \end{itemize}
@@ -503,7 +504,7 @@
 
 \appendix
 \beginbackup
-\begin{frame}[allowframebreaks]{References}
+\begin{frame}[allowframebreaks]{Referencias}
 \printbibliography
 \end{frame}
 \backupend
