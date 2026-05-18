@@ -4,7 +4,7 @@
 \headcommand {\beamer@framepages {2}{2}}
 \headcommand {\beamer@sectionpages {1}{2}}
 \headcommand {\beamer@subsectionpages {1}{2}}
-\headcommand {\sectionentry {1}{Introducción}{3}{Introducción}{0}}
+\headcommand {\sectionentry {1}{Introducción a la Fabricación de Circuitos Integrados}{3}{Introducción a la Fabricación de Circuitos Integrados}{0}}
 \headcommand {\slideentry {1}{0}{1}{3/3}{}{0}}
 \headcommand {\beamer@framepages {3}{3}}
 \headcommand {\slideentry {1}{0}{2}{4/4}{}{0}}
@@ -35,7 +35,7 @@
 \headcommand {\slideentry {4}{0}{1}{12/12}{}{0}}
 \headcommand {\beamer@framepages {12}{12}}
 \headcommand {\gdef \insertmainframenumber {12}}
-\headcommand {\partentry {Apéndice}{1}}
+\headcommand {\partentry {Ap\'{e}ndice}{1}}
 \headcommand {\beamer@partpages {1}{12}}
 \headcommand {\beamer@sectionpages {12}{12}}
 \headcommand {\beamer@subsectionpages {12}{12}}
@@ -47,10 +47,8 @@
 \headcommand {\beamer@framepages {13}{13}}
 \headcommand {\slideentry {5}{0}{0}{13/14}{}{1}}
 \headcommand {\beamer@framepages {13}{14}}
-\headcommand {\slideentry {5}{0}{0}{13/15}{}{1}}
-\headcommand {\beamer@framepages {13}{15}}
-\headcommand {\beamer@partpages {13}{15}}
-\headcommand {\beamer@subsectionpages {13}{15}}
-\headcommand {\beamer@sectionpages {13}{15}}
-\headcommand {\beamer@documentpages {15}}
+\headcommand {\beamer@partpages {13}{14}}
+\headcommand {\beamer@subsectionpages {13}{14}}
+\headcommand {\beamer@sectionpages {13}{14}}
+\headcommand {\beamer@documentpages {14}}
 \headcommand {\gdef \inserttotalframenumber {12}}

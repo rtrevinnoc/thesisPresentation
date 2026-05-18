@@ -1,12 +1,13 @@
 \documentclass[en,16:9,navbarinline,bigfoot]{sdqbeamer} 
 \usepackage[spanish]{babel}
+\usepackage{booktabs}
  
 \titleimage{banner_2020_kit}
 
-\groupname{Facultad de Ingeniería Mecánica y Eléctrica}
+\groupname{Maestría en Ciencias de la Ingeniería Eléctrica}
 \groupnamewidth{75mm}
 
-\title[Mecatrónica]{Optimización de Trayectorias de Orden Superior Informadas por el Rendimiento de la Oblea para Sistemas \textit{Step-and-Scan}}
+\title[LGAC en Mecatrónica]{Optimización de Trayectorias de Orden Superior Informadas por el Rendimiento de la Oblea para Sistemas \textit{Step-and-Scan}}
 \subtitle{Seminario I} 
 \author[R. Treviño]{Roberto Treviño Cervantes}
 \newcommand{\shorttoday}{\ifnum\day<10 0\fi\number\day/\ifnum\month<10 0\fi\number\month/\number\year}
@@ -163,15 +164,90 @@
 \tableofcontents
 \end{frame}
 
-\section{Introducción}
+\section{Introducción a la Fabricación de Circuitos Integrados}
 
 \begin{frame}{Fabricación de Circuitos Integrados}
-    \begin{itemize}
-        \item La \textit{ley de Moore} impulsa a la industria de semiconductores a reducir de manera exponencial el rendimiento de los dispositivos electrónicos.
-        \item Este dramático incremento en el rendimiento implica la constante reducción en el tamaño de los componentes discretos en un circuito integrado (IC).
-        \item La impresión de los patrones que componen cada capa del circuito se realiza mediante la exposición de la \textit{fotomáscara} en el proceso de \textbf{fotolitografía}.
-        \item La dimensión crítica (CD) se está reduciendo a 18nm para la litografía de ultravioleta extrema (EUV); sin embargo, los dispositivos electrónicos de consumo masivo se fabrican a dimensiones de 38nm en sistemas de litografía de ultravioleta profunda (DUV).
-    \end{itemize}
+    \begin{columns}
+        \column{.6\textwidth}
+        \begin{itemize}
+          \item La impresión de los patrones que componen cada capa del circuito se realiza mediante la exposición de la \textit{fotomáscara} en el proceso de \textbf{fotolitografía}.
+          \item La dimensión crítica (CD) se está reduciendo a 18nm para la litografía de ultravioleta extrema (EUV); sin embargo, los dispositivos electrónicos de consumo masivo se fabrican a dimensiones de 38nm en sistemas de litografía de ultravioleta profunda (DUV).
+        \end{itemize}
+        \column{.4\textwidth}
+        \centering
+        \begin{tikzpicture}[scale=0.55, transform shape]
+            % Photolithography Process Diagram
+            \draw[fill=kit-yellow50, draw=mnnwInk] (-0.5, 5.0) rectangle (0.5, 4.6);
+            \node[anchor=west, font=\tiny] at (0.6, 4.8) {Fuente de Luz};
+
+            % Reticle
+            \draw[fill=reticleFill, draw=reticleEdge] (-1.8, 3.4) rectangle (1.8, 3.1);
+            \draw[draw=mnnwInk, -Stealth, line width=0.8pt] (-1.0, 3.6) -- (-1.8, 3.6) node[left, font=\tiny] {};
+            \node[anchor=west, font=\tiny] at (1.9, 3.25) {Fotomáscara};
+
+            % Lens
+            \draw[fill=lensFill, draw=mnnwInk] (0, 1.8) ellipse (1.2cm and 0.25cm);
+            \node[anchor=west, font=\tiny] at (1.3, 1.8) {Lente};
+
+            % Wafer with detailed dies
+            \begin{scope}
+                \clip (0, 0) ellipse (2.2cm and 0.45cm);
+                \fill[waferFill] (-2.2, -0.45) rectangle (2.2, 0.45);
+                \foreach \x in {-1.8,-1.2,...,1.8} {
+                    \foreach \y in {-0.2, 0.2} {
+                        \draw[draw=waferEdge!40, line width=0.1pt] (\x-0.2, \y-0.15) rectangle (\x+0.2, \y+0.15);
+                    }
+                }
+            \end{scope}
+            \draw[fill=none, draw=waferEdge] (0, 0) ellipse (2.2cm and 0.45cm);
+            \draw[draw=mnnwInk, -Stealth, line width=0.8pt] (1.4, 0.5) -- (2.2, 0.5) node[right, font=\tiny] {};
+            \node[anchor=west, font=\tiny] at (2.3, 0) {Oblea};
+
+            % Light Beams
+            \draw[draw=mnnwSignal, line width=0.8pt, opacity=0.3] (0, 4.6) -- (0, 3.4);
+            \draw[draw=mnnwSignal, line width=0.8pt, opacity=0.3] (0, 3.1) -- (0, 2.05);
+            \draw[draw=mnnwSignal!80!black, line width=1.0pt, opacity=0.6] (0, 1.55) -- (0, 0.1);
+
+            % DIE SCAN DETAIL (Side)
+            \begin{scope}[shift={(4.2, 3.5)}]
+                \draw[draw=mnnwInk, fill=white] (-0.8,-1.2) rectangle (0.8,1.2);
+                % Exposed part (patterns)
+                \fill[mnnwMute!40] (-0.8, 0.1) rectangle (0.8, 1.2);
+                \foreach \h in {0.3, 0.6, 0.9} {
+                    \draw[mnnwInk, line width=1.2pt] (-0.5, \h) -- (0.5, \h);
+                }
+                % Slit
+                \draw[draw=mnnwSignal, line width=0.8pt, dashed] (-0.9, -0.1) rectangle (0.9, 0.1);
+                \node[anchor=south, font=\fontsize{3pt}{3pt}\selectfont, text=mnnwSignal] at (0, 0.1) {Slit};
+                % Wafer movement arrow
+                \draw[draw=mnnwInk, -Stealth, line width=1.2pt] (1.1, 0.5) -- (1.1, -0.5) node[midway, right, font=\fontsize{4pt}{4pt}\selectfont] {};
+                \node[font=\tiny, anchor=north] at (0, -1.2) {};
+            \end{scope}
+        \end{tikzpicture}
+
+        \vspace{0.8cm}
+        
+        \begin{tikzpicture}[scale=0.55, transform shape]
+            % IC Layers Diagram
+            \draw[fill=kit-blue20, draw=mnnwInk] (-2, 0) rectangle (2, 0.4);
+            \node[font=\tiny] at (0, 0.2) {Sustrato de Silicio};
+
+            \draw[fill=mnnwHair!20, draw=mnnwInk] (-1.8, 0.4) rectangle (-1.2, 0.6);
+            \draw[fill=mnnwHair!20, draw=mnnwInk] (1.2, 0.4) rectangle (1.8, 0.6);
+            \node[font=\tiny, anchor=west] at (2.1, 0.5) {Transistores};
+
+            \foreach \h in {0.8, 1.4, 2.0} {
+                \draw[fill=kit-orange50, draw=mnnwInk] (-1.5, \h+0.2) rectangle (1.5, \h+0.4);
+                \draw[fill=kit-orange50!80, draw=mnnwInk] (-0.8, \h) rectangle (-0.6, \h+0.2);
+                \draw[fill=kit-orange50!80, draw=mnnwInk] (0.6, \h) rectangle (0.8, \h+0.2);
+            }
+            \node[font=\tiny, anchor=west] at (2.1, 1.6) {Capas de Metal};
+
+            % \draw[fill=mnnwHair!40, draw=mnnwInk] (-0.8, 2.6) arc (180:0:0.8 and 0.6) -- cycle;
+            % \node[font=\tiny, anchor=west] at (2.1, 2.8) {Bump};
+        \end{tikzpicture}
+
+    \end{columns}
 \end{frame}
 
 \begin{frame}[fragile]{El Proceso \textit{Step-and-Scan}}
@@ -404,13 +480,34 @@
 \end{frame}
 
 \begin{frame}{Mapas de Defectos}
-    \begin{columns}
-        \column{.6\textwidth}
+    \begin{columns}[T]
+        \column{.57\textwidth}
         \begin{itemize}
-            \item Conjunto de datos industrial en \textbf{WM811K} (\cite{Wu2015_WM811K}).
-            \item Existen diferentes tipos de error: \textit{central}, \textit{anular}, \textit{anillo periférico}, \textit{rayadura}, \textit{saturado}.
-            \item Entrenamos una red neuronal convolucional (CNN) para la clasificación del error en la oblea a partir del mapa de defectos.
+            \item Base \textbf{WM811K}: 811,457 mapas de oblea (\cite{Wu2015_WM811K}).
+            \item Entrenamiento: 172,950 muestras etiquetadas (9 clases).
         \end{itemize}
+
+        \vspace{0.3cm}
+        \centering
+        \scriptsize
+        \begin{tabular}{ll}
+            \toprule
+            \textbf{Parámetro} & \textbf{Valor / Resultado} \\
+            \midrule
+            Arquitectura & 3$\times$Conv, 2$\times$FC (Filters: 16, 32, 64) \\
+            Entrada & 64 $\times$ 64 (Reescalado \textit{nearest}) \\
+            Optimización & Adam (lr=1e-3), 5 Epochs \\
+            \midrule
+            \textbf{Precisión (Accuracy)} & \textbf{96.88\%} \\
+            \textbf{Función de Pérdida} & CrossEntropy \\
+            \textbf{Validación} & Mapas generados en MuJoCo \\
+            \bottomrule
+        \end{tabular}
+
+        \column{.03\textwidth}
+        \centering
+        \vrule width 0.4pt height 0.65\textheight
+
         \column{.4\textwidth}
         \begin{center}
           \includegraphics[width=\linewidth]{pictures/mapa.png}

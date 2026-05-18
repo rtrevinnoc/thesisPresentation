@@ -1,5 +1,5 @@
 \babel@toc {spanish}{}\relax 
-\beamer@sectionintoc {1}{Introducción}{3}{0}{1}
+\beamer@sectionintoc {1}{Introducción a la Fabricación de Circuitos Integrados}{3}{0}{1}
 \beamer@sectionintoc {2}{Modelo}{6}{0}{2}
 \beamer@sectionintoc {3}{Metodología}{9}{0}{3}
 \beamer@sectionintoc {4}{Trabajo posterior}{12}{0}{4}
