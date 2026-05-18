@@ -1,15 +1,7 @@
-\frametitle{Topología}
-\begin{columns}
-        \column{.7\textwidth}
-        \begin{itemize}
-            \item Un cuerpo $i$ en la cadena $j$ tiene un desplazamiento $f_{i_j}$ respecto al cuerpo $i-1$.
-            \item El desplazamiento absoluto $f^0_{i_j}$ del mismo cuerpo $i$ respecto al marco base $(i=1)$ está expresado por una suma recursiva.
-            \item La flexibilidad de la estructura está modelada mediante un sistema resorte-amortiguador ($K_{i_j}, C_{i_j}$) para cada cuerpo $i$ con $i+1$ en la cadena $j$.
-            \item Los actuadores están representados, a su vez, por dos segmentos que consideran el estator y la parte móvil.
-        \end{itemize}
-        \column{.3\textwidth}
-        \begin{center}
-          \resizebox{0.65\textwidth}{!}{
+\frametitle{Sistema multicuerpo}
+\begin{center}
+          \begin{turn}{90}
+          \resizebox{0.39\linewidth}{!}{
           \begin{tikzpicture}[scale=1, transform shape,
             every node/.style    ={font=\small},
             rfrm/.style          ={draw=frameEdge, line width=0.6pt, fill=frameFill, minimum height=0.80cm, font=\small\bfseries, inner sep=2pt},
@@ -44,7 +36,7 @@
             (\xRight, 0) -- (\xLeft-0.6, 0) -- (\xLeft-0.6, \yWb) -- (\xLeft-1.1, \yWb)
             -- (\xLeft-1.1, -0.5) -- (\xRight, -0.5) -- cycle;
           \node[lbl, anchor=west] at (\xRight+0.08,0.20) {$\mathcal{F}_0$};
-          \node[lbl, anchor=east, text=mnnwMute] at (\xLeft-1.1-0.08,-0.18) {Piso};
+          \node[lbl, anchor=east, text=mnnwMute] at (\xLeft-1.1-0.08,-0.18) {};
           \draw[axis] (0,-0.05) -- (0,\yTop);
 
           \filldraw[draw=frameEdge, line width=0.6pt, fill=frameFill]
@@ -90,5 +82,6 @@
           \node[font=\scriptsize\bfseries, text=reticleEdge, rotate=-90, anchor=south] at (\xPilR+0.55,{(\yRa+\yRf)/2}) {Cadena de la retícula $(j{=}1)$};
           \end{tikzpicture}
           }
+          \end{turn}
         \end{center}
-    \end{columns}
+    % \end{columns}

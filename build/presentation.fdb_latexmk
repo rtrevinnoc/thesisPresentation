@@ -1,19 +1,23 @@
 # Fdb version 4
-["biber build/presentation"] 1778954140.44556 "build/presentation.bcf" "build/presentation.bbl" "build/presentation" 1779095394.39619 0
-  "../fullThesis/bibliografia.bib" 1778952380.55422 8683 c4f3830942ddadb4c30aa43c2f75459d ""
-  "build/presentation.bcf" 1779095393.47826 109361 f227d31fa7d7bd54f0725126eecaf664 "xelatex"
+["biber build/presentation"] 1779129632.54456 "build/presentation.bcf" "build/presentation.bbl" "build/presentation" 1779129874.40014 0
+  "build/presentation.bcf" 1779129872.65095 109600 b9fb7b733252a00568bd6cf63d660b79 "xelatex"
+  "presentation.bib" 1779129220.11042 8961 5adcb4961d5e9916aeb4dc641b5cf9de ""
   (generated)
   "build/presentation.bbl"
   "build/presentation.blg"
   (rewritten before read)
-["xdvipdfmx"] 1779095393.58591 "build/presentation.xdv" "build/presentation.pdf" "build/presentation" 1779095394.39871 0
-  "build/presentation.xdv" 1779095393.47929 460748 1b215f36e05e6b379583a2367d8c5b44 "xelatex"
+["xdvipdfmx"] 1779129872.8526 "build/presentation.xdv" "build/presentation.pdf" "build/presentation" 1779129874.40381 0
+  "build/presentation.xdv" 1779129872.65254 609388 0209de968f511cf18887e1bee64d7af3 "xelatex"
   (generated)
   "build/presentation.pdf"
   (rewritten before read)
-["xelatex"] 1779095389.40438 "/Users/rtrevinnoc/maestria/tesis/presentation/presentation.tex" "build/presentation.xdv" "presentation" 1779095394.39629 0
+["xelatex"] 1779129867.01442 "/Users/rtrevinnoc/maestria/tesis/presentation/presentation.tex" "build/presentation.xdv" "presentation" 1779129874.40028 0
+  "../PlotNeuralNet/layers/Ball.sty" 1779122722.4952 1197 d1694ae307f11df1994dd7de3c99bc4b ""
+  "../PlotNeuralNet/layers/Box.sty" 1779122722.49529 4868 e7b96f9cf8eb0f1db721b3fa8c4c28f5 ""
+  "../PlotNeuralNet/layers/RightBandedBox.sty" 1779122722.49537 6111 7d4c65748a884ebf33bc0a676ef40d22 ""
+  "../PlotNeuralNet/layers/init.tex" 1779122722.49545 318 e5c72b1eea787e58c0a096079ad111ca ""
   "../fullThesis/pictures/scanning_3d.png" 1778086168.40331 22192 ea28bcc84a1601d66b0e12ffaf7f8001 ""
-  "/Users/rtrevinnoc/maestria/tesis/presentation/presentation.tex" 1779095388.29409 31281 a332481b777372e681b8ac09cc9b8e28 ""
+  "/Users/rtrevinnoc/maestria/tesis/presentation/presentation.tex" 1779129865.51745 40458 d3ba12052c5d82846b688a4b986cdf6d ""
   "/usr/local/texlive/2026/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/local/texlive/2026/texmf-dist/fonts/tfm/adobe/zapfding/pzdr.tfm" 1136768653 1528 f853c4d1b4e0550255e02831fdc8496f ""
   "/usr/local/texlive/2026/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
@@ -74,11 +78,13 @@
   "/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex" 1755201859 35251 5ff5b5b310c5ac882610e0ccc99095e7 ""
   "/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransformations.code.tex" 1673816307 22012 81b34a0aa8fa1a6158cc6220b00e4f10 ""
   "/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretransparency.code.tex" 1601326656 8893 e851de2175338fdf7c17f3e091d94618 ""
+  "/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrary3d.code.tex" 1601326656 3243 6b5dd28061d7ec441027f6593cd34b36 ""
   "/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarycalc.code.tex" 1601326656 15929 463535aa2c4268fead6674a75c0e8266 ""
   "/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.code.tex" 1755201859 5650 0ccd824135f363f45d6a97602e59d55a ""
   "/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarydecorations.pathmorphing.code.tex" 1601326656 321 cdd11262840e01e25374a2d458f15e99 ""
   "/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarypatterns.code.tex" 1601326656 770 82e332cc9cc48e06b8070d74393a185a ""
   "/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarypositioning.code.tex" 1601326656 3937 3f208572dd82c71103831da976d74f1a ""
+  "/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibraryquotes.code.tex" 1673816307 3970 c199216b190c70e45bff870bacf0da00 ""
   "/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrarytopaths.code.tex" 1608933718 11518 738408f795261b70ce8dd47459171309 ""
   "/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/frontendlayer/tikz/tikz.code.tex" 1755201859 186859 0445d9a41a87648b4723e04765409541 ""
   "/usr/local/texlive/2026/texmf-dist/tex/generic/pgf/libraries/decorations/pgflibrarydecorations.pathmorphing.code.tex" 1601326656 8843 5533436db3e30fbad1e0440db6027dac ""
@@ -207,6 +213,7 @@
   "/usr/local/texlive/2026/texmf-dist/tex/latex/graphics/graphicx.sty" 1748806692 8118 43b99e52946c33a23f5f43b52d5cc5ec ""
   "/usr/local/texlive/2026/texmf-dist/tex/latex/graphics/keyval.sty" 1748806692 2671 d9941f4bf4750e9b0603c9a2ec54693b ""
   "/usr/local/texlive/2026/texmf-dist/tex/latex/graphics/mathcolor.ltx" 1667332637 2885 9c645d672ae17285bba324998918efd8 ""
+  "/usr/local/texlive/2026/texmf-dist/tex/latex/graphics/rotating.sty" 1748806692 7280 936827f0adb7f9ec1f98fe01cba3482b ""
   "/usr/local/texlive/2026/texmf-dist/tex/latex/graphics/trig.sty" 1748806692 4023 e66acf578d6b564c4670fb57ff336a7a ""
   "/usr/local/texlive/2026/texmf-dist/tex/latex/hycolor/hycolor.sty" 1580250785 17914 4c28a13fc3d975e6e81c9bea1d697276 ""
   "/usr/local/texlive/2026/texmf-dist/tex/latex/hyperref/hxetex.def" 1769721417 44484 d6780d86fced9c26093d4489ab44cf7d ""
@@ -214,6 +221,7 @@
   "/usr/local/texlive/2026/texmf-dist/tex/latex/hyperref/nameref.sty" 1769721417 11459 697f11f6c439d25d39d2674b99566af4 ""
   "/usr/local/texlive/2026/texmf-dist/tex/latex/hyperref/pd1enc.def" 1769721417 14249 b94983bbccc8d5739c16cc91d1fd1c3b ""
   "/usr/local/texlive/2026/texmf-dist/tex/latex/hyperref/puenc.def" 1769721417 117118 2e3ba580751de5583beacf2e5fee69a9 ""
+  "/usr/local/texlive/2026/texmf-dist/tex/latex/import/import.sty" 1586645574 6201 0ad8b5da8e12f60a88d546b2198a56f2 ""
   "/usr/local/texlive/2026/texmf-dist/tex/latex/koma-script/scrlfile-hook.sty" 1770066728 11187 bb19b68b7570b0a5839776e49029dfc6 ""
   "/usr/local/texlive/2026/texmf-dist/tex/latex/koma-script/scrlfile.sty" 1770066728 3330 524ef98f49a363d012453fece1f26677 ""
   "/usr/local/texlive/2026/texmf-dist/tex/latex/koma-script/scrlogo.sty" 1770066728 2164 c44cdb4bc4dc3e1eacfb6a8e57830b70 ""
@@ -265,18 +273,19 @@
   "/usr/local/texlive/2026/texmf-dist/web2c/texmf.cnf" 1770478701 43630 e9fa012910491fe5ae08a72c3c2997a7 ""
   "/usr/local/texlive/2026/texmf-var/web2c/xetex/xelatex.fmt" 1774209578 5948559 ca66a59f4cdd4ce9709bed46018cb9cb ""
   "/usr/local/texlive/2026/texmf.cnf" 1774209515 577 648cd9f92f9c0eac486f4c71c85cfbbe ""
-  "build/presentation.aux" 1779095393.46993 6637 586e46a47059e95f127e20a1cedeb9fa "xelatex"
-  "build/presentation.bbl" 1778954710.56012 18562 a5d72e2c9347c976fb5b25b3194a4af5 "biber build/presentation"
-  "build/presentation.nav" 1779095393.47918 2707 43b6db436000b422a7e0ffa353ebebcf "xelatex"
-  "build/presentation.out" 1779095393.47544 827 b4caec0150a24734062f6117b8680ffe "xelatex"
-  "build/presentation.run.xml" 1779095393.4791 2415 24d60497996da9e2ab329a1bfd0c57c0 "xelatex"
-  "build/presentation.toc" 1779095393.47921 265 ab4c1a1af2c21865ef9c5b87e1e81f36 "xelatex"
-  "build/presentation.vrb" 1779095391.82364 7347 ccf6f2e0b738628d4b7ba1e6725417bd "xelatex"
+  "build/presentation.aux" 1779129872.63694 7367 09e3a7f78d089297fb14e797fb272bd4 "xelatex"
+  "build/presentation.bbl" 1779129635.40699 19863 8e71da3fb6e75b02f6a21a654c92e3f3 "biber build/presentation"
+  "build/presentation.nav" 1779129872.65244 2894 bd880fb491b92e9f4897a60ee3dadc0f "xelatex"
+  "build/presentation.out" 1779129872.64655 827 b4caec0150a24734062f6117b8680ffe "xelatex"
+  "build/presentation.run.xml" 1779129872.65227 2401 000124db04761b040caee7733fdb780f "xelatex"
+  "build/presentation.toc" 1779129872.65248 266 69805e1ac1c61a99c623013480c8a1ca "xelatex"
+  "build/presentation.vrb" 1779129870.09431 6709 a0acc78fe20a38cb3c74429f36239d87 "xelatex"
   "logos/banner_2020_kit.jpg" 1778891060 96829 85768f4cdeb65dd60527bc69363a24ba ""
   "logos/fime.eps" 1778871418.15854 648690 d6eb6f8154dd82b9a61fa14d51453666 ""
   "logos/uanl.eps" 1778871418.14844 11523393 e377b799cd332dc0d2e2eb9fa74873c6 ""
   "pictures/mapa.png" 1778941526.63283 13120 c4157d13749a9476c78395c48bf07b72 ""
-  "presentation.tex" 1779095388.29409 31281 a332481b777372e681b8ac09cc9b8e28 ""
+  "pictures/sim_graph_ff.png" 1779127892.81542 154690 eec8e3676f11154264beb655afb90ba1 ""
+  "presentation.tex" 1779129865.51745 40458 d3ba12052c5d82846b688a4b986cdf6d ""
   "sdqbeamer.cls" 1778891060 32729 25ddf09757a8e5ffc28babc874d47f95 ""
   (generated)
   "build/presentation.aux"

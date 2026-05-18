@@ -80,7 +80,7 @@
       <file>presentation.bcf</file>
     </requires>
     <requires type="editable">
-      <file>../fullThesis/bibliografia.bib</file>
+      <file>presentation.bib</file>
     </requires>
   </external>
 </requests>

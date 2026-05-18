@@ -1,14 +1,14 @@
 [0] Config.pm:328> INFO - This is Biber 2.21
 [0] Config.pm:331> INFO - Logfile is 'build/presentation.blg'
-[61] biber-darwin:342> INFO - === Sat May 16, 2026, 11:55:43
-[77] Biber.pm:421> INFO - Reading 'build/presentation.bcf'
-[143] Biber.pm:1002> INFO - Found 8 citekeys in bib section 0
-[158] Biber.pm:4487> INFO - Processing section 0
-[166] Biber.pm:4678> INFO - Looking for bibtex file '../fullThesis/bibliografia.bib' for section 0
-[167] bibtex.pm:1713> INFO - LaTeX decoding ...
-[182] bibtex.pm:1519> INFO - Found BibTeX data source '../fullThesis/bibliografia.bib'
-[255] UCollate.pm:68> INFO - Overriding locale 'es-ES' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[255] UCollate.pm:68> INFO - Overriding locale 'es-ES' defaults 'variable = shifted' with 'variable = non-ignorable'
-[255] Biber.pm:4307> INFO - Sorting list 'nty/global//global/global/global' of type 'entry' with template 'nty' and locale 'es-ES'
-[264] bbl.pm:676> INFO - Writing 'build/presentation.bbl' with encoding 'UTF-8'
-[268] bbl.pm:779> INFO - Output to build/presentation.bbl
+[39] biber-darwin:342> INFO - === Mon May 18, 2026, 12:40:35
+[48] Biber.pm:421> INFO - Reading 'build/presentation.bcf'
+[90] Biber.pm:1002> INFO - Found 9 citekeys in bib section 0
+[101] Biber.pm:4487> INFO - Processing section 0
+[107] Biber.pm:4678> INFO - Looking for bibtex file 'presentation.bib' for section 0
+[108] bibtex.pm:1713> INFO - LaTeX decoding ...
+[118] bibtex.pm:1519> INFO - Found BibTeX data source 'presentation.bib'
+[170] UCollate.pm:68> INFO - Overriding locale 'es-ES' defaults 'variable = shifted' with 'variable = non-ignorable'
+[170] UCollate.pm:68> INFO - Overriding locale 'es-ES' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[170] Biber.pm:4307> INFO - Sorting list 'nty/global//global/global/global' of type 'entry' with template 'nty' and locale 'es-ES'
+[175] bbl.pm:676> INFO - Writing 'build/presentation.bbl' with encoding 'UTF-8'
+[178] bbl.pm:779> INFO - Output to build/presentation.bbl

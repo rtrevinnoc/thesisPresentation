@@ -96,15 +96,15 @@
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>maxbibnames</bcf:key>
-      <bcf:value>3</bcf:value>
+      <bcf:value>1</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>maxcitenames</bcf:key>
-      <bcf:value>3</bcf:value>
+      <bcf:value>1</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>maxsortnames</bcf:key>
-      <bcf:value>3</bcf:value>
+      <bcf:value>1</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>maxitems</bcf:key>
@@ -331,15 +331,15 @@
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>maxbibnames</bcf:key>
-      <bcf:value>3</bcf:value>
+      <bcf:value>1</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>maxcitenames</bcf:key>
-      <bcf:value>3</bcf:value>
+      <bcf:value>1</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>maxsortnames</bcf:key>
-      <bcf:value>3</bcf:value>
+      <bcf:value>1</bcf:value>
     </bcf:option>
     <bcf:option type="singlevalued">
       <bcf:key>maxitems</bcf:key>
@@ -2370,19 +2370,22 @@
   <!-- CITATION DATA -->
   <!-- SECTION 0 -->
   <bcf:bibdata section="0">
-    <bcf:datasource type="file" datatype="bibtex" glob="false">../fullThesis/bibliografia.bib</bcf:datasource>
+    <bcf:datasource type="file" datatype="bibtex" glob="false">presentation.bib</bcf:datasource>
   </bcf:bibdata>
   <bcf:section number="0">
     <bcf:citekey order="1" intorder="1">Schmidt2012_UltraPrecision</bcf:citekey>
     <bcf:citekey order="2" intorder="1">Butler2011_PositionControl</bcf:citekey>
-    <bcf:citekey order="3" intorder="1">Al-Rawashdeh2022_Caracterization</bcf:citekey>
-    <bcf:citekey order="4" intorder="1">todorov2012mujoco</bcf:citekey>
-    <bcf:citekey order="5" intorder="1">Al-Rawashdeh2022_Caracterization</bcf:citekey>
-    <bcf:citekey order="6" intorder="1">Wu2015_WM811K</bcf:citekey>
-    <bcf:citekey order="7" intorder="1">Al-Rawashdeh2023_Trajectories</bcf:citekey>
-    <bcf:citekey order="8" intorder="1">Heertjes2025_NonlinearControl</bcf:citekey>
-    <bcf:citekey order="9" intorder="1">Yang2018_Yield</bcf:citekey>
+    <bcf:citekey order="3" intorder="1">Heertjes2025_NonlinearControl</bcf:citekey>
+    <bcf:citekey order="4" intorder="1">Al-Rawashdeh2022_Caracterization</bcf:citekey>
+    <bcf:citekey order="5" intorder="1">Al-Rawashdeh2023_Trajectories</bcf:citekey>
+    <bcf:citekey order="6" intorder="1">todorov2012mujoco</bcf:citekey>
+    <bcf:citekey order="7" intorder="1">Al-Rawashdeh2022_Caracterization</bcf:citekey>
+    <bcf:citekey order="8" intorder="1">Wu2015_WM811K</bcf:citekey>
+    <bcf:citekey order="9" intorder="1">Lambrechts2003_Trajectories</bcf:citekey>
     <bcf:citekey order="10" intorder="1">Al-Rawashdeh2023_Trajectories</bcf:citekey>
+    <bcf:citekey order="11" intorder="1">Heertjes2025_NonlinearControl</bcf:citekey>
+    <bcf:citekey order="12" intorder="1">Yang2018_Yield</bcf:citekey>
+    <bcf:citekey order="13" intorder="1">Al-Rawashdeh2023_Trajectories</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nty">
