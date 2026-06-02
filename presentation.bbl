@@ -110,7 +110,6 @@
       \verb 10.1146/annurev-control-030323-024047
       \endverb
       \keyw{frequency-domain design,Lyapunov methods,motion control,nonlinear integrators,stability tools}
-      \warn{\item Datamodel: article entry 'Heertjes2025_NonlinearControl' (presentation.bib): Invalid field 'publisher' for entrytype 'article'}
     \endentry
     \entry{Yang2018_Yield}{inproceedings}{}{}
       \name{author}{6}{}{%
@@ -174,6 +173,37 @@
       \verb 10.1109/ASMC.2018.8373137
       \endverb
       \keyw{Semiconductor device modeling;Productivity;Predictive models;Manufacturing;Prediction algorithms;Machine learning;Data models;yield modeling;wafer map;wafer productivity;semiconductor manufacturing;deep learning}
+    \endentry
+    \entry{Lambrechts2003_Trajectories}{report}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=065704f8a98bf248e20b9d4f5a3717c9}{%
+           family={Lambrechts},
+           familyi={L\bibinitperiod},
+           given={Paul\bibnamedelima F.},
+           giveni={P\bibinitperiod\bibinitdelim F\bibinitperiod},
+           givenun=0}}%
+      }
+      \list{institution}{1}{%
+        {Technische Universiteit Eindhoven}%
+      }
+      \strng{namehash}{065704f8a98bf248e20b9d4f5a3717c9}
+      \strng{fullhash}{065704f8a98bf248e20b9d4f5a3717c9}
+      \strng{fullhashraw}{065704f8a98bf248e20b9d4f5a3717c9}
+      \strng{bibnamehash}{065704f8a98bf248e20b9d4f5a3717c9}
+      \strng{authorbibnamehash}{065704f8a98bf248e20b9d4f5a3717c9}
+      \strng{authornamehash}{065704f8a98bf248e20b9d4f5a3717c9}
+      \strng{authorfullhash}{065704f8a98bf248e20b9d4f5a3717c9}
+      \strng{authorfullhashraw}{065704f8a98bf248e20b9d4f5a3717c9}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{number}{DCT 2003-08}
+      \field{title}{Trajectory planning and feedforward design for electromechanical motion systems}
+      \field{type}{techreport}
+      \field{year}{2003}
     \endentry
     \entry{Al-Rawashdeh2023_Trajectories}{article}{}{}
       \name{author}{3}{ul=2}{%

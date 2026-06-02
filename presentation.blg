@@ -1,18 +1,14 @@
 [0] Config.pm:328> INFO - This is Biber 2.21
 [0] Config.pm:331> INFO - Logfile is 'presentation.blg'
-[52] biber-darwin:342> INFO - === Mon May 18, 2026, 10:33:56
-[63] Biber.pm:421> INFO - Reading 'presentation.bcf'
-[106] Biber.pm:1002> INFO - Found 8 citekeys in bib section 0
-[115] Biber.pm:4487> INFO - Processing section 0
-[121] Biber.pm:4678> INFO - Looking for bibtex file 'presentation.bib' for section 0
-[123] bibtex.pm:1713> INFO - LaTeX decoding ...
-[132] bibtex.pm:1519> INFO - Found BibTeX data source 'presentation.bib'
-[177] Biber.pm:1709> INFO - Datamodel validation starting
-[179] Biber.pm:1759> INFO - Datamodel validation complete
-[199] UCollate.pm:68> INFO - Overriding locale 'es-ES' defaults 'variable = shifted' with 'variable = non-ignorable'
-[199] UCollate.pm:68> INFO - Overriding locale 'es-ES' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[199] Biber.pm:4307> INFO - Sorting list 'nty/global//global/global/global' of type 'entry' with template 'nty' and locale 'es-ES'
-[205] bbl.pm:676> INFO - Writing 'presentation.bbl' with encoding 'UTF-8'
-[208] bbl.pm:779> INFO - Output to presentation.bbl
-[209] Biber.pm:132> WARN - Datamodel: article entry 'Heertjes2025_NonlinearControl' (presentation.bib): Invalid field 'publisher' for entrytype 'article'
-[209] Biber.pm:134> INFO - WARNINGS: 1
+[36] biber-darwin:342> INFO - === Tue Jun  2, 2026, 11:35:13
+[46] Biber.pm:421> INFO - Reading 'presentation.bcf'
+[83] Biber.pm:1002> INFO - Found 9 citekeys in bib section 0
+[91] Biber.pm:4487> INFO - Processing section 0
+[96] Biber.pm:4678> INFO - Looking for bibtex file 'presentation.bib' for section 0
+[97] bibtex.pm:1713> INFO - LaTeX decoding ...
+[107] bibtex.pm:1519> INFO - Found BibTeX data source 'presentation.bib'
+[156] UCollate.pm:68> INFO - Overriding locale 'es-ES' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[156] UCollate.pm:68> INFO - Overriding locale 'es-ES' defaults 'variable = shifted' with 'variable = non-ignorable'
+[156] Biber.pm:4307> INFO - Sorting list 'nty/global//global/global/global' of type 'entry' with template 'nty' and locale 'es-ES'
+[161] bbl.pm:676> INFO - Writing 'presentation.bbl' with encoding 'UTF-8'
+[164] bbl.pm:779> INFO - Output to presentation.bbl

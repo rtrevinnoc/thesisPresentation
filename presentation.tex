@@ -9,7 +9,7 @@
 \groupnamewidth{75mm}
 
 \title[LGAC en Mecatrónica]{Optimización de Trayectorias de Orden Superior Informadas por el Rendimiento de la Oblea para Sistemas \textit{Step-and-Scan}}
-\subtitle{Seminario I} 
+\subtitle{Seminario I}
 \author[R. Treviño]{Roberto Treviño Cervantes}
 \newcommand{\shorttoday}{\ifnum\day<10 0\fi\number\day/\ifnum\month<10 0\fi\number\month/\number\year}
 \date[\shorttoday]{\today}
@@ -19,7 +19,7 @@
 \bibhang1em
 
 \usepackage{tikz}
-\usetikzlibrary{decorations.pathmorphing,patterns,arrows.meta,calc,positioning,3d}
+\usetikzlibrary{decorations.pathmorphing,decorations.pathreplacing,patterns,arrows.meta,calc,positioning,3d}
 \usepackage{import}
 \subimport{../PlotNeuralNet/layers/}{init}
 
@@ -179,14 +179,15 @@
 
 \begin{frame}{Fabricación de Circuitos Integrados}
     \begin{columns}
-        \column{.6\textwidth}
+        \column{.55\textwidth}
         \begin{itemize}
-          \item La impresión de los patrones que componen cada capa del circuito se realiza mediante la exposición de la \textit{fotomáscara} en el proceso de \textbf{fotolitografía}.
-          \item La dimensión crítica (CD) se está reduciendo a 18nm para la litografía de ultravioleta extrema (EUV); sin embargo, los dispositivos electrónicos de consumo masivo se fabrican a dimensiones de 38nm en sistemas de litografía de ultravioleta profunda (DUV).
+          \item La \textit{ley de Moore} impulsa la reducción exponencial del tamaño de los componentes de un circuito integrado (IC).
+          \item Cada capa del IC se imprime por \textbf{fotolitografía} mediante la exposición de una \textit{fotomáscara}.
+          \item La dimensión crítica (CD) baja a $18\,\mathrm{nm}$ en EUV; el consumo masivo se fabrica a $38\,\mathrm{nm}$ en DUV.
         \end{itemize}
-        \column{.4\textwidth}
+        \column{.45\textwidth}
         \centering
-        \begin{tikzpicture}[scale=0.55, transform shape]
+        \begin{tikzpicture}[scale=0.85, transform shape]
             % Photolithography Process Diagram
             \draw[fill=kit-yellow50, draw=mnnwInk] (-0.5, 5.0) rectangle (0.5, 4.6);
             \node[anchor=west, font=\tiny] at (0.6, 4.8) {Fuente de Luz};
@@ -230,42 +231,22 @@
             \end{scope}
         \end{tikzpicture}
 
-        \vspace{0.8cm}
-        
-        \begin{tikzpicture}[scale=0.55, transform shape]
-            % IC Layers Diagram
-            \draw[fill=kit-blue20, draw=mnnwInk] (-2, 0) rectangle (2, 0.4);
-            \node[font=\tiny] at (0, 0.2) {Sustrato de Silicio};
-
-            \draw[fill=mnnwHair!20, draw=mnnwInk] (-1.8, 0.4) rectangle (-1.2, 0.6);
-            \draw[fill=mnnwHair!20, draw=mnnwInk] (1.2, 0.4) rectangle (1.8, 0.6);
-            \node[font=\tiny, anchor=west] at (2.1, 0.5) {Transistores};
-
-            \foreach \h in {0.8, 1.4, 2.0} {
-                \draw[fill=kit-orange50, draw=mnnwInk] (-1.5, \h+0.2) rectangle (1.5, \h+0.4);
-                \draw[fill=kit-orange50!80, draw=mnnwInk] (-0.8, \h) rectangle (-0.6, \h+0.2);
-                \draw[fill=kit-orange50!80, draw=mnnwInk] (0.6, \h) rectangle (0.8, \h+0.2);
-            }
-            \node[font=\tiny, anchor=west] at (2.1, 1.6) {Capas de Metal};
-        \end{tikzpicture}
-
     \end{columns}
 \end{frame}
 
 \begin{frame}[fragile]{El Proceso \textit{Step-and-Scan}}
     \begin{columns}
-        \column{.6\textwidth}
+        \column{.55\textwidth}
         \begin{itemize}
-            \item En lugar de exponer la oblea completa en un solo \textit{flash}, las herramientas de litografía modernas realizan un barrido de exposición (\textit{scan}).
-            \item Por lo tanto, el movimiento de la \textbf{retícula} y la \textbf{oblea} debe estar sincronizado en direcciones opuestas.
-            \item Debido a la tasa de reducción del lente, la retícula debe moverse $4\times$ más rápido.
-            \item De esta manera, cada segmento de la oblea recibe en promedio la misma dosis de iluminación.
+            \item La oblea se expone por \textbf{barrido} (\textit{scan}), no por \textit{flash} único.
+            \item Retícula y oblea \textbf{sincronizadas} en sentidos opuestos; la retícula se mueve $4\times$ más rápido por la reducción del lente.
+            \item Cada segmento de la oblea recibe la misma dosis promedio de iluminación.
         \end{itemize}
-        \column{.4\textwidth}
+        \column{.45\textwidth}
         \begin{center}
-          \resizebox{0.75\linewidth}{!}{
+          \resizebox{0.95\linewidth}{!}{
           \begin{tikzpicture}[
-            every node/.style={font=\fontsize{4pt}{4pt}\selectfont},
+            every node/.style={font=\footnotesize},
             wafer/.style={draw=kit-blue100, line width=0.6pt, fill=kit-blue!5},
             die/.style={draw=mnnwInk, line width=0.3pt, fill=white, postaction={pattern=north east lines, pattern color=mnnwMute!40}},
             scan/.style={draw=kit-red100, line width=0.8pt, dashed, -{Stealth[scale=0.5]}},
@@ -318,27 +299,26 @@
     \end{columns}
 \end{frame}
 
-\begin{frame}{Productividad vs. \textit{Overlay}}
+\begin{frame}{\textit{Overlay} y productividad}
     \begin{columns}
         \column{.55\textwidth}
-        \begin{blueblock}{Overlay (nm)}
-            Alineación entre las múltiples capas de un IC (\cite{Schmidt2012_UltraPrecision}).
+        \begin{blueblock}{\textit{Overlay} (nm)}
+            Desviación entre las múltiples capas de un IC; debe minimizarse para asegurar la interconexión (\cite{Schmidt2012_UltraPrecision}).
         \end{blueblock}
-        
-        \begin{greenblock}{Productividad (Obleas por Hora)}
-            El alto costo de capital de las máquinas exige una producción rápida y continua.
+
+        \begin{greenblock}{Productividad (obleas por hora)}
+            El alto costo de capital exige producción continua de alto volumen.
         \end{greenblock}
 
-        \vspace{0.2cm}
-        El tiempo de asentamiento reduce la productividad, pero es vital para mitigar las vibraciones que degradan el \textit{overlay} (\cite{Butler2011_PositionControl}).
-        %Las especificaciones exigen trayectorias que minimicen simultáneamente las vibraciones residuales y el tiempo de asentamiento.
-        
+        \vspace{0.1cm}
+        {\footnotesize El asentamiento reduce vibraciones residuales pero baja productividad (\cite{Butler2011_PositionControl}). Las trayectorias deben equilibrar ambos efectos.}
+
         \column{.45\textwidth}
         \centering
         \begin{tikzpicture}[scale=0.75, transform shape]
             % Top View (Metrology Target)
             \begin{scope}[shift={(0,3.5)}]
-                \node[font=\tiny\bfseries, anchor=south] at (1.5, 2.5) {Vista Aerea};
+                \node[font=\scriptsize\bfseries, anchor=south] at (1.5, 2.5) {Vista aérea};
                 
                 % Grid of patterns (Simplified representation of the superimposed state)
                 \foreach \i in {0,1} {
@@ -385,8 +365,8 @@
                 \foreach \x in {0.45, 0.95, 1.45, 1.95, 2.45} { % Misalignment shown here
                      \draw[fill=kit-blue100, draw=none] (\x-0.12, 0.7) rectangle (\x+0.12, 0.95);
                 }
-                \node[anchor=west, font=\fontsize{4pt}{4pt}\selectfont] at (2.6, 0.82) {Capa Actual};
-                \node[anchor=west, font=\fontsize{4pt}{4pt}\selectfont] at (2.6, 0.32) {Capa Previa};
+                \node[anchor=west, font=\scriptsize] at (2.6, 0.82) {Capa actual};
+                \node[anchor=west, font=\scriptsize] at (2.6, 0.32) {Capa previa};
             \end{scope}
 
             % Cross-section 2 (Outer) - superimposed (swapped or different layer)
@@ -403,8 +383,8 @@
                 \foreach \x in {0.45, 0.95, 1.45, 1.95, 2.45} {
                      \draw[fill=kit-red100, draw=none] (\x-0.12, 0.7) rectangle (\x+0.12, 0.95);
                 }
-                \node[anchor=west, font=\fontsize{4pt}{4pt}\selectfont] at (2.6, 0.82) {Capa Actual};
-                \node[anchor=west, font=\fontsize{4pt}{4pt}\selectfont] at (2.6, 0.32) {Capa Previa};
+                \node[anchor=west, font=\scriptsize] at (2.6, 0.82) {Capa actual};
+                \node[anchor=west, font=\scriptsize] at (2.6, 0.32) {Capa previa};
             \end{scope}
             
             % Measured Error Arrow
@@ -414,59 +394,115 @@
     \end{columns}
 \end{frame}
 
-\begin{frame}{Antecedentes}
-    Investigadores y fabricantes han abordado la mitigación de vibraciones y la mejora del posicionamiento mediante diversas estrategias:
-    
-    \vspace{0.3cm}
+\begin{frame}{Antecedentes --- análisis de literatura}
+    {\footnotesize Revisión sistemática PRISMA 2020--2025 presentada como póster en \textbf{LARS/LARC 2026} (\cite{Trevino2025_LARSPoster}).\par}
+    \vspace{0.15cm}
+    Estrategias dominantes en motion control para escáneres de fotolitografía:
     \begin{itemize}
-        \item \textbf{Control Activo:} Controladores no lineales (ej. \textit{Hybrid Integrator-Gain Systems}) para contrarrestar el retraso de fase y reducir el sobretiro (\cite{Heertjes2025_NonlinearControl}).
-        \item \textbf{Arquitecturas Dinámicas:} Uso de configuración de triple etapas (\textit{fine stages}) (\cite{Al-Rawashdeh2022_Caracterization}).
-        \item \textbf{\textit{Input Shaping}:} Trayectorias de referencia acotadas en el \textit{jerk} para evitar la excitación de frecuencias resonantes estructurales conocidas (\cite{Al-Rawashdeh2023_Trajectories}).
+        \item \textbf{Control activo:} controladores no lineales tipo HIGS (\cite{Heertjes2025_NonlinearControl}).
+        \item \textbf{Arquitecturas dinámicas:} triple etapas \textit{fine stages} (\cite{Al-Rawashdeh2022_Caracterization}).
+        \item \textbf{\textit{Input shaping}:} trayectorias acotadas en \textit{jerk} (\cite{Al-Rawashdeh2023_Trajectories}).
     \end{itemize}
-    \vspace{0.3cm}
-    Los algoritmos de planeación suelen estar aislados del contexto del proceso (el patrón), optimizando métricas servo-mecánicas (MSE) sin considerar el impacto morfológico en el rendimiento (\textit{yield}).
+    \vspace{0.15cm}
+    \begin{purpleblock}{Brecha}
+        Los algoritmos optimizan métricas servo-mecánicas (MSE) \textbf{sin considerar el impacto morfológico} en el rendimiento (\textit{yield}) del IC. \emph{Pregunta de investigación:} ¿puede una función de costo informada por el patrón cerrar esta brecha sin penalizar productividad?
+    \end{purpleblock}
 \end{frame}
 
-\begin{frame}{Hipótesis y Objetivos}
+\begin{frame}{Hipótesis y objetivos}
     \begin{purpleblock}{Hipótesis}
-        La integración de una red neuronal convolucional (CNN) para la clasificación de mapas de defectos permite optimizar de forma predictiva los parámetros cinemáticos de una trayectoria de cuarto orden, maximizando el rendimiento (\textit{yield}) sin penalizar la productividad (\textit{throughput}) del sistema litográfico.
+        Una CNN entrenada sobre WM-811K, usada como función de costo, permite seleccionar parámetros cinemáticos de trayectorias de cuarto orden que \textbf{minimicen la probabilidad de defecto} sujeto a una \textbf{restricción de productividad}.
     \end{purpleblock}
 
     \vspace{0.1cm}
-    \textbf{Objetivos:}
-    \begin{enumerate}
-        \item Desarrollar una simulación (\textit{digital twin}) basado en un modelo multi-cuerpo.
-        \item Generar analíticamente trayectorias \textit{step-and-scan} acotadas en derivadas superiores (acotado en \textit{snap}).
-        \item Entrenar una CNN para la clasificación de defectos utilizando datos industriales (WM-811K).
-        \item Utilizar la CNN como función de costo dinámica para encontrar perfiles de aceleración óptimos.
+    \begin{greenblock}{Objetivo general}
+        \textbf{Hallar perfiles de aceleración óptimos} para trayectorias \textit{step-and-scan} que mejoren el rendimiento estimado de la oblea sin penalizar el \textit{throughput}.
+    \end{greenblock}
+
+    \vspace{0.05cm}
+    \textbf{Objetivos específicos:}
+    \begin{enumerate}\setlength\itemsep{0pt}
+        \item Generar trayectorias \textit{step-and-scan} acotadas en \textit{snap}.
+        \item Entrenar una CNN sobre WM-811K para clasificación de defectos.
+        \item Usar la CNN como función de costo para hallar los perfiles óptimos.
     \end{enumerate}
 \end{frame}
 
 \section{Modelo}
 
-% \begin{frame}{Sistema multicuerpo}
-%     El modelo, propuesto en \cite{Al-Rawashdeh2022_Caracterization}, está compuesto por un marco base que relaciona la dinámica de tres cadenas seriales:
-%     \begin{itemize}
-%         \item \textbf{Cadena de la retícula ($j=1$):} desliza la fotomáscara bajo la fuente de iluminación.
-%         \item \textbf{Cadena de óptica ($j=2$):} conecta el lente y el marco de metrología.
-%         \item \textbf{Cadena de la oblea ($j=3$):} desliza la oblea debajo del lente.
-%     \end{itemize}
-%     \vspace{0.2cm}
-%     Las cadenas móviles ($j=1,3$) se integran por dos etapas: primero, un motor de carrera larga de exactitud moderada que lleva encima la segunda etapa, un motor de carrera corta implementado con un actuador de Lorentz de amplio ancho de banda y mayor exactitud.
-% \end{frame}
-
 \begin{frame}[fragile]{Sistema multicuerpo}
-    % \begin{columns}
-    %     \column{.7\textwidth}
-    %     \begin{itemize}
-    %         \item Un cuerpo $i$ en la cadena $j$ tiene un desplazamiento $f_{i_j}$ respecto al cuerpo $i-1$.
-    %         \item El desplazamiento absoluto $f^0_{i_j}$ del mismo cuerpo $i$ respecto al marco base $(i=1)$ está expresado por una suma recursiva.
-    %         \item La flexibilidad de la estructura está modelada mediante un sistema resorte-amortiguador ($K_{i_j}, C_{i_j}$) para cada cuerpo $i$ con $i+1$ en la cadena $j$.
-    %         \item Los actuadores están representados, a su vez, por dos segmentos que consideran el estator y la parte móvil.
-    %     \end{itemize}
-    %     \column{.3\textwidth}
-        \begin{center}
-          \begin{turn}{90}
+    \begin{columns}
+        \column{.45\textwidth}
+        Modelo propuesto en \cite{Al-Rawashdeh2022_Caracterization}: un marco base que vincula tres cadenas seriales mediante flexibilidades estructurales.
+        \vspace{0.2cm}
+        \begin{itemize}
+            \item \textcolor{reticleEdge}{\textbf{Retícula ($j{=}1$)}}: desliza la fotomáscara.
+            \item \textcolor{opticsEdge}{\textbf{Óptica ($j{=}2$)}}: lente y marco de metrología.
+            \item \textcolor{waferEdge}{\textbf{Oblea ($j{=}3$)}}: desliza la oblea bajo el lente.
+        \end{itemize}
+        \vspace{0.15cm}
+        {\footnotesize Cadenas móviles ($j{=}1,3$): \textbf{dos etapas} — carrera larga (LS) + Lorentz de banda ancha (SS).}
+
+        \column{.55\textwidth}
+        \centering
+        \begin{tikzpicture}[scale=0.95, transform shape, every node/.style={font=\footnotesize},
+            spring/.style={decorate, decoration={zigzag, segment length=3.5pt, amplitude=2.2pt, pre length=2pt, post length=2pt}, line width=0.55pt, mnnwInk},
+            stage/.pic={
+                \fill[#1!25] (-1.05,-0.32) rectangle (1.05,0.32);
+                \draw[#1, line width=0.9pt] (-1.05,-0.32) rectangle (1.05,0.32);
+            }
+        ]
+            % Floor (hatched)
+            \fill[pattern=north east lines, pattern color=mnnwMute!60] (0,-0.25) rectangle (7.0,0);
+            \draw[line width=0.6pt, mnnwInk] (0,0) -- (7.0,0);
+
+            % Base frame: tall column + small foot on the floor
+            \fill[frameFill, draw=frameEdge, line width=0.6pt]
+                (0.25,0) rectangle (1.05,5.9);
+            \node[rotate=90, font=\scriptsize, text=frameEdge] at (0.65,2.95) {marco base $\mathcal{F}_1$};
+
+            % Light source (top)
+            \fill[kit-yellow30, draw=kit-yellow!70!black, line width=0.5pt] (3.5,5.5) rectangle (4.7,6.0);
+            \node[font=\scriptsize] at (4.1,5.75) {fuente};
+
+            % Reticle row (top - moves left)
+            \draw[spring] (1.05,4.55) -- (3.05,4.55);
+            \node[font=\scriptsize, text=frameEdge, anchor=south] at (2.05,4.62) {$K_1, C_1$};
+            \pic at (4.1,4.55) {stage=reticleEdge};
+            \node[text=reticleEdge, font=\small\bfseries] at (4.1,4.55) {retícula};
+            \draw[Stealth-, line width=1.3pt, kit-red100] (3.2,5.15) -- (5.0,5.15);
+            \node[font=\scriptsize, text=kit-red100, anchor=south] at (4.1,5.15) {$\mathbf{v}_r$\,(\,$4\times$\,)};
+
+            % Optics row (middle - static)
+            \draw[spring] (1.05,2.85) -- (3.05,2.85);
+            \node[font=\scriptsize, text=frameEdge, anchor=south] at (2.05,2.92) {$K_2, C_2$};
+            \pic at (4.1,2.85) {stage=opticsEdge};
+            \node[text=opticsEdge, font=\small\bfseries] at (4.1,2.85) {óptica};
+            \node[font=\scriptsize, text=mnnwMute, anchor=west] at (5.25,2.85) {(fija)};
+
+            % Wafer row (bottom - moves right)
+            \draw[spring] (1.05,1.15) -- (3.05,1.15);
+            \node[font=\scriptsize, text=frameEdge, anchor=south] at (2.05,1.22) {$K_3, C_3$};
+            \pic at (4.1,1.15) {stage=waferEdge};
+            \node[text=waferEdge, font=\small\bfseries] at (4.1,1.15) {oblea};
+            \draw[-Stealth, line width=1.3pt, kit-blue100] (3.2,0.55) -- (5.0,0.55);
+            \node[font=\scriptsize, text=kit-blue100, anchor=north] at (4.1,0.55) {$\mathbf{v}_w$};
+
+            % Light beam from source through reticle, optics, to wafer
+            \draw[draw=kit-yellow!85!black, line width=1.2pt, dashed] (4.1,5.5) -- (4.1,1.47);
+            \node[font=\scriptsize, text=kit-yellow!55!black, anchor=west] at (4.85,4.05) {haz};
+
+            % Sync bracket (right)
+            \draw[decorate, decoration={brace, amplitude=4pt, mirror}, line width=0.7pt]
+                (6.0,1.15) -- (6.0,4.55);
+            \node[align=left, font=\scriptsize, anchor=west] at (6.2,2.85)
+                {sincronía\\sub-nm};
+        \end{tikzpicture}
+    \end{columns}
+\end{frame}
+
+% --- Detailed multi-body schematic kept for the appendix ---
+\newcommand{\detailedMultibodyFigure}{%
           \resizebox{0.39\linewidth}{!}{
           \begin{tikzpicture}[scale=1, transform shape,
             every node/.style    ={font=\small},
@@ -547,150 +583,131 @@
           \draw[line width=0.4pt, reticleEdge] (\xPilR+0.30,\yRa-0.30) -- (\xPilR+0.30,\yRf+0.30);
           \node[font=\scriptsize\bfseries, text=reticleEdge, rotate=-90, anchor=south] at (\xPilR+0.55,{(\yRa+\yRf)/2}) {Cadena de la retícula $(j{=}1)$};
           \end{tikzpicture}
-          }
-          \end{turn}
-        \end{center}
-    % \end{columns}
-\end{frame}
+          }%
+}
 
 \begin{frame}{Dinámica}
     \begin{itemize}
-        \item Limitamos el movimiento $f_{i_{j_x}}$, $f_{i_{j_y}}$ y la rotación planar $\theta_z$.
-        \item Consideramos 16 cuerpos ($N_1=6$, $N_2=3$, $N_3=6$) que requieren 6 estados para su descripción:
+        \item Restringimos el movimiento a $f_{i_{j_x}}$, $f_{i_{j_y}}$ y la rotación planar $\theta_z$.
+        \item Consideramos 16 cuerpos ($N_1=7$, $N_2=4$, $N_3=7$); 6 estados por cuerpo:
         \begin{equation}
             x =
             \begin{bmatrix}
                 \underbrace{x_1, \ldots, x_6}_{\text{marco base (i=1)}} \;,\;
-                \underbrace{x_7, \ldots, x_{6N_1}}_{\text{cadena 1: cuerpos } 2 \to N_1} \;,\;
+                \underbrace{x_7, \ldots, x_{6N_1}}_{\text{cadena 1}} \;,\;
                 \underbrace{\ldots}_{\text{cadena 2}} \;,\;
                 \underbrace{\ldots}_{\text{cadena 3}}
             \end{bmatrix}^T
         \end{equation}
-        \item Para un cuerpo ($2 < i < N_j$):
+        \item Para cuerpos internos:
         \begin{align}
-            \ddot{\mathbf{x}}_{2p-1} &= 
+            \ddot{\mathbf{x}}_{2p-1} &=
             \frac{1}{\bar{m}_{i_j}} \Big[ u^0_{i_j} - {}^0\bar{C}_{i_j}\dot{\mathbf{x}}_{2p-1} - {}^0\bar{K}_{i_j}\mathbf{x}_{2p-1} + {}^0\hat{C}_{(i+1)_j}\dot{\mathbf{x}}_{2p+1} + {}^0\hat{K}_{(i+1)_j}\mathbf{x}_{2p+1} \Big] \notag \\
-            &\quad - \frac{1}{\bar{m}_{(i-1)_j}} \Big[ u^0_{(i-1)_j} - {}^0\bar{C}_{(i-1)_j}\dot{\mathbf{x}}_{2p-3} - {}^0\bar{K}_{(i-1)_j}\mathbf{x}_{2p-3} + {}^0\hat{C}_{i_j}\dot{\mathbf{x}}_{2p-1} + {}^0\hat{K}_{i_j}\mathbf{x}_{2p-1} \Big] \\
+            &\quad - \frac{1}{\bar{m}_{(i-1)_j}} \Big[ u^0_{(i-1)_j} - {}^0\bar{C}_{(i-1)_j}\dot{\mathbf{x}}_{2p-3} - {}^0\bar{K}_{(i-1)_j}\mathbf{x}_{2p-3} + {}^0\hat{C}_{i_j}\dot{\mathbf{x}}_{2p-1} + {}^0\hat{K}_{i_j}\mathbf{x}_{2p-1} \Big]
         \end{align}
     \end{itemize}
+    \vspace{-0.2cm}
+    {\scriptsize Casos frontera ($i{=}2$, $i{=}N_j$) detallados en el documento de tesis.}
 \end{frame}
 
 \section{Metodología}
 
-\begin{frame}{Simulación}
+\begin{frame}{Simulación --- resultados}
     \begin{columns}
-        \column{.6\textwidth}
-        Implementación del modelo en \textbf{MuJoCo} (\cite{todorov2012mujoco}) usando los parámetros propuestos en \cite{Al-Rawashdeh2022_Caracterization}.
-        \begin{center}
-          \includegraphics[width=0.5\linewidth]{../fullThesis/pictures/scanning_3d.png}
-        \end{center}
-        \column{.4\textwidth}
-        \begin{center}
-          \includegraphics[width=\linewidth]{pictures/sim_graph_ff.png}
-        \end{center}
+        \column{.36\textwidth}
+        \begin{itemize}
+            \item Implementación en \textbf{MuJoCo} (\cite{todorov2012mujoco}); parámetros de \cite{Al-Rawashdeh2022_Caracterization}.
+            \item Error de seguimiento monitoreado vía \textbf{promedio móvil (MA)} y \textbf{desviación estándar móvil (MSD)}.
+            \item Umbrales típicos: MA $\geq 1\,\text{nm}$, MSD $\geq 7\,\text{nm}$ (\cite{Butler2011_PositionControl}) $\Rightarrow$ degradación crítica del \textit{overlay}.
+        \end{itemize}
+        \column{.64\textwidth}
+        \centering
+        \includegraphics[width=0.49\linewidth]{pictures/sim_tracking.png}\hfill%
+        \includegraphics[width=0.49\linewidth]{pictures/sim_ma_msd.png}\\[0.1cm]
+        {\scriptsize Izq.: error de seguimiento. \quad Der.: MA y MSD móviles.}
     \end{columns}
 \end{frame}
 
-\begin{frame}{Mapas de Defectos}
+\begin{frame}{Mapas de defectos y CNN}
     \begin{columns}[T]
-        \column{.6\textwidth}
-        \begin{itemize}
-            \item Conjunto de datos \textbf{WM811K} con 811,457 mapas de defectos de obleas de manufactura de alto volumen (\cite{Wu2015_WM811K}).
-            \item Seleccionamos un subconjunto de 172,950 muestras etiquetadas en 9 clases de defectos de manufactura (como \textit{Center}, \textit{Edge-Loc}, \textit{Scratch}, \textit{Donut}).
-            \item Nos permite relacionar parametros de diseño con las variables del proceso.
-        \end{itemize}
         \column{.4\textwidth}
-        \begin{center}
-          \includegraphics[width=\linewidth]{pictures/mapa.png}
-        \end{center}
+        \begin{itemize}
+            \item Dataset \textbf{WM-811K}: 172\,950 muestras etiquetadas en 9 clases (\cite{Wu2015_WM811K}).
+            \item Tipos: \textit{Center}, \textit{Donut}, \textit{Edge-Loc}, \textit{Edge-Ring}, \textit{Loc}, \textit{Near-full}, \textit{Random}, \textit{Scratch}, \textit{none}.
+            \item CNN: 3$\times$Conv + 2$\times$FC, entrada $64{\times}64$, entrenada y \textbf{validada en partición real} \textit{hold-out}.
+        \end{itemize}
+        \vspace{0.1cm}
+        {\footnotesize
+        \begin{tabular}{ll}
+            \toprule
+            \textbf{Métrica} & \textbf{Valor} \\
+            \midrule
+            Test \textit{hold-out} & 34\,590 muestras \\
+            \textbf{Accuracy} & \textbf{96.88\,\%} \\
+            \bottomrule
+        \end{tabular}}
+
+        \column{.6\textwidth}
+        \centering
+        \includegraphics[height=0.65\textheight,keepaspectratio]{pictures/cnn_confmat.png}
     \end{columns}
 \end{frame}
 
-\begin{frame}{Arquitectura CNN}
+\begin{frame}[fragile]{Conexión trayectoria $\leftrightarrow$ defecto}
     \begin{center}
-        \resizebox{0.3\linewidth}{!}{
-        \begin{tikzpicture}[scale=1, transform shape]
-            \tikzstyle{connection}=[ultra thick,every node/.style={sloped,allow upside down},draw=\edgecolor,opacity=0.7]
-            
-            % input image
-            \node[canvas is zy plane at x=0] (temp) at (-1.5,0,0) {\includegraphics[width=6cm,height=6cm]{pictures/mapa.png}};
-            
-            % conv1
-            \pic[shift={(0,0,0)}] at (0,0,0) {RightBandedBox={name=cr1,caption=Conv1,%
-                    xlabel={{"16","16"}},zlabel=64,fill=\ConvColor,bandfill=\ConvReluColor,%
-                    height=32,width={2,2},depth=32}};
-            %pool1
-            \pic[shift={(0,0,0)}] at (cr1-east) {Box={name=p1,%
-                    fill=\PoolColor,opacity=0.5,height=24,width=1,depth=24}};
-            
-            % conv2
-            \pic[shift={(1.2,0,0)}] at (p1-east) {RightBandedBox={name=cr2,caption=Conv2,%
-                    xlabel={{"32","32"}},zlabel=32,fill=\ConvColor,bandfill=\ConvReluColor,%
-                    height=24,width={3,3},depth=24}};
-            %pool2
-            \pic[shift={(0,0,0)}] at (cr2-east) {Box={name=p2,%
-                    fill=\PoolColor,opacity=0.5,height=16,width=1,depth=16}};
-            
-            % conv3
-            \pic[shift={(1.2,0,0)}] at (p2-east) {RightBandedBox={name=cr3,caption=Conv3,%
-                    xlabel={{"64","64"}},zlabel=16,fill=\ConvColor,bandfill=\ConvReluColor,%
-                    height=16,width={4,4},depth=16}};
-            %pool3
-            \pic[shift={(0,0,0)}] at (cr3-east) {Box={name=p3,%
-                    fill=\PoolColor,opacity=0.5,height=8,width=1,depth=8}};
-            
-            % fc1
-            \pic[shift={(1.8,0,0)}] at (p3-east) {RightBandedBox={name=fc1,caption=FC1,%
-                    xlabel={{"1",""}},zlabel=128,fill=\FcColor,bandfill=\FcReluColor,%
-                    height=3,width=3,depth=20}};
-            
-            % fc2 (Output)
-            \pic[shift={(1.5,0,0)}] at (fc1-east) {RightBandedBox={name=fc2,caption=FC2,%
-                    xlabel={{"1",""}},zlabel=9,fill=\FcColor,bandfill=\FcReluColor,%
-                    height=3,width=3,depth=6}};
-            
-            % softmax
-            \pic[shift={(0.8,0,0)}] at (fc2-east) {Box={name=softmax,caption=Softmax,%
-                    xlabel={{"","dummy"}},zlabel=9,opacity=0.8,fill=\SoftmaxColor,%
-                    height=3,width=1.5,depth=6}};
-            
-            % Connections
-            \draw [connection]  (p1-east)        -- node {\midarrow} (cr2-west);
-            \draw [connection]  (p2-east)        -- node {\midarrow} (cr3-west);
-            \draw [connection]  (p3-east)        -- node {\midarrow} (fc1-west);
-            \draw [connection]  (fc1-east)       -- node {\midarrow} (fc2-west);
-            \draw [connection]  (fc2-east)       -- node {\midarrow} (softmax-west);
-        \end{tikzpicture}
-        }
-    \end{center}
+        \begin{tikzpicture}[
+            every node/.style={font=\scriptsize},
+            stepbox/.style={draw=mnnwInk, line width=0.6pt, rounded corners=2pt, minimum width=1.7cm, minimum height=0.9cm, align=center, fill=white},
+            unknownbox/.style={draw=kit-red100, line width=0.9pt, dashed, rounded corners=2pt, minimum width=1.7cm, minimum height=0.9cm, align=center, fill=kit-red!8},
+            solbox/.style={draw=opticsEdge, line width=0.6pt, rounded corners=2pt, minimum width=5.4cm, minimum height=1.0cm, align=center, fill=opticsFlex},
+            ar/.style={-Stealth, line width=0.7pt}
+        ]
+            \node[stepbox] (traj) {trayectoria\\(\textit{snap} acotado)};
+            \node[stepbox, right=0.25cm of traj] (sim) {MuJoCo};
+            \node[stepbox, right=0.25cm of sim] (err) {error\\MA/MSD};
+            \node[unknownbox, right=0.25cm of err] (gap) {\textcolor{kit-red100}{\textbf{?}}\\mapeo};
+            \node[stepbox, right=0.25cm of gap] (map) {mapa de\\defectos};
+            \node[stepbox, right=0.25cm of map] (cnn) {CNN $\to$\\$P(\text{defecto})$};
 
-    \vspace{0.2cm}
-    \centering
-    \scriptsize
-    \begin{tabular}{ll@{\hspace{1cm}}ll}
-        \toprule
-        \textbf{Parámetro} & \textbf{Valor} & \textbf{Parámetro} & \textbf{Valor} \\
-        \midrule
-        Entrada & $64 \times 64$ (Reescalado \textit{nearest}) & Optimización & Adam ($\text{lr}=10^{-3}$), 5 Epochs \\
-        Arquitectura & 3$\times$Conv, 2$\times$FC (16, 32, 64) & \textbf{Precisión (Accuracy)} & \textbf{96.88\%} \\
-        Función de Pérdida & CrossEntropy & \textbf{Validación} & Mapas simulados (MuJoCo) \\
-        \bottomrule
-    \end{tabular}
+            \draw[ar] (traj) -- (sim);
+            \draw[ar] (sim) -- (err);
+            \draw[ar] (err) -- (gap);
+            \draw[ar] (gap) -- (map);
+            \draw[ar] (map) -- (cnn);
+
+            \node[font=\scriptsize\bfseries, text=kit-red100, anchor=south, fill=white, inner sep=1pt] at ([yshift=8pt]gap.north) {brecha};
+
+            \node[solbox] (sa) at (-1.5,-2.4) {\textbf{Física --- \textit{dose mapping}}\\\scriptsize MA/MSD locales $\to$ variación de dosis $\to$ umbral};
+            \node[solbox, right=0.5cm of sa] (sb) {\textbf{Datos --- \textit{paired learning}}\\\scriptsize pares (error, mapa) $\to$ generador condicional aprendido};
+
+            \draw[ar, dashed, kit-red100] (gap.south) to[out=-90, in=90, looseness=0.7] (sa.north);
+            \draw[ar, dashed, kit-red100] (gap.south) to[out=-90, in=90, looseness=0.7] (sb.north);
+        \end{tikzpicture}
+    \end{center}
+    \vspace{0.1cm}
+    {\footnotesize \centering Ambas vías son compatibles con la simulación actual; el mapeo se formalizará en el siguiente periodo.\par}
 \end{frame}
 
-\begin{frame}{Trayectorias de Alto Orden}
+\begin{frame}[fragile]{Trayectorias de alto orden}
     \begin{columns}
-        \column{.58\textwidth}
-        \begin{itemize}
-            \item Trayectorias de referencia con derivadas de orden superior acotadas (\textit{snap} finito), planificadas mediante polinomios segmentados óptimos en tiempo (\cite{Lambrechts2003_Trajectories}).
-            \item Perfiles (cuadrado, biselado) derivados analíticamente mediante modelado cinemático-dinámico con \textit{input shaping} (\cite{Al-Rawashdeh2023_Trajectories}).
-            \item Mejora en el seguimiento de la trayectoria, lo que representa a su vez una disminución del error de sincronización (\textit{overlay}).
+        \column{.55\textwidth}
+        \begin{itemize}\setlength\itemsep{1pt}
+            \item Derivadas superiores acotadas (\textit{snap} finito).
+            \item Menor excitación de modos estructurales poco amortiguados.
+            \item Mejor seguimiento $\Rightarrow$ menor error de \textit{overlay} (\cite{Al-Rawashdeh2023_Trajectories}).
         \end{itemize}
-        \column{.42\textwidth}
+        \vspace{0.1cm}
+        {\footnotesize\textbf{Métodos candidatos:}
+        \begin{itemize}\setlength\itemsep{0pt}
+            \item Polinomios segmentados óptimos en tiempo (\cite{Lambrechts2003_Trajectories}).
+            \item \textit{Input shaping} convolucional.
+            \item Perfiles cuadrado / bisel / meandro (\cite{Al-Rawashdeh2023_Trajectories}).
+        \end{itemize}}
+        \column{.45\textwidth}
         \begin{center}
-          \resizebox{0.88\linewidth}{!}{
+          \resizebox{0.78\linewidth}{!}{
           \begin{tikzpicture}[
-            every node/.style={font=\fontsize{4pt}{4pt}\selectfont},
+            every node/.style={font=\footnotesize},
             wafer/.style={draw=kit-blue100, line width=0.6pt, fill=kit-blue!5},
             die/.style={draw=mnnwInk, line width=0.3pt, fill=white, postaction={pattern=north east lines, pattern color=mnnwMute!40}},
             square/.style={draw=mnnwInk, line width=0.8pt},
@@ -729,9 +746,9 @@
             \draw[mnnwInk, line width=0.8pt, dashed] (-0.75, -1.25) -- (-0.75, -1.75);
 
             \begin{scope}[shift={(0.25, 1.35)}]
-              \draw[square]  (0, 0.55) -- (0.35, 0.55) node[right, font=\fontsize{3.5pt}{3.5pt}\selectfont] {Cuadrado};
-              \draw[fillet]  (0, 0.27) -- (0.35, 0.27) node[right, font=\fontsize{3.5pt}{3.5pt}\selectfont] {Bisel};
-              \draw[meander] (0, 0.00) -- (0.35, 0.00) node[right, font=\fontsize{3.5pt}{3.5pt}\selectfont] {Meandro};
+              \draw[square]  (0, 0.55) -- (0.35, 0.55) node[right, font=\scriptsize] {Cuadrado};
+              \draw[fillet]  (0, 0.27) -- (0.35, 0.27) node[right, font=\scriptsize] {Bisel};
+              \draw[meander] (0, 0.00) -- (0.35, 0.00) node[right, font=\scriptsize] {Meandro};
             \end{scope}
 
             \draw[axis] (0,0) -- (0.4,0) node[right] {$x$};
@@ -745,14 +762,14 @@
 
 \section{Trabajo posterior}
 
-\begin{frame}{Siguientes pasos...}
+\begin{frame}{Siguientes pasos}
     \begin{itemize}
         \item Implementar un controlador no lineal en el simulador (\cite{Heertjes2025_NonlinearControl}).
         \item Integrar un estimador de parámetros para el controlador.
-        \item Conectar la generación de trayectorias con la clasificación del defecto de la oblea (\cite{Yang2018_Yield}).
-        \item Comparar resultados con trayectorias polinomiales de menor orden (\cite{Al-Rawashdeh2023_Trajectories}).
+        \item \textbf{Formalizar el mapeo error servo $\leftrightarrow$ mapa de defectos} (físico o aprendido) y vincularlo a la clasificación de defectos (\cite{Yang2018_Yield}).
+        \item Comparar trayectorias de cuarto orden con polinomios de menor orden (\cite{Al-Rawashdeh2023_Trajectories}).
     \end{itemize}
-    \vspace{0.5cm}
+    \vspace{0.3cm}
     \begin{center}
     \textit{Gracias por su atención.}
     \end{center}
@@ -760,6 +777,15 @@
 
 \appendix
 \beginbackup
+
+\begin{frame}[fragile]{Apéndice: esquema multi-cuerpo detallado}
+    \begin{center}
+        \begin{turn}{90}
+        \detailedMultibodyFigure
+        \end{turn}
+    \end{center}
+\end{frame}
+
 \begin{frame}[allowframebreaks]{Referencias}
 \printbibliography
 \end{frame}
