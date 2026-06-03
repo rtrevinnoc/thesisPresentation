@@ -387,7 +387,7 @@
 \end{frame}
 
 \begin{frame}[t,fragile]{Antecedentes --- análisis de literatura}
-    \footnotesize PRISMA 2020--2025 $\cdot$ 1\,180 cribados $\to$ 12 incluidos $\cdot$ póster IEEE LARS/LARC 2025 (\cite{Trevino2025_LARSPoster}).
+    \footnotesize PRISMA 2020--2025 $\cdot$ 1\,180 artículos $\to$ 12 incluidos $\cdot$ póster IEEE LARS/LARC 2025 (\cite{Trevino2025_LARSPoster}).
 
     \vspace{0.1cm}
     \begin{center}
@@ -412,13 +412,13 @@
     \end{center}
     \vspace{0.05cm}
     \begin{purpleblock}{Brecha}
-        \footnotesize Métricas \textbf{servo-mecánicas} (MSE) sin considerar el impacto \textbf{morfológico} en el \textit{yield}; análisis inverso de \textit{fingerprints} (\cite{Lam2015_Fingerprint}) no cubre la dirección directa.
+        \footnotesize Métricas \textbf{servo-mecánicas} (MSE) que no consideran el impacto \textbf{morfológico} en el rendimiento (\textit{yield}); existe el proceso inverso en \cite{Lam2015_Fingerprint} pero no ofrece un enfoque predictivo.
     \end{purpleblock}
 \end{frame}
 
 \begin{frame}[fragile]{Hipótesis y objetivos}
     \begin{purpleblock}{Hipótesis}
-        Una CNN entrenada sobre WM-811K, usada como función de costo, permite seleccionar parámetros cinemáticos de trayectorias de cuarto orden que \textbf{minimicen la probabilidad de defecto} sujeto a una \textbf{restricción de productividad}.
+        Una CNN entrenada sobre WM-811K, usada como función de costo, permite seleccionar parámetros cinemáticos de trayectorias de cuarto orden que \textbf{minimicen la probabilidad de defecto} sujeto a una \textbf{restricción de productividad} (\cite{Kim2017_Market,Kim2019_Productivity}).
     \end{purpleblock}
 
     \vspace{0.3cm}
@@ -648,9 +648,9 @@
     \textbf{MuJoCo} (\cite{todorov2012mujoco}) $\cdot$ parámetros (\cite{Al-Rawashdeh2022_Caracterization}) $\cdot$ umbrales MA $\geq 1\,$nm, MSD $\geq 7\,$nm (\cite{Butler2011_PositionControl})
     \end{center}
     \begin{center}
-        \includegraphics[width=0.46\linewidth,height=0.55\textheight,keepaspectratio]{pictures/sim_tracking.png}\hfill%
-        \includegraphics[width=0.46\linewidth,height=0.55\textheight,keepaspectratio]{pictures/sim_ma_msd.png}\\[0.05cm]
-        {\footnotesize Error de seguimiento \quad$|$\quad MA y MSD móviles}
+        \includegraphics[width=0.46\linewidth,height=0.55\textheight,keepaspectratio]{pictures/sim_combined_y.png}\hfill%
+        \includegraphics[width=0.46\linewidth,height=0.55\textheight,keepaspectratio]{pictures/scanning_3d.png}\\[0.05cm]
+        {\footnotesize Error $e_{syn}$, MA y MSD (dir.\ Y) \quad$|$\quad Entorno MuJoCo}
     \end{center}
 \end{frame}
 
@@ -753,7 +753,7 @@
               {$\mathcal{J}$ \\ \textbf{0.65\,\%} \\ {\scriptsize pérdida esperada}};
         \node[font=\small, anchor=south] at (10.1, 1.35) {costo};
     \end{tikzpicture}\\[0.30cm]
-    {\footnotesize Sólo las clases inducibles por servo (\textit{none, scratch, edge-local, random}) contribuyen a $\mathcal{J}$. Pesos $w_c$ por clase: literatura (\cite{Kim2019_Productivity,Yang2018_Yield}) o calibración.}
+    {\footnotesize Sólo las clases inducibles por servo (\textit{none, scratch, edge-local, random}) contribuyen a $\mathcal{J}$. Pesos $w_c$ por clase: literatura (\cite{Kim2017_Market,Kim2019_Productivity,Yang2018_Yield}) o calibración.}
     \end{center}
 \end{frame}
 

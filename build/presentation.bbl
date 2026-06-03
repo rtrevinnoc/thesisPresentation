@@ -174,6 +174,122 @@
       \endverb
       \keyw{Semiconductor device modeling;Productivity;Predictive models;Manufacturing;Prediction algorithms;Machine learning;Data models;yield modeling;wafer map;wafer productivity;semiconductor manufacturing;deep learning}
     \endentry
+    \entry{Kim2017_Market}{inproceedings}{}{}
+      \name{author}{5}{ul=2}{%
+        {{un=0,uniquepart=base,hash=2a7f4e68bf1c91d89f4184d8f0ec4d72}{%
+           family={Kim},
+           familyi={K\bibinitperiod},
+           given={Jong-Seong},
+           giveni={J\bibinithyphendelim S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=0e261b2028d125cc67b6826ac922909d}{%
+           family={Ahn},
+           familyi={A\bibinitperiod},
+           given={Chang\bibnamedelima Wook},
+           giveni={C\bibinitperiod\bibinitdelim W\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=13328fd2d2dbeec7b6cb1b19b4e3af38}{%
+           family={Kim},
+           familyi={K\bibinitperiod},
+           given={Tae-Woo},
+           giveni={T\bibinithyphendelim W\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=7be328e3311fac2487e9ed5968fee348}{%
+           family={Lee},
+           familyi={L\bibinitperiod},
+           given={Hyun-Jin},
+           giveni={H\bibinithyphendelim J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=3bae67d30d76b9e050f7e68a3a9a694a}{%
+           family={Lee},
+           familyi={L\bibinitperiod},
+           given={Jong-Bae},
+           giveni={J\bibinithyphendelim B\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{c2e6ed8ce5dd50ba7f01ccb3f3cbfce3}
+      \strng{fullhash}{9231417d2951a43ffc25e9340f042163}
+      \strng{fullhashraw}{9231417d2951a43ffc25e9340f042163}
+      \strng{bibnamehash}{c2e6ed8ce5dd50ba7f01ccb3f3cbfce3}
+      \strng{authorbibnamehash}{c2e6ed8ce5dd50ba7f01ccb3f3cbfce3}
+      \strng{authornamehash}{c2e6ed8ce5dd50ba7f01ccb3f3cbfce3}
+      \strng{authorfullhash}{9231417d2951a43ffc25e9340f042163}
+      \strng{authorfullhashraw}{9231417d2951a43ffc25e9340f042163}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{2017 28th Annual SEMI Advanced Semiconductor Manufacturing Conference (ASMC)}
+      \field{title}{A market-oriented wafer map optimization methodology using differential evolution to maximize wafer productivity}
+      \field{year}{2017}
+      \field{pages}{393\bibrangedash 398}
+      \range{pages}{6}
+      \verb{doi}
+      \verb 10.1109/ASMC.2017.7969268
+      \endverb
+      \keyw{Productivity;Throughput;Semiconductor device modeling;Lithography;Optimization;Industries;differential evolution;profitability enhancements;manufacturing strategy;wafer map optimization;wafer productivity}
+    \endentry
+    \entry{Kim2019_Productivity}{article}{}{}
+      \name{author}{5}{ul=2}{%
+        {{un=0,uniquepart=base,hash=2a7f4e68bf1c91d89f4184d8f0ec4d72}{%
+           family={Kim},
+           familyi={K\bibinitperiod},
+           given={Jong-Seong},
+           giveni={J\bibinithyphendelim S\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=e7033eda5eba11000d081ff886303d38}{%
+           family={Jang},
+           familyi={J\bibinitperiod},
+           given={Sung-Ju},
+           giveni={S\bibinithyphendelim J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=13328fd2d2dbeec7b6cb1b19b4e3af38}{%
+           family={Kim},
+           familyi={K\bibinitperiod},
+           given={Tae-Woo},
+           giveni={T\bibinithyphendelim W\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=7be328e3311fac2487e9ed5968fee348}{%
+           family={Lee},
+           familyi={L\bibinitperiod},
+           given={Hyun-Jin},
+           giveni={H\bibinithyphendelim J\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=3bae67d30d76b9e050f7e68a3a9a694a}{%
+           family={Lee},
+           familyi={L\bibinitperiod},
+           given={Jong-Bae},
+           giveni={J\bibinithyphendelim B\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{3830c7db96ecac1e89feb351b1e9bf8f}
+      \strng{fullhash}{98719114810a8c07250dd47a668bdb73}
+      \strng{fullhashraw}{98719114810a8c07250dd47a668bdb73}
+      \strng{bibnamehash}{3830c7db96ecac1e89feb351b1e9bf8f}
+      \strng{authorbibnamehash}{3830c7db96ecac1e89feb351b1e9bf8f}
+      \strng{authornamehash}{3830c7db96ecac1e89feb351b1e9bf8f}
+      \strng{authorfullhash}{98719114810a8c07250dd47a668bdb73}
+      \strng{authorfullhashraw}{98719114810a8c07250dd47a668bdb73}
+      \field{sortinit}{K}
+      \field{sortinithash}{c02bf6bff1c488450c352b40f5d853ab}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{IEEE Transactions on Semiconductor Manufacturing}
+      \field{number}{1}
+      \field{title}{A Productivity-Oriented Wafer Map Optimization Using Yield Model Based on Machine Learning}
+      \field{volume}{32}
+      \field{year}{2019}
+      \field{pages}{39\bibrangedash 47}
+      \range{pages}{9}
+      \verb{doi}
+      \verb 10.1109/TSM.2018.2870253
+      \endverb
+      \keyw{Productivity;Semiconductor device modeling;Throughput;Lithography;Optimization;Fabrication;Wafer map optimization;wafer productivity;wafer manufacturing strategy;profitability enhancements;yield modeling}
+    \endentry
     \entry{Lam2015_Fingerprint}{inproceedings}{}{}
       \name{author}{7}{}{%
         {{un=0,uniquepart=base,hash=65abe6a0f61f27e50cf1fd97f799181b}{%
