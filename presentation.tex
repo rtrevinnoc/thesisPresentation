@@ -148,7 +148,7 @@
       {\usebeamerfont{author}\insertauthor\ \textbar\ \insertdate}%
     \end{textblock*}%
     \begin{textblock*}{\paperwidth}(2mm,60mm)
-      \centering\includegraphics[height=30mm]{logos/duv_stepper_working.png}%
+      \centering\includegraphics[height=30mm]{logos/metroframe-etc.png}%
     \end{textblock*}%
   \end{frame}
 }
@@ -224,7 +224,7 @@
 
 \begin{frame}[fragile]{El Proceso \textit{Step-and-Scan}}
     \begin{center}
-          \begin{tikzpicture}[scale=1.4,
+          \begin{tikzpicture}[scale=1.3,
             every node/.style={font=\footnotesize},
             wafer/.style={draw=kit-blue100, line width=0.6pt, fill=kit-blue!5},
             die/.style={draw=mnnwInk, line width=0.3pt, fill=white, postaction={pattern=north east lines, pattern color=mnnwMute!40}},
@@ -283,106 +283,117 @@
 \end{frame}
 
 \begin{frame}{\textit{Overlay} y productividad}
-    \begin{columns}
-        \column{.55\textwidth}
+    \begin{columns}[T]
+        \column{.5\textwidth}
         \begin{blueblock}{\textit{Overlay} (nm)}
             Desviación entre las múltiples capas de un IC; debe minimizarse para asegurar la interconexión (\cite{Schmidt2012_UltraPrecision}).
         \end{blueblock}
 
+        \column{.5\textwidth}
         \begin{greenblock}{Productividad (obleas por hora)}
             Producción continua de alto volumen (\cite{Butler2011_PositionControl}).
         \end{greenblock}
+    \end{columns}
 
-        \column{.45\textwidth}
-        \centering
-        \begin{tikzpicture}[scale=0.8, transform shape, every node/.style={font=\footnotesize}]
-            % Top View (Metrology Target)
-            \begin{scope}[shift={(0,3.5)}]
-                \node[font=\footnotesize\bfseries, anchor=south] at (1.5, 2.5) {Vista aérea};
-                
-                % Grid of patterns (Simplified representation of the superimposed state)
+    \vspace{0.05cm}
+    \begin{center}
+    \begin{tikzpicture}[scale=0.72, transform shape, every node/.style={font=\footnotesize}]
+
+        % =========================================================
+        % PANEL A — Overlay correcto
+        % =========================================================
+        \node[font=\small\bfseries, anchor=south] at (3.0, 4.20) {Overlay correcto};
+
+        % Top view: 2x2 grid, match — 4 red horizontals + 4 blue verticals, same positions
+        \begin{scope}[shift={(2.08, 2.25)}]
+            \foreach \i in {0,1} {
+                \foreach \j in {0,1} {
+                    \begin{scope}[shift={(\i*0.95, \j*0.95)}]
+                        \fill[white] (0,0) rectangle (0.90, 0.90);
+                        \foreach \y in {0.076, 0.282, 0.488, 0.694} {
+                            \fill[kit-red100, fill opacity=0.85] (0.04, \y) rectangle (0.86, \y+0.13);
+                        }
+                        \foreach \x in {0.076, 0.282, 0.488, 0.694} {
+                            \fill[kit-blue100, fill opacity=0.60] (\x, 0.04) rectangle (\x+0.13, 0.86);
+                        }
+                        \draw[draw=mnnwHair, line width=0.3pt] (0,0) rectangle (0.90, 0.90);
+                    \end{scope}
+                }
+            }
+        \end{scope}
+
+        \draw[draw=mnnwMute, line width=1.1pt, -Stealth] (3.0, 2.20) -- (3.0, 1.70);
+
+        % Cross-section: P bars aligned with Q (match)
+        \begin{scope}[shift={(1.3, 0.50)}]
+            \fill[kit-green100!85]      (0, 0)    rectangle (3.4, 0.16);
+            \fill[kit-lightgreen100!35] (0, 0.16) rectangle (3.4, 0.58);
+            \foreach \x in {0.40, 0.92, 1.44, 1.96, 2.48, 3.00} {
+                \fill[kit-red100] (\x-0.12, 0.19) rectangle (\x+0.12, 0.38);
+            }
+            \foreach \x in {0.40, 0.92, 1.44, 1.96, 2.48, 3.00} {
+                \fill[kit-blue100] (\x-0.12, 0.62) rectangle (\x+0.12, 0.81);
+            }
+            \node[anchor=west, font=\footnotesize, text=kit-blue100] at (3.50, 0.71) {Capa actual, P};
+            \node[anchor=west, font=\footnotesize, text=kit-red100]  at (3.50, 0.28) {Capa previa, Q};
+        \end{scope}
+
+        % =========================================================
+        % PANEL B — Error de overlay
+        % =========================================================
+        \begin{scope}[shift={(6.5, 0)}]
+            \node[font=\small\bfseries, anchor=south] at (3.0, 4.20) {Error de \textit{overlay}};
+
+            % Top view: same 4 red horizontals; blue verticals shifted by half-period
+            \begin{scope}[shift={(2.08, 2.25)}]
                 \foreach \i in {0,1} {
                     \foreach \j in {0,1} {
-                        \begin{scope}[shift={(\i*1.8, \j*1.3)}]
-                            % Previous layer (Red)
-                            \foreach \x in {0.1, 0.4, 0.7, 1.0} {
-                                \draw[fill=kit-red100!60, draw=none] (\x, 0) rectangle (\x+0.2, 1);
+                        \begin{scope}[shift={(\i*0.95, \j*0.95)}]
+                            \fill[white] (0,0) rectangle (0.90, 0.90);
+                            \foreach \y in {0.076, 0.282, 0.488, 0.694} {
+                                \fill[kit-red100, fill opacity=0.85] (0.04, \y) rectangle (0.86, \y+0.13);
                             }
-                            % Current layer (Blue) - Misaligned
-                            \begin{scope}[shift={(0.12, 0)}] 
-                                \foreach \y in {0.1, 0.4, 0.7} {
-                                    \draw[fill=kit-blue100!60, draw=none] (0, \y) rectangle (1.2, \y+0.2);
+                            \begin{scope}
+                                \clip (0,0) rectangle (0.90, 0.90);
+                                \foreach \x in {0.178, 0.384, 0.590, 0.796} {
+                                    \fill[kit-blue100, fill opacity=0.60] (\x, 0.04) rectangle (\x+0.13, 0.86);
                                 }
                             \end{scope}
-                            \draw[draw=mnnwHair, dashed, line width=0.3pt] (0,0) rectangle (1.2, 1);
+                            \draw[draw=mnnwHair, line width=0.3pt] (0,0) rectangle (0.90, 0.90);
                         \end{scope}
                     }
                 }
-                
-                % Selection boxes (Inner/Outer)
-                \draw[draw=black, thick, dashed, rounded corners=1pt] (0, 1.3) rectangle (1.3, 2.3);
-                \node (inner_node) at (0, 1.8) {};
-                
-                \draw[draw=black, thick, dashed, rounded corners=1pt] (0, 0) rectangle (1.3, 1.0);
-                \node (outer_node) at (0, 0.5) {};
             \end{scope}
 
-            % Connection Arrows
-            % \draw[draw=mnnwMute, line width=1.5pt, -Stealth] (inner_node.west) to[out=180, in=180, looseness=1.5] (-1.5, 1.7) node[left, font=\tiny, text=black] {Inner};
-            % \draw[draw=mnnwMute, line width=1.5pt, -Stealth] (outer_node.west) to[out=180, in=180, looseness=1.5] (-1.5, -0.3) node[left, font=\tiny, text=black] {Outer};
+            \draw[draw=mnnwMute, line width=1.1pt, -Stealth] (3.0, 2.20) -- (3.0, 1.70);
 
-            % Cross-section 1 (Inner) - superimposed
-            \begin{scope}[shift={(0, 1.2)}]
-                \draw[fill=kit-green100!80, draw=none] (0, 0) rectangle (2.5, 0.2); % Substrate
-                \draw[fill=kit-lightgreen100!30, draw=none] (0, 0.2) rectangle (2.5, 0.7); % Dielectric
-                
-                % Previous layer (Red) - buried
-                \foreach \x in {0.3, 0.8, 1.3, 1.8, 2.3} {
-                     \draw[fill=kit-red100, draw=none] (\x-0.12, 0.2) rectangle (\x+0.12, 0.45);
+            % Cross-section: P bars shifted by half-period from Q (mismatch)
+            \begin{scope}[shift={(1.3, 0.50)}]
+                \fill[kit-green100!85]      (0, 0)    rectangle (3.4, 0.16);
+                \fill[kit-lightgreen100!35] (0, 0.16) rectangle (3.4, 0.58);
+                \foreach \x in {0.40, 0.92, 1.44, 1.96, 2.48, 3.00} {
+                    \fill[kit-red100] (\x-0.12, 0.19) rectangle (\x+0.12, 0.38);
                 }
-                
-                % Current layer (Blue) - on top
-                \foreach \x in {0.45, 0.95, 1.45, 1.95, 2.45} { % Misalignment shown here
-                     \draw[fill=kit-blue100, draw=none] (\x-0.12, 0.7) rectangle (\x+0.12, 0.95);
+                \foreach \x in {0.66, 1.18, 1.70, 2.22, 2.74, 3.26} {
+                    \fill[kit-blue100] (\x-0.12, 0.62) rectangle (\x+0.12, 0.81);
                 }
-                \node[anchor=west, font=\footnotesize] at (2.6, 0.82) {Capa actual};
-                \node[anchor=west, font=\footnotesize] at (2.6, 0.32) {Capa previa};
+                \node[anchor=west, font=\footnotesize, text=kit-blue100] at (3.50, 0.71) {Capa actual, P};
+                \node[anchor=west, font=\footnotesize, text=kit-red100]  at (3.50, 0.28) {Capa previa, Q};
             \end{scope}
+        \end{scope}
 
-            % Cross-section 2 (Outer) - superimposed (swapped or different layer)
-            \begin{scope}[shift={(0, -0.8)}]
-                \draw[fill=kit-green100!80, draw=none] (0, 0) rectangle (2.5, 0.2);
-                \draw[fill=kit-lightgreen100!30, draw=none] (0, 0.2) rectangle (2.5, 0.7);
-                
-                % Previous layer (Blue)
-                \foreach \x in {0.3, 0.8, 1.3, 1.8, 2.3} {
-                     \draw[fill=kit-blue100, draw=none] (\x-0.12, 0.2) rectangle (\x+0.12, 0.45);
-                }
-                
-                % Current layer (Red)
-                \foreach \x in {0.45, 0.95, 1.45, 1.95, 2.45} {
-                     \draw[fill=kit-red100, draw=none] (\x-0.12, 0.7) rectangle (\x+0.12, 0.95);
-                }
-                \node[anchor=west, font=\footnotesize] at (2.6, 0.82) {Capa actual};
-                \node[anchor=west, font=\footnotesize] at (2.6, 0.32) {Capa previa};
-            \end{scope}
-            
-            % Measured Error Arrow
-            % \draw[draw=kit-red100, Stealth-Stealth, line width=0.8pt] (0.3, 1.1) -- (0.45, 1.1);
-            % \node[font=\tiny, text=kit-red100, anchor=north] at (0.37, 1.1) {};
-        \end{tikzpicture}
-    \end{columns}
+    \end{tikzpicture}
+    \end{center}
 \end{frame}
 
 \begin{frame}[t,fragile]{Antecedentes --- análisis de literatura}
     \footnotesize PRISMA 2020--2025 $\cdot$ 1\,180 cribados $\to$ 12 incluidos $\cdot$ póster IEEE LARS/LARC 2025 (\cite{Trevino2025_LARSPoster}).
-    \normalsize
 
-    \vspace{0.2cm}
+    \vspace{0.1cm}
     \begin{center}
-    \begin{tikzpicture}[every node/.style={font=\small}]
-        \def\barH{0.32}
-        \def\unit{0.75}  % cm per report
+    \begin{tikzpicture}[every node/.style={font=\footnotesize}]
+        \def\barH{0.26}
+        \def\unit{0.68}
         \foreach \name/\cnt/\col [count=\i] in {%
             {\textit{Input shaping}}/3/kit-red100,
             {Control basado en datos}/3/opticsEdge,
@@ -391,17 +402,17 @@
             {Control adaptativo}/1/waferEdge,
             {Redes neuronales}/1/kit-yellow!75!black%
         }{
-            \pgfmathsetmacro{\y}{-\i*0.55}
-            \node[anchor=east, font=\small] at (0,\y) {\name};
+            \pgfmathsetmacro{\y}{-\i*0.48}
+            \node[anchor=east, font=\footnotesize] at (0,\y) {\name};
             \fill[\col] (0.15,\y-\barH/2) rectangle ({0.15+\cnt*\unit},\y+\barH/2);
-            \node[anchor=west, font=\small, text=mnnwInk] at ({0.22+\cnt*\unit},\y) {\cnt};
+            \node[anchor=west, font=\footnotesize, text=mnnwInk] at ({0.22+\cnt*\unit},\y) {\cnt};
         }
-        \node[anchor=west, font=\footnotesize, text=mnnwMute] at (0.15,-3.95) {reportes incluidos (n{=}12)};
+        \node[anchor=west, font=\scriptsize, text=mnnwMute] at (0.15,-3.30) {reportes incluidos (n{=}12)};
     \end{tikzpicture}
     \end{center}
-    \vspace{0.1cm}
+    \vspace{0.05cm}
     \begin{purpleblock}{Brecha}
-        Métricas \textbf{servo-mecánicas} (MSE) sin considerar el impacto \textbf{morfológico} en el \textit{yield}.
+        \footnotesize Métricas \textbf{servo-mecánicas} (MSE) sin considerar el impacto \textbf{morfológico} en el \textit{yield}; análisis inverso de \textit{fingerprints} (\cite{Lam2015_Fingerprint}) no cubre la dirección directa.
     \end{purpleblock}
 \end{frame}
 
@@ -471,17 +482,20 @@
             }
             \node[text=waferEdge, font=\footnotesize, anchor=west] at (8.15,3.05) {oblea};
 
-            % ====== PROJECTION LENS ======
-            \fill[opticsFlex!90, draw=opticsEdge, line width=1.0pt]
-                (5.7,3.70) -- (5.4,5.70) -- (8.6,5.70) -- (8.3,3.70) -- cycle;
-            \draw[opticsEdge, line width=0.6pt, fill=white] (7.0,5.20) ellipse (1.20 and 0.20);
-            \node[text=opticsEdge, font=\footnotesize\bfseries, anchor=west] at (8.75,4.95) {lente};
-            \node[text=opticsEdge, font=\footnotesize, anchor=west] at (8.75,4.55) {$4\times$};
-            % light cone
-            \fill[kit-yellow!55, draw=kit-yellow!75!black, line width=0.3pt, opacity=0.55]
-                (5.75,5.70) -- (8.25,5.70) -- (7.18,3.80) -- (6.82,3.80) -- cycle;
-            \fill[kit-yellow!60, draw=kit-yellow!75!black, line width=0.3pt, opacity=0.85]
-                (6.82,3.70) -- (7.18,3.70) -- (7.12,3.15) -- (6.88,3.15) -- cycle;
+            % ====== PROJECTION LENS COLUMN (stacked elements, narrowing for 4x reduction) ======
+            % Tapered light cone (wide at mask exit, narrows to a spot at wafer)
+            \fill[kit-yellow!50, draw=kit-yellow!75!black, line width=0.3pt, opacity=0.55]
+                (5.85,5.70) -- (8.15,5.70) -- (7.18,3.55) -- (6.82,3.55) -- cycle;
+            \fill[kit-yellow!65, draw=kit-yellow!75!black, line width=0.3pt, opacity=0.85]
+                (6.82,3.50) -- (7.18,3.50) -- (7.10,3.15) -- (6.90,3.15) -- cycle;
+            % 4 stacked lens elements, getting smaller toward bottom = 4x demagnification
+            \draw[opticsEdge, line width=0.6pt, fill=opticsFlex!85] (7.0,5.50) ellipse (1.30 and 0.20);
+            \draw[opticsEdge, line width=0.6pt, fill=opticsFlex!85] (7.0,4.90) ellipse (1.05 and 0.18);
+            \draw[opticsEdge, line width=0.6pt, fill=opticsFlex!85] (7.0,4.30) ellipse (0.85 and 0.16);
+            \draw[opticsEdge, line width=0.6pt, fill=opticsFlex!85] (7.0,3.70) ellipse (0.60 and 0.13);
+            % Lens label
+            \node[text=opticsEdge, font=\footnotesize\bfseries, anchor=west] at (8.50,4.85) {lente};
+            \node[text=opticsEdge, font=\footnotesize, anchor=west] at (8.50,4.45) {(reduce $4\times$)};
 
             % ====== RETICLE STAGE (dual-stage, moves LEFT) ======
             % SS below LS
@@ -630,15 +644,13 @@
 \section{Metodología}
 
 \begin{frame}{Simulación --- resultados}
-    \vspace{0.1cm}
-    \begin{center}\small
+    \begin{center}\footnotesize
     \textbf{MuJoCo} (\cite{todorov2012mujoco}) $\cdot$ parámetros (\cite{Al-Rawashdeh2022_Caracterization}) $\cdot$ umbrales MA $\geq 1\,$nm, MSD $\geq 7\,$nm (\cite{Butler2011_PositionControl})
     \end{center}
-    \vspace{0.15cm}
     \begin{center}
-        \includegraphics[width=0.47\linewidth,height=0.62\textheight,keepaspectratio]{pictures/sim_tracking.png}\hfill%
-        \includegraphics[width=0.47\linewidth,height=0.62\textheight,keepaspectratio]{pictures/sim_ma_msd.png}\\[0.15cm]
-        {\small Error de seguimiento \quad$|$\quad MA y MSD móviles}
+        \includegraphics[width=0.46\linewidth,height=0.55\textheight,keepaspectratio]{pictures/sim_tracking.png}\hfill%
+        \includegraphics[width=0.46\linewidth,height=0.55\textheight,keepaspectratio]{pictures/sim_ma_msd.png}\\[0.05cm]
+        {\footnotesize Error de seguimiento \quad$|$\quad MA y MSD móviles}
     \end{center}
 \end{frame}
 
@@ -663,13 +675,13 @@
 
         \column{.36\textwidth}
         \centering
-        \includegraphics[width=\linewidth,height=0.65\textheight,keepaspectratio]{pictures/wm811k_samples.png}\\[0.10cm]
-        {\small ejemplos por clase}
+        \includegraphics[width=\linewidth,height=0.55\textheight,keepaspectratio]{pictures/wm811k_samples.png}\\[0.05cm]
+        {\footnotesize ejemplos por clase}
 
         \column{.38\textwidth}
         \centering
-        \includegraphics[width=\linewidth,height=0.65\textheight,keepaspectratio]{pictures/cnn_confmat.png}\\[0.10cm]
-        {\small matriz de confusión}
+        \includegraphics[width=\linewidth,height=0.55\textheight,keepaspectratio]{pictures/cnn_confmat.png}\\[0.05cm]
+        {\footnotesize matriz de confusión}
     \end{columns}
 \end{frame}
 

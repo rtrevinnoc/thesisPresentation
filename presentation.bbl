@@ -174,6 +174,108 @@
       \endverb
       \keyw{Semiconductor device modeling;Productivity;Predictive models;Manufacturing;Prediction algorithms;Machine learning;Data models;yield modeling;wafer map;wafer productivity;semiconductor manufacturing;deep learning}
     \endentry
+    \entry{Lam2015_Fingerprint}{inproceedings}{}{}
+      \name{author}{7}{}{%
+        {{un=0,uniquepart=base,hash=65abe6a0f61f27e50cf1fd97f799181b}{%
+           family={Lam},
+           familyi={L\bibinitperiod},
+           given={Auguste},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=81897238bdc53a8b717c3d7357963924}{%
+           family={Ypma},
+           familyi={Y\bibinitperiod},
+           given={Alexander},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=b1656eee5f5c471b190b454d57e8b7a4}{%
+           family={Gatefait},
+           familyi={G\bibinitperiod},
+           given={Maxime},
+           giveni={M\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=db479305aface68710f56d7c97a6a401}{%
+           family={Deckers},
+           familyi={D\bibinitperiod},
+           given={David},
+           giveni={D\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=15730a27221a476d21fae35ff7138936}{%
+           family={Koopman},
+           familyi={K\bibinitperiod},
+           given={Arne},
+           giveni={A\bibinitperiod},
+           givenun=0}}%
+        {{un=0,uniquepart=base,hash=9534a64e65ee7cd27e0dde876b01df6e}{%
+           family={Haren},
+           familyi={H\bibinitperiod},
+           given={Richard},
+           giveni={R\bibinitperiod},
+           givenun=0,
+           prefix={van},
+           prefixi={v\bibinitperiod},
+           prefixun=0}}%
+        {{un=0,uniquepart=base,hash=8bae763226f08197f08872d6bf2c8054}{%
+           family={Beltman},
+           familyi={B\bibinitperiod},
+           given={Jan},
+           giveni={J\bibinitperiod},
+           givenun=0}}%
+      }
+      \name{editor}{2}{}{%
+        {{hash=d63e670a059c5fea994463db47d203d9}{%
+           family={Cain},
+           familyi={C\bibinitperiod},
+           given={Jason\bibnamedelima P.},
+           giveni={J\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+        {{hash=aca78730e028f1ca9054aabab59b5316}{%
+           family={Sanchez},
+           familyi={S\bibinitperiod},
+           given={Martha\bibnamedelima I.},
+           giveni={M\bibinitperiod\bibinitdelim I\bibinitperiod}}}%
+      }
+      \list{organization}{2}{%
+        {International Society for Optics}%
+        {Photonics}%
+      }
+      \list{publisher}{1}{%
+        {SPIE}%
+      }
+      \strng{namehash}{d9892ff0231745d8d5935fe03b780774}
+      \strng{fullhash}{eeb0c9292dcbec35c18e8792e0879275}
+      \strng{fullhashraw}{eeb0c9292dcbec35c18e8792e0879275}
+      \strng{bibnamehash}{d9892ff0231745d8d5935fe03b780774}
+      \strng{authorbibnamehash}{d9892ff0231745d8d5935fe03b780774}
+      \strng{authornamehash}{d9892ff0231745d8d5935fe03b780774}
+      \strng{authorfullhash}{eeb0c9292dcbec35c18e8792e0879275}
+      \strng{authorfullhashraw}{eeb0c9292dcbec35c18e8792e0879275}
+      \strng{editorbibnamehash}{5669db14efa4d01b3539d4d7dd104ee0}
+      \strng{editornamehash}{5669db14efa4d01b3539d4d7dd104ee0}
+      \strng{editorfullhash}{cc53dd6727c60cc6ed01b1dad362a0cb}
+      \strng{editorfullhashraw}{cc53dd6727c60cc6ed01b1dad362a0cb}
+      \field{sortinit}{L}
+      \field{sortinithash}{7c47d417cecb1f4bd38d1825c427a61a}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Metrology, Inspection, and Process Control for Microlithography XXIX}
+      \field{title}{{Pattern recognition and data mining techniques to identify factors in wafer processing and control determining overlay error}}
+      \field{volume}{9424}
+      \field{year}{2015}
+      \field{pages}{94241L}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1117/12.2085497
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1117/12.2085497
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1117/12.2085497
+      \endverb
+      \keyw{On-product overlay,Pattern Recognition,Data mining,Principal Component Analysis,Machine Learning,Partial Least-Squares regression,Support Vector Machines,Reticle Heating}
+    \endentry
     \entry{Lambrechts2003_Trajectories}{report}{}{}
       \name{author}{1}{}{%
         {{un=0,uniquepart=base,hash=065704f8a98bf248e20b9d4f5a3717c9}{%
