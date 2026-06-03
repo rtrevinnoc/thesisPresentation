@@ -1,12 +1,12 @@
 # Fdb version 4
-["biber presentation"] 1780421711.88547 "presentation.bcf" "presentation.bbl" "presentation" 1780421730.63219 0
-  "presentation.bcf" 1780421730.44732 109855 a8358a2029b4843911228ae5890382b5 "pdflatex"
-  "presentation.bib" 1780417981.57961 9280 ac1153542011b98d98d6167f77c87ae0 ""
+["biber presentation"] 1780434910.43763 "presentation.bcf" "presentation.bbl" "presentation" 1780435002.90883 0
+  "presentation.bcf" 1780435002.7053 109933 549c5cbec57330577e8c7b01c16a891c "pdflatex"
+  "presentation.bib" 1780427031.36367 9285 e942e4f8033bcba54e66fac86c9b442f ""
   (generated)
   "presentation.bbl"
   "presentation.blg"
   (rewritten before read)
-["pdflatex"] 1780421725.08737 "presentation.tex" "presentation.pdf" "presentation" 1780421730.63247 0
+["pdflatex"] 1780434996.49382 "presentation.tex" "presentation.pdf" "presentation" 1780435002.90912 0
   "../PlotNeuralNet/layers/Ball.sty" 1779122722.4952 1197 d1694ae307f11df1994dd7de3c99bc4b ""
   "../PlotNeuralNet/layers/Box.sty" 1779122722.49529 4868 e7b96f9cf8eb0f1db721b3fa8c4c28f5 ""
   "../PlotNeuralNet/layers/RightBandedBox.sty" 1779122722.49537 6111 7d4c65748a884ebf33bc0a676ef40d22 ""
@@ -55,13 +55,13 @@
   "/usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb" 1248133631 30251 6afa5cb1d0204815a708a080681d4674 ""
   "/usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb" 1248133631 36299 5f9df58c2139e7edcf37c8fca4bd384d ""
   "/usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb" 1248133631 37912 77d683123f92148345f3fc36a38d9ab1 ""
-  "/usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb" 1248133631 36281 c355509802a035cadc5f15869451dcee ""
   "/usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb" 1248133631 35469 70d41d2b9ea31d5d813066df7c99281c ""
   "/usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmss10.pfb" 1248133631 24457 5cbb7bdf209d5d1ce9892a9b80a307cc ""
   "/usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmss8.pfb" 1248133631 24420 52dbb8e8aa0069a1b987309557f8d303 ""
   "/usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmss9.pfb" 1248133631 24373 a91d375736817a75026663adcb2190c1 ""
   "/usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb" 1248133631 32569 5e5ddc8df908dea60932f3c484a54c0d ""
   "/usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb" 1248133631 32716 08e384dc442464e7285e891af9f45947 ""
+  "/usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb" 1248133631 32626 4f5c1b83753b1dd3a97d1b399a005b4b ""
   "/usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb" 1248133631 32442 c975af247b6702f7ca0c299af3616b80 ""
   "/usr/local/texlive/2026/texmf-dist/fonts/type1/public/bera/fvmr8a.pfb" 1136849748 29228 440002646d60f9d1a0cdf5878b9a308f ""
   "/usr/local/texlive/2026/texmf-dist/fonts/type1/public/libertine/LinLibertineT.pfb" 1354061736 614791 ea39341e4db76f25cb20c361802d3cd5 ""
@@ -318,14 +318,14 @@
   "pictures/cnn_confmat.png" 1780417594.0605 112534 1c20ca78e9ebb9b0a20da3f2b57e75fd ""
   "pictures/sim_ma_msd.png" 1780417541.14016 151772 65424d5369d452c36a7f5f190a69a58e ""
   "pictures/sim_tracking.png" 1780417541.14327 153949 ac36b0e92cdde6683fdcdabf4701f388 ""
-  "presentation.aux" 1780421730.44177 7193 3f559ec0697f6d9a70b01701146d6fbd "pdflatex"
-  "presentation.bbl" 1780421713.98001 19863 8e71da3fb6e75b02f6a21a654c92e3f3 "biber presentation"
-  "presentation.nav" 1780421730.44813 2989 b0aff2751a468e3f0c569ecdf2fa7989 "pdflatex"
-  "presentation.out" 1780421730.44457 827 b4caec0150a24734062f6117b8680ffe "pdflatex"
-  "presentation.run.xml" 1780421730.44805 2366 669c91ca38ef8bf801f5a5c74041d0da "pdflatex"
-  "presentation.tex" 1780421702.94148 41278 2b064e22dcc7bcdff16dd8bb868909cd ""
-  "presentation.toc" 1780421730.44816 266 69805e1ac1c61a99c623013480c8a1ca "pdflatex"
-  "presentation.vrb" 1780421729.42769 164 f4541a3f7dd6cdc5562206b5ef1c3faa "pdflatex"
+  "presentation.aux" 1780435002.69879 7366 75fbc00fdde376c69ad218a625bca631 "pdflatex"
+  "presentation.bbl" 1780434912.50769 21219 57103f8aa42625a7a3b54315accc2182 "biber presentation"
+  "presentation.nav" 1780435002.70664 2989 b0aff2751a468e3f0c569ecdf2fa7989 "pdflatex"
+  "presentation.out" 1780435002.70203 827 b4caec0150a24734062f6117b8680ffe "pdflatex"
+  "presentation.run.xml" 1780435002.70653 2366 669c91ca38ef8bf801f5a5c74041d0da "pdflatex"
+  "presentation.tex" 1780434989.48961 43896 c8c1986c5f66a9868c0bb345332300e4 ""
+  "presentation.toc" 1780435002.70666 266 69805e1ac1c61a99c623013480c8a1ca "pdflatex"
+  "presentation.vrb" 1780435001.71448 164 f4541a3f7dd6cdc5562206b5ef1c3faa "pdflatex"
   "sdqbeamer.cls" 1778891060 32729 25ddf09757a8e5ffc28babc874d47f95 ""
   (generated)
   "presentation.aux"

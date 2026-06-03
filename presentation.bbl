@@ -379,6 +379,34 @@
       \verb 10.1109/IROS.2012.6386109
       \endverb
     \endentry
+    \entry{Trevino2025_LARSPoster}{misc}{}{}
+      \name{author}{1}{}{%
+        {{un=0,uniquepart=base,hash=a7f36818a729c176a10e6bc2f0d52060}{%
+           family={Treviño\bibnamedelima Cervantes},
+           familyi={T\bibinitperiod\bibinitdelim C\bibinitperiod},
+           given={Roberto},
+           giveni={R\bibinitperiod},
+           givenun=0}}%
+      }
+      \strng{namehash}{a7f36818a729c176a10e6bc2f0d52060}
+      \strng{fullhash}{a7f36818a729c176a10e6bc2f0d52060}
+      \strng{fullhashraw}{a7f36818a729c176a10e6bc2f0d52060}
+      \strng{bibnamehash}{a7f36818a729c176a10e6bc2f0d52060}
+      \strng{authorbibnamehash}{a7f36818a729c176a10e6bc2f0d52060}
+      \strng{authornamehash}{a7f36818a729c176a10e6bc2f0d52060}
+      \strng{authorfullhash}{a7f36818a729c176a10e6bc2f0d52060}
+      \strng{authorfullhashraw}{a7f36818a729c176a10e6bc2f0d52060}
+      \field{sortinit}{T}
+      \field{sortinithash}{9af77f0292593c26bde9a56e688eaee9}
+      \field{extradatescope}{labelyear}
+      \field{labeldatesource}{}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{Póster, IEEE LARS/LARC 2025}
+      \field{note}{Análisis sistemático de literatura}
+      \field{title}{Trajectory Control in Photolithography Scanners: A {PRISMA} Style Retrospective (2020--2025)}
+      \field{year}{2025}
+    \endentry
     \entry{Wu2015_WM811K}{article}{}{}
       \name{author}{3}{}{%
         {{un=0,uniquepart=base,hash=6472f1ff94919e413b5652dab7fd889f}{%

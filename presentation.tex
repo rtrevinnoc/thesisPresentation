@@ -187,19 +187,19 @@
         \end{itemize}
         \column{.45\textwidth}
         \centering
-        \begin{tikzpicture}[scale=0.85, transform shape]
+        \begin{tikzpicture}[scale=0.85, transform shape, every node/.style={font=\footnotesize}]
             % Photolithography Process Diagram
             \draw[fill=kit-yellow50, draw=mnnwInk] (-0.5, 5.0) rectangle (0.5, 4.6);
-            \node[anchor=west, font=\tiny] at (0.6, 4.8) {Fuente de Luz};
+            \node[anchor=west] at (0.6, 4.8) {Fuente de luz};
 
             % Reticle
             \draw[fill=reticleFill, draw=reticleEdge] (-1.8, 3.4) rectangle (1.8, 3.1);
-            \draw[draw=kit-red100, -{Stealth[scale=1.2]}, line width=1.5pt] (1.2, 3.7) -- (-1.2, 3.7) node[left, font=\small\bfseries] {$\mathbf{v}_r$};
-            \node[anchor=west, font=\tiny] at (1.9, 3.25) {Fotomáscara};
+            \draw[draw=kit-red100, -{Stealth[scale=1.2]}, line width=1.5pt] (1.2, 3.7) -- (-1.2, 3.7) node[left, font=\footnotesize\bfseries] {$\mathbf{v}_r$};
+            \node[anchor=west] at (1.9, 3.25) {Fotomáscara};
 
             % Lens
             \draw[fill=lensFill, draw=mnnwInk] (0, 1.8) ellipse (1.2cm and 0.25cm);
-            \node[anchor=west, font=\tiny] at (1.3, 1.8) {Lente};
+            \node[anchor=west] at (1.3, 1.8) {Lente};
 
             % Wafer with detailed dies
             \begin{scope}
@@ -212,23 +212,13 @@
                 }
             \end{scope}
             \draw[fill=none, draw=waferEdge] (0, 0) ellipse (2.2cm and 0.45cm);
-            \draw[draw=kit-blue100, -{Stealth[scale=1.2]}, line width=1.5pt] (-1.2, -0.75) -- (1.2, -0.75) node[right, font=\small\bfseries] {$\mathbf{v}_w$};
-            \node[anchor=west, font=\tiny] at (2.3, 0) {Oblea};
+            \draw[draw=kit-blue100, -{Stealth[scale=1.2]}, line width=1.5pt] (-1.2, -0.75) -- (1.2, -0.75) node[right, font=\footnotesize\bfseries] {$\mathbf{v}_w$};
+            \node[anchor=west] at (2.3, 0) {Oblea};
 
             % Light Beams
             \draw[draw=mnnwSignal, line width=0.8pt, opacity=0.3] (0, 4.6) -- (0, 3.4);
             \draw[draw=mnnwSignal, line width=0.8pt, opacity=0.3] (0, 3.1) -- (0, 2.05);
             \draw[draw=mnnwSignal!80!black, line width=1.2pt, opacity=0.7] (0, 1.55) -- (0, 0.1);
-
-            % DIE SCAN DETAIL (Side)
-            \begin{scope}[shift={(4.2, 3.5)}]
-                \draw[draw=mnnwInk, fill=white] (-0.8,-1.2) rectangle (0.8,1.2);
-                \fill[mnnwMute!40] (-0.8, 0.1) rectangle (0.8, 1.2);
-                \foreach \h in {0.3, 0.6, 0.9} { \draw[mnnwInk, line width=1.2pt] (-0.5, \h) -- (0.5, \h); }
-                \draw[draw=mnnwSignal, line width=0.8pt, dashed] (-0.9, -0.1) rectangle (0.9, 0.1);
-                \node[anchor=south, font=\fontsize{3pt}{3pt}\selectfont, text=mnnwSignal] at (0, 0.1) {Slit};
-                \draw[draw=mnnwInk, -Stealth, line width=1.2pt] (1.1, 0.5) -- (1.1, -0.5) node[midway, right, font=\fontsize{4pt}{4pt}\selectfont] {$\mathbf{v}$};
-            \end{scope}
         \end{tikzpicture}
 
     \end{columns}
@@ -315,10 +305,10 @@
 
         \column{.45\textwidth}
         \centering
-        \begin{tikzpicture}[scale=0.75, transform shape]
+        \begin{tikzpicture}[scale=0.8, transform shape, every node/.style={font=\footnotesize}]
             % Top View (Metrology Target)
             \begin{scope}[shift={(0,3.5)}]
-                \node[font=\scriptsize\bfseries, anchor=south] at (1.5, 2.5) {Vista aérea};
+                \node[font=\footnotesize\bfseries, anchor=south] at (1.5, 2.5) {Vista aérea};
                 
                 % Grid of patterns (Simplified representation of the superimposed state)
                 \foreach \i in {0,1} {
@@ -365,8 +355,8 @@
                 \foreach \x in {0.45, 0.95, 1.45, 1.95, 2.45} { % Misalignment shown here
                      \draw[fill=kit-blue100, draw=none] (\x-0.12, 0.7) rectangle (\x+0.12, 0.95);
                 }
-                \node[anchor=west, font=\scriptsize] at (2.6, 0.82) {Capa actual};
-                \node[anchor=west, font=\scriptsize] at (2.6, 0.32) {Capa previa};
+                \node[anchor=west, font=\footnotesize] at (2.6, 0.82) {Capa actual};
+                \node[anchor=west, font=\footnotesize] at (2.6, 0.32) {Capa previa};
             \end{scope}
 
             % Cross-section 2 (Outer) - superimposed (swapped or different layer)
@@ -383,8 +373,8 @@
                 \foreach \x in {0.45, 0.95, 1.45, 1.95, 2.45} {
                      \draw[fill=kit-red100, draw=none] (\x-0.12, 0.7) rectangle (\x+0.12, 0.95);
                 }
-                \node[anchor=west, font=\scriptsize] at (2.6, 0.82) {Capa actual};
-                \node[anchor=west, font=\scriptsize] at (2.6, 0.32) {Capa previa};
+                \node[anchor=west, font=\footnotesize] at (2.6, 0.82) {Capa actual};
+                \node[anchor=west, font=\footnotesize] at (2.6, 0.32) {Capa previa};
             \end{scope}
             
             % Measured Error Arrow
@@ -394,8 +384,10 @@
     \end{columns}
 \end{frame}
 
-\begin{frame}{Antecedentes --- análisis de literatura}
-    {\footnotesize Revisión sistemática PRISMA 2020--2025 presentada como póster en \textbf{LARS/LARC 2026} (\cite{Trevino2025_LARSPoster}).\par}
+\begin{frame}[t]{Antecedentes --- análisis de literatura}
+    \footnotesize Revisión sistemática PRISMA 2020--2025 presentada como póster en \textbf{IEEE LARS/LARC 2025} (\cite{Trevino2025_LARSPoster}).
+    \normalsize
+
     \vspace{0.15cm}
     Estrategias dominantes en motion control para escáneres de fotolitografía:
     \begin{itemize}
@@ -431,74 +423,129 @@
 \section{Modelo}
 
 \begin{frame}[fragile]{Sistema multicuerpo}
-    \begin{columns}
-        \column{.45\textwidth}
-        Modelo propuesto en \cite{Al-Rawashdeh2022_Caracterization}: un marco base que vincula tres cadenas seriales mediante flexibilidades estructurales.
-        \vspace{0.2cm}
-        \begin{itemize}
-            \item \textcolor{reticleEdge}{\textbf{Retícula ($j{=}1$)}}: desliza la fotomáscara.
-            \item \textcolor{opticsEdge}{\textbf{Óptica ($j{=}2$)}}: lente y marco de metrología.
-            \item \textcolor{waferEdge}{\textbf{Oblea ($j{=}3$)}}: desliza la oblea bajo el lente.
-        \end{itemize}
-        \vspace{0.15cm}
-        {\footnotesize Cadenas móviles ($j{=}1,3$): \textbf{dos etapas} — carrera larga (LS) + Lorentz de banda ancha (SS).}
-
-        \column{.55\textwidth}
+    \begin{minipage}{\linewidth}\centering\footnotesize
+    Tres cadenas seriales vinculadas por flexibilidades estructurales (\cite{Al-Rawashdeh2022_Caracterization}); cadenas móviles ($j{=}1,3$) en \textbf{dos etapas} — carrera larga (LS) + Lorentz de banda ancha (SS).
+    \end{minipage}
+    \vspace{0.05cm}
+    \begin{center}
         \centering
-        \begin{tikzpicture}[scale=0.95, transform shape, every node/.style={font=\footnotesize},
-            spring/.style={decorate, decoration={zigzag, segment length=3.5pt, amplitude=2.2pt, pre length=2pt, post length=2pt}, line width=0.55pt, mnnwInk},
-            stage/.pic={
-                \fill[#1!25] (-1.05,-0.32) rectangle (1.05,0.32);
-                \draw[#1, line width=0.9pt] (-1.05,-0.32) rectangle (1.05,0.32);
+        \resizebox{!}{0.60\textheight}{%
+        \begin{tikzpicture}[every node/.style={font=\small}]
+            % ====== Canvas: 12 cm wide x 8.8 cm tall (aspect ~1.4:1, more breathing) ======
+
+            % --- Outer machine enclosure ---
+            \draw[draw=frameEdge, line width=1.2pt, rounded corners=4pt, fill=frameFill!22]
+                (0,-0.05) rectangle (12,8.8);
+
+            % --- Hatched floor ---
+            \fill[pattern=north east lines, pattern color=mnnwMute!55] (-0.5,-0.55) rectangle (12.5,-0.05);
+            \draw[line width=0.7pt, mnnwInk] (-0.5,-0.05) -- (12.5,-0.05);
+
+            % --- Air-feet / vibration isolators ---
+            \foreach \x in {1.0, 6.0, 11.0} {
+                \draw[decorate, decoration={zigzag, segment length=4pt, amplitude=2.4pt},
+                      line width=0.7pt] (\x,-0.05) -- (\x,0.55);
+                \fill[mnnwMute!75] (\x-0.22,-0.13) rectangle (\x+0.22,-0.05);
             }
-        ]
-            % Floor (hatched)
-            \fill[pattern=north east lines, pattern color=mnnwMute!60] (0,-0.25) rectangle (7.0,0);
-            \draw[line width=0.6pt, mnnwInk] (0,0) -- (7.0,0);
 
-            % Base frame: tall column + small foot on the floor
-            \fill[frameFill, draw=frameEdge, line width=0.6pt]
-                (0.25,0) rectangle (1.05,5.9);
-            \node[rotate=90, font=\scriptsize, text=frameEdge] at (0.65,2.95) {marco base $\mathcal{F}_1$};
+            % --- Heavy base block ---
+            \fill[mnnwHair!30, draw=frameEdge!85, line width=0.7pt, rounded corners=2pt]
+                (0.5,0.60) rectangle (11.5,1.15);
+            \node[font=\footnotesize, text=mnnwMute] at (10.6,0.875) {base};
 
-            % Light source (top)
-            \fill[kit-yellow30, draw=kit-yellow!70!black, line width=0.5pt] (3.5,5.5) rectangle (4.7,6.0);
-            \node[font=\scriptsize] at (4.1,5.75) {fuente};
+            % --- WAFER STAGE (moves RIGHT) ---
+            % LS guide rail
+            \draw[waferEdge!70, line width=1.4pt] (1.4,1.75) -- (10.6,1.75);
+            \foreach \xr in {2.4, 4.2, 7.8, 9.6} {
+                \fill[waferEdge!50] (\xr,1.75) circle (0.08);
+            }
+            \node[font=\footnotesize, text=waferEdge!70!black, anchor=west] at (10.65,1.75) {LS};
+            % Stage body
+            \fill[waferFill, draw=waferEdge, line width=1.1pt, rounded corners=3pt]
+                (4.2,1.85) rectangle (7.8,2.85);
+            \node[text=waferEdge, font=\normalsize\bfseries] at (6.0,2.55) {oblea ($j{=}3$)};
+            % SS Lorentz coil
+            \draw[decorate, decoration={zigzag, segment length=3.5pt, amplitude=2pt}, line width=0.6pt, waferEdge!75]
+                (4.4,2.10) -- (5.6,2.10);
+            \node[font=\footnotesize, text=waferEdge!70!black, anchor=west] at (5.65,2.10) {SS};
+            % silicon wafer (half-disc on top, optical axis at x=6)
+            \fill[waferFlex, draw=waferEdge, line width=0.6pt]
+                (5.4,2.85) arc (180:0:0.6 and 0.18);
+            \foreach \dx in {0.10,0.25,0.40,0.55,0.70,0.85,1.00} {
+                \draw[waferEdge!55, line width=0.4pt] (5.4+\dx,2.85) -- (5.4+\dx,3.00);
+            }
+            % v_w arrow
+            \draw[-Stealth, line width=1.8pt, kit-blue100] (4.4,1.35) -- (7.6,1.35);
+            \node[font=\normalsize\bfseries, text=kit-blue100, anchor=north]
+                at (6.0,1.35) {$\mathbf{v}_w$};
 
-            % Reticle row (top - moves left)
-            \draw[spring] (1.05,4.55) -- (3.05,4.55);
-            \node[font=\scriptsize, text=frameEdge, anchor=south] at (2.05,4.62) {$K_1, C_1$};
-            \pic at (4.1,4.55) {stage=reticleEdge};
-            \node[text=reticleEdge, font=\small\bfseries] at (4.1,4.55) {retícula};
-            \draw[Stealth-, line width=1.3pt, kit-red100] (3.2,5.15) -- (5.0,5.15);
-            \node[font=\scriptsize, text=kit-red100, anchor=south] at (4.1,5.15) {$\mathbf{v}_r$\,(\,$4\times$\,)};
+            % --- METROLOGY FRAME ---
+            \fill[opticsFlex, draw=opticsEdge, line width=0.9pt, rounded corners=2pt]
+                (0.7,3.55) rectangle (11.3,4.05);
+            \node[font=\footnotesize, text=opticsEdge!70!black, anchor=west]
+                at (0.9,3.80) {marco de metrología};
 
-            % Optics row (middle - static)
-            \draw[spring] (1.05,2.85) -- (3.05,2.85);
-            \node[font=\scriptsize, text=frameEdge, anchor=south] at (2.05,2.92) {$K_2, C_2$};
-            \pic at (4.1,2.85) {stage=opticsEdge};
-            \node[text=opticsEdge, font=\small\bfseries] at (4.1,2.85) {óptica};
-            \node[font=\scriptsize, text=mnnwMute, anchor=west] at (5.25,2.85) {(fija)};
+            % --- PROJECTION LENS (barrel, narrows downward = 4x reduction) ---
+            \fill[opticsFlex!90, draw=opticsEdge, line width=1pt]
+                (5.0,4.05) -- (4.8,6.10) -- (7.2,6.10) -- (7.0,4.05) -- cycle;
+            \draw[opticsEdge, line width=0.7pt, fill=white] (6.0,5.85) ellipse (0.95 and 0.16);
+            \draw[opticsEdge, line width=0.7pt, fill=white] (6.0,5.30) ellipse (0.80 and 0.15);
+            \draw[opticsEdge, line width=0.7pt, fill=white] (6.0,4.75) ellipse (0.62 and 0.13);
+            \draw[opticsEdge, line width=0.7pt, fill=white] (6.0,4.20) ellipse (0.40 and 0.11);
+            \node[text=opticsEdge, font=\normalsize\bfseries, anchor=west]
+                at (7.4,5.20) {lente ($4\times$)};
+            \node[text=opticsEdge, font=\footnotesize, anchor=west]
+                at (7.4,4.75) {óptica ($j{=}2$)};
 
-            % Wafer row (bottom - moves right)
-            \draw[spring] (1.05,1.15) -- (3.05,1.15);
-            \node[font=\scriptsize, text=frameEdge, anchor=south] at (2.05,1.22) {$K_3, C_3$};
-            \pic at (4.1,1.15) {stage=waferEdge};
-            \node[text=waferEdge, font=\small\bfseries] at (4.1,1.15) {oblea};
-            \draw[-Stealth, line width=1.3pt, kit-blue100] (3.2,0.55) -- (5.0,0.55);
-            \node[font=\scriptsize, text=kit-blue100, anchor=north] at (4.1,0.55) {$\mathbf{v}_w$};
+            % --- Light path inside lens (narrowing) and lens-to-wafer ---
+            \fill[kit-yellow!50, draw=kit-yellow!75!black, line width=0.3pt, opacity=0.55]
+                (5.25,6.10) -- (6.75,6.10) -- (6.15,4.15) -- (5.85,4.15) -- cycle;
+            \fill[kit-yellow!60, draw=kit-yellow!75!black, line width=0.3pt, opacity=0.85]
+                (5.85,4.05) -- (6.15,4.05) -- (6.10,3.00) -- (5.90,3.00) -- cycle;
 
-            % Light beam from source through reticle, optics, to wafer
-            \draw[draw=kit-yellow!85!black, line width=1.2pt, dashed] (4.1,5.5) -- (4.1,1.47);
-            \node[font=\scriptsize, text=kit-yellow!55!black, anchor=west] at (4.85,4.05) {haz};
+            % --- RETICLE STAGE (moves LEFT) ---
+            \draw[reticleEdge!70, line width=1.4pt] (1.4,6.70) -- (10.6,6.70);
+            \foreach \xr in {2.4, 4.2, 7.8, 9.6} {
+                \fill[reticleEdge!50] (\xr,6.70) circle (0.08);
+            }
+            \node[font=\footnotesize, text=reticleEdge!70!black, anchor=west] at (10.65,6.70) {LS};
+            \fill[reticleFill, draw=reticleEdge, line width=1.1pt, rounded corners=3pt]
+                (4.2,6.80) rectangle (7.8,7.80);
+            \node[text=reticleEdge, font=\normalsize\bfseries] at (6.0,7.50) {retícula ($j{=}1$)};
+            \draw[decorate, decoration={zigzag, segment length=3.5pt, amplitude=2pt}, line width=0.6pt, reticleEdge!75]
+                (4.4,7.05) -- (5.6,7.05);
+            \node[font=\footnotesize, text=reticleEdge!70!black, anchor=west] at (5.65,7.05) {SS};
+            % photomask on top of stage (centred at x=6)
+            \fill[mnnwInk, draw=reticleEdge, line width=0.4pt] (5.4,7.80) rectangle (6.6,8.05);
+            \foreach \dx in {0.04,0.18,0.32,0.46,0.60,0.74,0.88,1.02} {
+                \fill[white] (5.44+\dx,7.84) rectangle (5.48+\dx,8.01);
+            }
+            % v_r arrow
+            \draw[Stealth-, line width=1.8pt, kit-red100] (4.4,8.45) -- (7.6,8.45);
+            \node[font=\normalsize\bfseries, text=kit-red100, anchor=south]
+                at (6.0,8.45) {$\mathbf{v}_r$\, ($4\times$)};
 
-            % Sync bracket (right)
-            \draw[decorate, decoration={brace, amplitude=4pt, mirror}, line width=0.7pt]
-                (6.0,1.15) -- (6.0,4.55);
-            \node[align=left, font=\scriptsize, anchor=west] at (6.2,2.85)
-                {sincronía\\sub-nm};
-        \end{tikzpicture}
-    \end{columns}
+            % --- ILLUMINATOR (top right) ---
+            \begin{scope}[shift={(10.0,7.85)}]
+                \fill[kit-yellow!40, opacity=0.3] (0,0) circle (0.50);
+                \fill[kit-yellow!88!white, draw=kit-yellow!75!black, line width=0.65pt]
+                    (0,0) circle (0.33);
+                \draw[kit-yellow!55!black, line width=0.4pt] (-0.11,-0.03) -- (0.11,-0.03);
+                \draw[kit-yellow!55!black, line width=0.4pt] (-0.05,-0.03) -- (-0.05,0.09);
+                \draw[kit-yellow!55!black, line width=0.4pt] ( 0.05,-0.03) -- ( 0.05,0.09);
+                \fill[mnnwMute!75] (-0.11,-0.30) rectangle (0.11,-0.24);
+                \fill[mnnwMute!85] (-0.09,-0.38) rectangle (0.09,-0.30);
+                \foreach \a in {40, 75, 105, 140} {
+                    \draw[kit-yellow!70!black, line width=0.6pt]
+                        (\a:0.42) -- (\a:0.62);
+                }
+            \end{scope}
+            \node[font=\footnotesize, text=mnnwInk, anchor=south] at (10.0,8.40) {iluminador};
+
+            % beam from bulb to photomask
+            \draw[kit-yellow!75!black, line width=1.5pt] (9.65,7.72) -- (6.0,8.05);
+        \end{tikzpicture}}
+    \end{center}
 \end{frame}
 
 % --- Detailed multi-body schematic kept for the appendix ---
@@ -624,7 +671,7 @@
         \centering
         \includegraphics[width=0.49\linewidth]{pictures/sim_tracking.png}\hfill%
         \includegraphics[width=0.49\linewidth]{pictures/sim_ma_msd.png}\\[0.1cm]
-        {\scriptsize Izq.: error de seguimiento. \quad Der.: MA y MSD móviles.}
+        {\footnotesize Izq.: error de seguimiento. \quad Der.: MA y MSD móviles.}
     \end{columns}
 \end{frame}
 
@@ -656,10 +703,10 @@
 \begin{frame}[fragile]{Conexión trayectoria $\leftrightarrow$ defecto}
     \begin{center}
         \begin{tikzpicture}[
-            every node/.style={font=\scriptsize},
-            stepbox/.style={draw=mnnwInk, line width=0.6pt, rounded corners=2pt, minimum width=1.7cm, minimum height=0.9cm, align=center, fill=white},
-            unknownbox/.style={draw=kit-red100, line width=0.9pt, dashed, rounded corners=2pt, minimum width=1.7cm, minimum height=0.9cm, align=center, fill=kit-red!8},
-            solbox/.style={draw=opticsEdge, line width=0.6pt, rounded corners=2pt, minimum width=5.4cm, minimum height=1.0cm, align=center, fill=opticsFlex},
+            every node/.style={font=\footnotesize},
+            stepbox/.style={draw=mnnwInk, line width=0.6pt, rounded corners=2pt, minimum width=1.9cm, minimum height=1.0cm, align=center, fill=white},
+            unknownbox/.style={draw=kit-red100, line width=0.9pt, dashed, rounded corners=2pt, minimum width=1.9cm, minimum height=1.0cm, align=center, fill=kit-red!8},
+            solbox/.style={draw=opticsEdge, line width=0.6pt, rounded corners=2pt, minimum width=5.7cm, minimum height=1.1cm, align=center, fill=opticsFlex},
             ar/.style={-Stealth, line width=0.7pt}
         ]
             \node[stepbox] (traj) {trayectoria\\(\textit{snap} acotado)};
@@ -675,10 +722,10 @@
             \draw[ar] (gap) -- (map);
             \draw[ar] (map) -- (cnn);
 
-            \node[font=\scriptsize\bfseries, text=kit-red100, anchor=south, fill=white, inner sep=1pt] at ([yshift=8pt]gap.north) {brecha};
+            \node[font=\footnotesize\bfseries, text=kit-red100, anchor=south, fill=white, inner sep=1pt] at ([yshift=8pt]gap.north) {brecha};
 
-            \node[solbox] (sa) at (-1.5,-2.4) {\textbf{Física --- \textit{dose mapping}}\\\scriptsize MA/MSD locales $\to$ variación de dosis $\to$ umbral};
-            \node[solbox, right=0.5cm of sa] (sb) {\textbf{Datos --- \textit{paired learning}}\\\scriptsize pares (error, mapa) $\to$ generador condicional aprendido};
+            \node[solbox] (sa) at (-1.5,-2.6) {\textbf{Física --- \textit{dose mapping}}\\MA/MSD locales $\to$ variación de dosis $\to$ umbral};
+            \node[solbox, right=0.5cm of sa] (sb) {\textbf{Datos --- \textit{paired learning}}\\pares (error, mapa) $\to$ generador condicional aprendido};
 
             \draw[ar, dashed, kit-red100] (gap.south) to[out=-90, in=90, looseness=0.7] (sa.north);
             \draw[ar, dashed, kit-red100] (gap.south) to[out=-90, in=90, looseness=0.7] (sb.north);
@@ -746,9 +793,9 @@
             \draw[mnnwInk, line width=0.8pt, dashed] (-0.75, -1.25) -- (-0.75, -1.75);
 
             \begin{scope}[shift={(0.25, 1.35)}]
-              \draw[square]  (0, 0.55) -- (0.35, 0.55) node[right, font=\scriptsize] {Cuadrado};
-              \draw[fillet]  (0, 0.27) -- (0.35, 0.27) node[right, font=\scriptsize] {Bisel};
-              \draw[meander] (0, 0.00) -- (0.35, 0.00) node[right, font=\scriptsize] {Meandro};
+              \draw[square]  (0, 0.55) -- (0.35, 0.55) node[right, font=\footnotesize] {Cuadrado};
+              \draw[fillet]  (0, 0.27) -- (0.35, 0.27) node[right, font=\footnotesize] {Bisel};
+              \draw[meander] (0, 0.00) -- (0.35, 0.00) node[right, font=\footnotesize] {Meandro};
             \end{scope}
 
             \draw[axis] (0,0) -- (0.4,0) node[right] {$x$};
