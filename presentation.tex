@@ -3,7 +3,7 @@
 \usepackage{booktabs}
 \usepackage{rotating}
  
-\titleimage{banner_2020_kit}
+\titleimage{duv_stepper_working}
 
 \groupname{Maestría en Ciencias de la Ingeniería Eléctrica}
 \groupnamewidth{75mm}
@@ -19,7 +19,7 @@
 \bibhang1em
 
 \usepackage{tikz}
-\usetikzlibrary{decorations.pathmorphing,decorations.pathreplacing,patterns,arrows.meta,calc,positioning,3d}
+\usetikzlibrary{decorations.pathmorphing,decorations.pathreplacing,patterns,arrows.meta,calc,positioning,3d,fit,shapes.geometric}
 \usepackage{import}
 \subimport{../PlotNeuralNet/layers/}{init}
 
@@ -148,7 +148,7 @@
       {\usebeamerfont{author}\insertauthor\ \textbar\ \insertdate}%
     \end{textblock*}%
     \begin{textblock*}{\paperwidth}(2mm,60mm)
-      \centering\includegraphics[height=30mm]{logos/banner_2020_kit.jpg}%
+      \centering\includegraphics[height=30mm]{logos/duv_stepper_working.png}%
     \end{textblock*}%
   \end{frame}
 }
@@ -178,16 +178,8 @@
 \section{Introducción a la Fabricación de Circuitos Integrados}
 
 \begin{frame}{Fabricación de Circuitos Integrados}
-    \begin{columns}
-        \column{.55\textwidth}
-        \begin{itemize}
-          \item La \textit{ley de Moore} impulsa la reducción exponencial del tamaño de los componentes de un circuito integrado (IC).
-          \item Cada capa del IC se imprime por \textbf{fotolitografía} mediante la exposición de una \textit{fotomáscara}.
-          \item La dimensión crítica (CD) baja a $18\,\mathrm{nm}$ en EUV; el consumo masivo se fabrica a $38\,\mathrm{nm}$ en DUV.
-        \end{itemize}
-        \column{.45\textwidth}
-        \centering
-        \begin{tikzpicture}[scale=0.85, transform shape, every node/.style={font=\footnotesize}]
+    \begin{center}
+        \begin{tikzpicture}[scale=0.92, transform shape, every node/.style={font=\footnotesize}]
             % Photolithography Process Diagram
             \draw[fill=kit-yellow50, draw=mnnwInk] (-0.5, 5.0) rectangle (0.5, 4.6);
             \node[anchor=west] at (0.6, 4.8) {Fuente de luz};
@@ -219,23 +211,20 @@
             \draw[draw=mnnwSignal, line width=0.8pt, opacity=0.3] (0, 4.6) -- (0, 3.4);
             \draw[draw=mnnwSignal, line width=0.8pt, opacity=0.3] (0, 3.1) -- (0, 2.05);
             \draw[draw=mnnwSignal!80!black, line width=1.2pt, opacity=0.7] (0, 1.55) -- (0, 0.1);
-        \end{tikzpicture}
 
-    \end{columns}
+            % Callouts: CD and Moore
+            \node[anchor=west, font=\small\bfseries, text=kit-red100] at (-5.6, 4.8) {Ley de Moore};
+            \node[anchor=west, font=\footnotesize, text=mnnwInk] at (-5.6, 4.35) {$\downarrow$ tamaño exponencial};
+            \node[anchor=west, font=\small\bfseries, text=kit-blue100] at (-5.6, 0.4) {CD};
+            \node[anchor=west, font=\footnotesize] at (-5.6, -0.05) {18\,nm EUV};
+            \node[anchor=west, font=\footnotesize] at (-5.6, -0.45) {38\,nm DUV};
+        \end{tikzpicture}
+    \end{center}
 \end{frame}
 
 \begin{frame}[fragile]{El Proceso \textit{Step-and-Scan}}
-    \begin{columns}
-        \column{.55\textwidth}
-        \begin{itemize}
-            \item La oblea se expone por \textbf{barrido} (\textit{scan}), no por \textit{flash} único.
-            \item Retícula y oblea \textbf{sincronizadas} en sentidos opuestos; la retícula se mueve $4\times$ más rápido por la reducción del lente.
-            \item Cada segmento de la oblea recibe la misma dosis promedio de iluminación.
-        \end{itemize}
-        \column{.45\textwidth}
-        \begin{center}
-          \resizebox{0.95\linewidth}{!}{
-          \begin{tikzpicture}[
+    \begin{center}
+          \begin{tikzpicture}[scale=1.4,
             every node/.style={font=\footnotesize},
             wafer/.style={draw=kit-blue100, line width=0.6pt, fill=kit-blue!5},
             die/.style={draw=mnnwInk, line width=0.3pt, fill=white, postaction={pattern=north east lines, pattern color=mnnwMute!40}},
@@ -283,10 +272,14 @@
             \draw[draw=mnnwInk, -Stealth] (0,0) -- (0.4,0) node[right] {$x$};
             \draw[draw=mnnwInk, -Stealth] (0,0) -- (0,0.4) node[above] {$y$};
 
+            % Legend: scan / step / velocity ratio
+            \node[anchor=west, font=\footnotesize, text=kit-red100] at (2.6, 1.8) {-- -- \textbf{scan}};
+            \node[anchor=west, font=\footnotesize, text=kit-lightgreen100] at (2.6, 1.3) {$\to$ \textbf{step}};
+            \node[anchor=west, font=\footnotesize] at (2.6, 0.6) {$v_r = 4\,v_w$};
+            \node[anchor=west, font=\footnotesize] at (2.6, 0.1) {sentidos opuestos};
+
           \end{tikzpicture}
-          }
         \end{center}
-    \end{columns}
 \end{frame}
 
 \begin{frame}{\textit{Overlay} y productividad}
@@ -297,11 +290,8 @@
         \end{blueblock}
 
         \begin{greenblock}{Productividad (obleas por hora)}
-            El alto costo de capital exige producción continua de alto volumen.
+            Producción continua de alto volumen (\cite{Butler2011_PositionControl}).
         \end{greenblock}
-
-        \vspace{0.1cm}
-        {\footnotesize El asentamiento reduce vibraciones residuales pero baja productividad (\cite{Butler2011_PositionControl}). Las trayectorias deben equilibrar ambos efectos.}
 
         \column{.45\textwidth}
         \centering
@@ -384,167 +374,149 @@
     \end{columns}
 \end{frame}
 
-\begin{frame}[t]{Antecedentes --- análisis de literatura}
-    \footnotesize Revisión sistemática PRISMA 2020--2025 presentada como póster en \textbf{IEEE LARS/LARC 2025} (\cite{Trevino2025_LARSPoster}).
+\begin{frame}[t,fragile]{Antecedentes --- análisis de literatura}
+    \footnotesize PRISMA 2020--2025 $\cdot$ 1\,180 cribados $\to$ 12 incluidos $\cdot$ póster IEEE LARS/LARC 2025 (\cite{Trevino2025_LARSPoster}).
     \normalsize
 
-    \vspace{0.15cm}
-    Estrategias dominantes en motion control para escáneres de fotolitografía:
-    \begin{itemize}
-        \item \textbf{Control activo:} controladores no lineales tipo HIGS (\cite{Heertjes2025_NonlinearControl}).
-        \item \textbf{Arquitecturas dinámicas:} triple etapas \textit{fine stages} (\cite{Al-Rawashdeh2022_Caracterization}).
-        \item \textbf{\textit{Input shaping}:} trayectorias acotadas en \textit{jerk} (\cite{Al-Rawashdeh2023_Trajectories}).
-    \end{itemize}
-    \vspace{0.15cm}
+    \vspace{0.2cm}
+    \begin{center}
+    \begin{tikzpicture}[every node/.style={font=\small}]
+        \def\barH{0.32}
+        \def\unit{0.75}  % cm per report
+        \foreach \name/\cnt/\col [count=\i] in {%
+            {\textit{Input shaping}}/3/kit-red100,
+            {Control basado en datos}/3/opticsEdge,
+            {Sincronización de cadenas}/2/kit-blue100,
+            {Modelado predictivo}/2/kit-lightgreen100,
+            {Control adaptativo}/1/waferEdge,
+            {Redes neuronales}/1/kit-yellow!75!black%
+        }{
+            \pgfmathsetmacro{\y}{-\i*0.55}
+            \node[anchor=east, font=\small] at (0,\y) {\name};
+            \fill[\col] (0.15,\y-\barH/2) rectangle ({0.15+\cnt*\unit},\y+\barH/2);
+            \node[anchor=west, font=\small, text=mnnwInk] at ({0.22+\cnt*\unit},\y) {\cnt};
+        }
+        \node[anchor=west, font=\footnotesize, text=mnnwMute] at (0.15,-3.95) {reportes incluidos (n{=}12)};
+    \end{tikzpicture}
+    \end{center}
+    \vspace{0.1cm}
     \begin{purpleblock}{Brecha}
-        Los algoritmos optimizan métricas servo-mecánicas (MSE) \textbf{sin considerar el impacto morfológico} en el rendimiento (\textit{yield}) del IC. \emph{Pregunta de investigación:} ¿puede una función de costo informada por el patrón cerrar esta brecha sin penalizar productividad?
+        Métricas \textbf{servo-mecánicas} (MSE) sin considerar el impacto \textbf{morfológico} en el \textit{yield}.
     \end{purpleblock}
 \end{frame}
 
-\begin{frame}{Hipótesis y objetivos}
+\begin{frame}[fragile]{Hipótesis y objetivos}
     \begin{purpleblock}{Hipótesis}
         Una CNN entrenada sobre WM-811K, usada como función de costo, permite seleccionar parámetros cinemáticos de trayectorias de cuarto orden que \textbf{minimicen la probabilidad de defecto} sujeto a una \textbf{restricción de productividad}.
     \end{purpleblock}
 
-    \vspace{0.1cm}
-    \begin{greenblock}{Objetivo general}
-        \textbf{Hallar perfiles de aceleración óptimos} para trayectorias \textit{step-and-scan} que mejoren el rendimiento estimado de la oblea sin penalizar el \textit{throughput}.
-    \end{greenblock}
-
-    \vspace{0.05cm}
-    \textbf{Objetivos específicos:}
-    \begin{enumerate}\setlength\itemsep{0pt}
-        \item Generar trayectorias \textit{step-and-scan} acotadas en \textit{snap}.
-        \item Entrenar una CNN sobre WM-811K para clasificación de defectos.
-        \item Usar la CNN como función de costo para hallar los perfiles óptimos.
-    \end{enumerate}
+    \vspace{0.3cm}
+    \begin{center}
+    \begin{tikzpicture}[
+        every node/.style={font=\footnotesize},
+        obj/.style={draw=opticsEdge, line width=0.7pt, rounded corners=2pt, fill=opticsFlex, minimum width=2.9cm, minimum height=1.5cm, align=center},
+        ar/.style={-Stealth, line width=0.9pt, opticsEdge}
+    ]
+        \node[obj] (a) {\textbf{1.}\\Generar trayectorias\\acotadas en \textit{snap}};
+        \node[obj, right=0.6cm of a] (b) {\textbf{2.}\\Entrenar CNN\\sobre WM-811K};
+        \node[obj, right=0.6cm of b] (c) {\textbf{3.}\\Usar CNN como\\función de costo};
+        \draw[ar] (a) -- (b);
+        \draw[ar] (b) -- (c);
+    \end{tikzpicture}
+    \end{center}
 \end{frame}
 
 \section{Modelo}
 
 \begin{frame}[fragile]{Sistema multicuerpo}
-    \begin{minipage}{\linewidth}\centering\footnotesize
-    Tres cadenas seriales vinculadas por flexibilidades estructurales (\cite{Al-Rawashdeh2022_Caracterization}); cadenas móviles ($j{=}1,3$) en \textbf{dos etapas} — carrera larga (LS) + Lorentz de banda ancha (SS).
-    \end{minipage}
-    \vspace{0.05cm}
     \begin{center}
-        \centering
-        \resizebox{!}{0.60\textheight}{%
-        \begin{tikzpicture}[every node/.style={font=\small}]
-            % ====== Canvas: 12 cm wide x 8.8 cm tall (aspect ~1.4:1, more breathing) ======
+        \begin{tikzpicture}[scale=0.55, every node/.style={font=\footnotesize}]
+            % Canvas: 14 wide x 8.6 tall (tightened)
+            \draw[draw=frameEdge!70, line width=0.8pt, rounded corners=4pt]
+                (0,-0.05) rectangle (14,8.6);
 
-            % --- Outer machine enclosure ---
-            \draw[draw=frameEdge, line width=1.2pt, rounded corners=4pt, fill=frameFill!22]
-                (0,-0.05) rectangle (12,8.8);
+            % Hatched floor
+            \fill[pattern=north east lines, pattern color=mnnwMute!55] (-0.4,-0.55) rectangle (14.4,-0.05);
+            \draw[line width=0.7pt, mnnwInk] (-0.4,-0.05) -- (14.4,-0.05);
 
-            % --- Hatched floor ---
-            \fill[pattern=north east lines, pattern color=mnnwMute!55] (-0.5,-0.55) rectangle (12.5,-0.05);
-            \draw[line width=0.7pt, mnnwInk] (-0.5,-0.05) -- (12.5,-0.05);
-
-            % --- Air-feet / vibration isolators ---
-            \foreach \x in {1.0, 6.0, 11.0} {
+            % Air-feet (vibration isolation)
+            \foreach \x in {2.0, 7.0, 12.0} {
                 \draw[decorate, decoration={zigzag, segment length=4pt, amplitude=2.4pt},
                       line width=0.7pt] (\x,-0.05) -- (\x,0.55);
-                \fill[mnnwMute!75] (\x-0.22,-0.13) rectangle (\x+0.22,-0.05);
+                \fill[mnnwMute!75] (\x-0.25,-0.13) rectangle (\x+0.25,-0.05);
             }
 
-            % --- Heavy base block ---
+            % Base
             \fill[mnnwHair!30, draw=frameEdge!85, line width=0.7pt, rounded corners=2pt]
-                (0.5,0.60) rectangle (11.5,1.15);
-            \node[font=\footnotesize, text=mnnwMute] at (10.6,0.875) {base};
+                (0.6,0.60) rectangle (13.4,1.10);
+            \node[font=\footnotesize, text=mnnwMute] at (7.0,0.85) {base aislada};
 
-            % --- WAFER STAGE (moves RIGHT) ---
-            % LS guide rail
-            \draw[waferEdge!70, line width=1.4pt] (1.4,1.75) -- (10.6,1.75);
-            \foreach \xr in {2.4, 4.2, 7.8, 9.6} {
-                \fill[waferEdge!50] (\xr,1.75) circle (0.08);
-            }
-            \node[font=\footnotesize, text=waferEdge!70!black, anchor=west] at (10.65,1.75) {LS};
-            % Stage body
-            \fill[waferFill, draw=waferEdge, line width=1.1pt, rounded corners=3pt]
-                (4.2,1.85) rectangle (7.8,2.85);
-            \node[text=waferEdge, font=\normalsize\bfseries] at (6.0,2.55) {oblea ($j{=}3$)};
-            % SS Lorentz coil
-            \draw[decorate, decoration={zigzag, segment length=3.5pt, amplitude=2pt}, line width=0.6pt, waferEdge!75]
-                (4.4,2.10) -- (5.6,2.10);
-            \node[font=\footnotesize, text=waferEdge!70!black, anchor=west] at (5.65,2.10) {SS};
-            % silicon wafer (half-disc on top, optical axis at x=6)
+            % ====== WAFER STAGE (dual-stage, moves RIGHT) ======
+            % LS
+            \fill[waferFlex, draw=waferEdge, line width=0.9pt, rounded corners=3pt]
+                (2.7,1.75) rectangle (11.3,2.40);
+            \node[text=waferEdge, font=\footnotesize\bfseries] at (7.0,2.075) {LS};
+            % v_w arrow inside LS (top half)
+            \draw[-Stealth, line width=1.2pt, kit-blue100] (8.0,2.10) -- (10.6,2.10);
+            \node[font=\footnotesize\bfseries, text=kit-blue100, anchor=west] at (10.7,2.10) {$v_w$};
+            % SS on top of LS
+            \fill[waferFill, draw=waferEdge, line width=0.9pt, rounded corners=2pt]
+                (5.9,2.40) rectangle (8.1,2.92);
+            \node[text=waferEdge, font=\footnotesize\bfseries] at (7.0,2.66) {SS};
+            % silicon wafer (half-disc on top of SS, optical axis at x=7)
             \fill[waferFlex, draw=waferEdge, line width=0.6pt]
-                (5.4,2.85) arc (180:0:0.6 and 0.18);
-            \foreach \dx in {0.10,0.25,0.40,0.55,0.70,0.85,1.00} {
-                \draw[waferEdge!55, line width=0.4pt] (5.4+\dx,2.85) -- (5.4+\dx,3.00);
+                (6.15,2.92) arc (180:0:0.85 and 0.22);
+            \foreach \dx in {0.12,0.32,0.52,0.72,0.92,1.12,1.32,1.52} {
+                \draw[waferEdge!55, line width=0.4pt] (6.15+\dx,2.92) -- (6.15+\dx,3.10);
             }
-            % v_w arrow
-            \draw[-Stealth, line width=1.8pt, kit-blue100] (4.4,1.35) -- (7.6,1.35);
-            \node[font=\normalsize\bfseries, text=kit-blue100, anchor=north]
-                at (6.0,1.35) {$\mathbf{v}_w$};
+            \node[text=waferEdge, font=\footnotesize, anchor=west] at (8.15,3.05) {oblea};
 
-            % --- METROLOGY FRAME ---
-            \fill[opticsFlex, draw=opticsEdge, line width=0.9pt, rounded corners=2pt]
-                (0.7,3.55) rectangle (11.3,4.05);
-            \node[font=\footnotesize, text=opticsEdge!70!black, anchor=west]
-                at (0.9,3.80) {marco de metrología};
-
-            % --- PROJECTION LENS (barrel, narrows downward = 4x reduction) ---
-            \fill[opticsFlex!90, draw=opticsEdge, line width=1pt]
-                (5.0,4.05) -- (4.8,6.10) -- (7.2,6.10) -- (7.0,4.05) -- cycle;
-            \draw[opticsEdge, line width=0.7pt, fill=white] (6.0,5.85) ellipse (0.95 and 0.16);
-            \draw[opticsEdge, line width=0.7pt, fill=white] (6.0,5.30) ellipse (0.80 and 0.15);
-            \draw[opticsEdge, line width=0.7pt, fill=white] (6.0,4.75) ellipse (0.62 and 0.13);
-            \draw[opticsEdge, line width=0.7pt, fill=white] (6.0,4.20) ellipse (0.40 and 0.11);
-            \node[text=opticsEdge, font=\normalsize\bfseries, anchor=west]
-                at (7.4,5.20) {lente ($4\times$)};
-            \node[text=opticsEdge, font=\footnotesize, anchor=west]
-                at (7.4,4.75) {óptica ($j{=}2$)};
-
-            % --- Light path inside lens (narrowing) and lens-to-wafer ---
-            \fill[kit-yellow!50, draw=kit-yellow!75!black, line width=0.3pt, opacity=0.55]
-                (5.25,6.10) -- (6.75,6.10) -- (6.15,4.15) -- (5.85,4.15) -- cycle;
+            % ====== PROJECTION LENS ======
+            \fill[opticsFlex!90, draw=opticsEdge, line width=1.0pt]
+                (5.7,3.70) -- (5.4,5.70) -- (8.6,5.70) -- (8.3,3.70) -- cycle;
+            \draw[opticsEdge, line width=0.6pt, fill=white] (7.0,5.20) ellipse (1.20 and 0.20);
+            \node[text=opticsEdge, font=\footnotesize\bfseries, anchor=west] at (8.75,4.95) {lente};
+            \node[text=opticsEdge, font=\footnotesize, anchor=west] at (8.75,4.55) {$4\times$};
+            % light cone
+            \fill[kit-yellow!55, draw=kit-yellow!75!black, line width=0.3pt, opacity=0.55]
+                (5.75,5.70) -- (8.25,5.70) -- (7.18,3.80) -- (6.82,3.80) -- cycle;
             \fill[kit-yellow!60, draw=kit-yellow!75!black, line width=0.3pt, opacity=0.85]
-                (5.85,4.05) -- (6.15,4.05) -- (6.10,3.00) -- (5.90,3.00) -- cycle;
+                (6.82,3.70) -- (7.18,3.70) -- (7.12,3.15) -- (6.88,3.15) -- cycle;
 
-            % --- RETICLE STAGE (moves LEFT) ---
-            \draw[reticleEdge!70, line width=1.4pt] (1.4,6.70) -- (10.6,6.70);
-            \foreach \xr in {2.4, 4.2, 7.8, 9.6} {
-                \fill[reticleEdge!50] (\xr,6.70) circle (0.08);
+            % ====== RETICLE STAGE (dual-stage, moves LEFT) ======
+            % SS below LS
+            \fill[reticleFill, draw=reticleEdge, line width=0.9pt, rounded corners=2pt]
+                (5.9,5.95) rectangle (8.1,6.47);
+            \node[text=reticleEdge, font=\footnotesize\bfseries] at (7.0,6.21) {SS};
+            % LS above SS
+            \fill[reticleFlex, draw=reticleEdge, line width=0.9pt, rounded corners=3pt]
+                (2.7,6.47) rectangle (11.3,7.12);
+            \node[text=reticleEdge, font=\footnotesize\bfseries] at (7.0,6.795) {LS};
+            % v_r arrow inside LS (bottom half), pointing LEFT
+            \draw[Stealth-, line width=1.2pt, kit-red100] (3.4,6.62) -- (6.0,6.62);
+            \node[font=\footnotesize\bfseries, text=kit-red100, anchor=east] at (3.3,6.62) {$v_r$ ($4\times$)};
+            % photomask under SS (faces lens below)
+            \fill[mnnwInk, draw=reticleEdge, line width=0.4pt] (6.1,5.70) rectangle (7.9,5.95);
+            \foreach \dx in {0.08,0.30,0.52,0.74,0.96,1.18,1.40,1.62} {
+                \fill[white] (6.16+\dx,5.74) rectangle (6.20+\dx,5.91);
             }
-            \node[font=\footnotesize, text=reticleEdge!70!black, anchor=west] at (10.65,6.70) {LS};
-            \fill[reticleFill, draw=reticleEdge, line width=1.1pt, rounded corners=3pt]
-                (4.2,6.80) rectangle (7.8,7.80);
-            \node[text=reticleEdge, font=\normalsize\bfseries] at (6.0,7.50) {retícula ($j{=}1$)};
-            \draw[decorate, decoration={zigzag, segment length=3.5pt, amplitude=2pt}, line width=0.6pt, reticleEdge!75]
-                (4.4,7.05) -- (5.6,7.05);
-            \node[font=\footnotesize, text=reticleEdge!70!black, anchor=west] at (5.65,7.05) {SS};
-            % photomask on top of stage (centred at x=6)
-            \fill[mnnwInk, draw=reticleEdge, line width=0.4pt] (5.4,7.80) rectangle (6.6,8.05);
-            \foreach \dx in {0.04,0.18,0.32,0.46,0.60,0.74,0.88,1.02} {
-                \fill[white] (5.44+\dx,7.84) rectangle (5.48+\dx,8.01);
-            }
-            % v_r arrow
-            \draw[Stealth-, line width=1.8pt, kit-red100] (4.4,8.45) -- (7.6,8.45);
-            \node[font=\normalsize\bfseries, text=kit-red100, anchor=south]
-                at (6.0,8.45) {$\mathbf{v}_r$\, ($4\times$)};
+            \node[text=reticleEdge, font=\footnotesize, anchor=east] at (6.05,5.82) {máscara};
 
-            % --- ILLUMINATOR (top right) ---
-            \begin{scope}[shift={(10.0,7.85)}]
+            % ====== ILLUMINATOR ======
+            \begin{scope}[shift={(11.8,7.85)}]
                 \fill[kit-yellow!40, opacity=0.3] (0,0) circle (0.50);
-                \fill[kit-yellow!88!white, draw=kit-yellow!75!black, line width=0.65pt]
+                \fill[kit-yellow!88!white, draw=kit-yellow!75!black, line width=0.55pt]
                     (0,0) circle (0.33);
-                \draw[kit-yellow!55!black, line width=0.4pt] (-0.11,-0.03) -- (0.11,-0.03);
-                \draw[kit-yellow!55!black, line width=0.4pt] (-0.05,-0.03) -- (-0.05,0.09);
-                \draw[kit-yellow!55!black, line width=0.4pt] ( 0.05,-0.03) -- ( 0.05,0.09);
-                \fill[mnnwMute!75] (-0.11,-0.30) rectangle (0.11,-0.24);
-                \fill[mnnwMute!85] (-0.09,-0.38) rectangle (0.09,-0.30);
-                \foreach \a in {40, 75, 105, 140} {
+                \foreach \a in {30, 70, 110, 150} {
                     \draw[kit-yellow!70!black, line width=0.6pt]
-                        (\a:0.42) -- (\a:0.62);
+                        (\a:0.42) -- (\a:0.65);
                 }
             \end{scope}
-            \node[font=\footnotesize, text=mnnwInk, anchor=south] at (10.0,8.40) {iluminador};
-
-            % beam from bulb to photomask
-            \draw[kit-yellow!75!black, line width=1.5pt] (9.65,7.72) -- (6.0,8.05);
-        \end{tikzpicture}}
+            \node[font=\footnotesize, text=mnnwInk, anchor=west] at (12.40,7.85) {luz UV};
+            % beam from source to mask
+            \draw[kit-yellow!75!black, line width=1.2pt] (11.45,7.70) -- (7.0,5.95);
+        \end{tikzpicture}\\[0.20cm]
+        {\footnotesize Arquitectura \emph{dual-stage}: LS = etapa larga (cm), SS = etapa corta (nm) \cite{Al-Rawashdeh2022_Caracterization}.}
     \end{center}
 \end{frame}
 
@@ -634,126 +606,136 @@
 }
 
 \begin{frame}{Dinámica}
-    \begin{itemize}
-        \item Restringimos el movimiento a $f_{i_{j_x}}$, $f_{i_{j_y}}$ y la rotación planar $\theta_z$.
-        \item Consideramos 16 cuerpos ($N_1=7$, $N_2=4$, $N_3=7$); 6 estados por cuerpo:
-        \begin{equation}
-            x =
-            \begin{bmatrix}
-                \underbrace{x_1, \ldots, x_6}_{\text{marco base (i=1)}} \;,\;
-                \underbrace{x_7, \ldots, x_{6N_1}}_{\text{cadena 1}} \;,\;
-                \underbrace{\ldots}_{\text{cadena 2}} \;,\;
-                \underbrace{\ldots}_{\text{cadena 3}}
-            \end{bmatrix}^T
-        \end{equation}
-        \item Para cuerpos internos:
-        \begin{align}
-            \ddot{\mathbf{x}}_{2p-1} &=
-            \frac{1}{\bar{m}_{i_j}} \Big[ u^0_{i_j} - {}^0\bar{C}_{i_j}\dot{\mathbf{x}}_{2p-1} - {}^0\bar{K}_{i_j}\mathbf{x}_{2p-1} + {}^0\hat{C}_{(i+1)_j}\dot{\mathbf{x}}_{2p+1} + {}^0\hat{K}_{(i+1)_j}\mathbf{x}_{2p+1} \Big] \notag \\
-            &\quad - \frac{1}{\bar{m}_{(i-1)_j}} \Big[ u^0_{(i-1)_j} - {}^0\bar{C}_{(i-1)_j}\dot{\mathbf{x}}_{2p-3} - {}^0\bar{K}_{(i-1)_j}\mathbf{x}_{2p-3} + {}^0\hat{C}_{i_j}\dot{\mathbf{x}}_{2p-1} + {}^0\hat{K}_{i_j}\mathbf{x}_{2p-1} \Big]
-        \end{align}
-    \end{itemize}
-    \vspace{-0.2cm}
-    {\scriptsize Casos frontera ($i{=}2$, $i{=}N_j$) detallados en el documento de tesis.}
+    \begin{center}\footnotesize
+    16 cuerpos ($N_1{=}7$, $N_2{=}4$, $N_3{=}7$) $\cdot$ 6 estados/cuerpo $\cdot$ DOFs: $f_{i_{j_x}}$, $f_{i_{j_y}}$, $\theta_z$.
+    \end{center}
+    \begin{equation*}
+        x =
+        \begin{bmatrix}
+            \underbrace{x_1, \ldots, x_6}_{\text{marco base}} \;,\;
+            \underbrace{x_7, \ldots, x_{6N_1}}_{\text{cadena 1}} \;,\;
+            \underbrace{\ldots}_{\text{cadena 2}} \;,\;
+            \underbrace{\ldots}_{\text{cadena 3}}
+        \end{bmatrix}^T
+    \end{equation*}
+    \begin{align*}
+        \ddot{\mathbf{x}}_{2p-1} &=
+        \tfrac{1}{\bar{m}_{i_j}} \Big[ u^0_{i_j} - {}^0\bar{C}_{i_j}\dot{\mathbf{x}}_{2p-1} - {}^0\bar{K}_{i_j}\mathbf{x}_{2p-1} + {}^0\hat{C}_{(i+1)_j}\dot{\mathbf{x}}_{2p+1} + {}^0\hat{K}_{(i+1)_j}\mathbf{x}_{2p+1} \Big] \\
+        &\quad - \tfrac{1}{\bar{m}_{(i-1)_j}} \Big[ u^0_{(i-1)_j} - {}^0\bar{C}_{(i-1)_j}\dot{\mathbf{x}}_{2p-3} - {}^0\bar{K}_{(i-1)_j}\mathbf{x}_{2p-3} + {}^0\hat{C}_{i_j}\dot{\mathbf{x}}_{2p-1} + {}^0\hat{K}_{i_j}\mathbf{x}_{2p-1} \Big]
+    \end{align*}
+    \vspace{-0.4cm}
+    \begin{flushright}\scriptsize Casos frontera ($i{=}2$, $i{=}N_j$) en el documento de tesis.\end{flushright}
 \end{frame}
 
 \section{Metodología}
 
 \begin{frame}{Simulación --- resultados}
-    \begin{columns}
-        \column{.36\textwidth}
-        \begin{itemize}
-            \item Implementación en \textbf{MuJoCo} (\cite{todorov2012mujoco}); parámetros de \cite{Al-Rawashdeh2022_Caracterization}.
-            \item Error de seguimiento monitoreado vía \textbf{promedio móvil (MA)} y \textbf{desviación estándar móvil (MSD)}.
-            \item Umbrales típicos: MA $\geq 1\,\text{nm}$, MSD $\geq 7\,\text{nm}$ (\cite{Butler2011_PositionControl}) $\Rightarrow$ degradación crítica del \textit{overlay}.
-        \end{itemize}
-        \column{.64\textwidth}
-        \centering
-        \includegraphics[width=0.49\linewidth]{pictures/sim_tracking.png}\hfill%
-        \includegraphics[width=0.49\linewidth]{pictures/sim_ma_msd.png}\\[0.1cm]
-        {\footnotesize Izq.: error de seguimiento. \quad Der.: MA y MSD móviles.}
-    \end{columns}
+    \vspace{0.1cm}
+    \begin{center}\small
+    \textbf{MuJoCo} (\cite{todorov2012mujoco}) $\cdot$ parámetros (\cite{Al-Rawashdeh2022_Caracterization}) $\cdot$ umbrales MA $\geq 1\,$nm, MSD $\geq 7\,$nm (\cite{Butler2011_PositionControl})
+    \end{center}
+    \vspace{0.15cm}
+    \begin{center}
+        \includegraphics[width=0.47\linewidth,height=0.62\textheight,keepaspectratio]{pictures/sim_tracking.png}\hfill%
+        \includegraphics[width=0.47\linewidth,height=0.62\textheight,keepaspectratio]{pictures/sim_ma_msd.png}\\[0.15cm]
+        {\small Error de seguimiento \quad$|$\quad MA y MSD móviles}
+    \end{center}
 \end{frame}
 
 \begin{frame}{Mapas de defectos y CNN}
+    \vspace{0.15cm}
     \begin{columns}[T]
-        \column{.4\textwidth}
-        \begin{itemize}
-            \item Dataset \textbf{WM-811K}: 172\,950 muestras etiquetadas en 9 clases (\cite{Wu2015_WM811K}).
-            \item Tipos: \textit{Center}, \textit{Donut}, \textit{Edge-Loc}, \textit{Edge-Ring}, \textit{Loc}, \textit{Near-full}, \textit{Random}, \textit{Scratch}, \textit{none}.
-            \item CNN: 3$\times$Conv + 2$\times$FC, entrada $64{\times}64$, entrenada y \textbf{validada en partición real} \textit{hold-out}.
-        \end{itemize}
-        \vspace{0.1cm}
-        {\footnotesize
+        \column{.26\textwidth}
+        \centering
+        \small
+        \textbf{WM-811K} (\cite{Wu2015_WM811K})\\
+        9 clases
+        \vspace{0.35cm}
         \begin{tabular}{ll}
             \toprule
-            \textbf{Métrica} & \textbf{Valor} \\
-            \midrule
-            Test \textit{hold-out} & 34\,590 muestras \\
-            \textbf{Accuracy} & \textbf{96.88\,\%} \\
+            \textbf{Train} & 138\,360 \\
+            \textbf{Test} & 34\,590 \\
+            \textbf{Arq.} & 3C + 2FC \\
+            \textbf{Entrada} & $64{\times}64$ \\
+            \textbf{Acc.} & \textbf{96.88\,\%} \\
             \bottomrule
-        \end{tabular}}
+        \end{tabular}
 
-        \column{.6\textwidth}
+        \column{.36\textwidth}
         \centering
-        \includegraphics[height=0.65\textheight,keepaspectratio]{pictures/cnn_confmat.png}
+        \includegraphics[width=\linewidth,height=0.65\textheight,keepaspectratio]{pictures/wm811k_samples.png}\\[0.10cm]
+        {\small ejemplos por clase}
+
+        \column{.38\textwidth}
+        \centering
+        \includegraphics[width=\linewidth,height=0.65\textheight,keepaspectratio]{pictures/cnn_confmat.png}\\[0.10cm]
+        {\small matriz de confusión}
     \end{columns}
 \end{frame}
 
 \begin{frame}[fragile]{Conexión trayectoria $\leftrightarrow$ defecto}
+    \vspace{0.3cm}
     \begin{center}
-        \begin{tikzpicture}[
-            every node/.style={font=\footnotesize},
-            stepbox/.style={draw=mnnwInk, line width=0.6pt, rounded corners=2pt, minimum width=1.9cm, minimum height=1.0cm, align=center, fill=white},
-            unknownbox/.style={draw=kit-red100, line width=0.9pt, dashed, rounded corners=2pt, minimum width=1.9cm, minimum height=1.0cm, align=center, fill=kit-red!8},
-            solbox/.style={draw=opticsEdge, line width=0.6pt, rounded corners=2pt, minimum width=5.7cm, minimum height=1.1cm, align=center, fill=opticsFlex},
-            ar/.style={-Stealth, line width=0.7pt}
-        ]
-            \node[stepbox] (traj) {trayectoria\\(\textit{snap} acotado)};
-            \node[stepbox, right=0.25cm of traj] (sim) {MuJoCo};
-            \node[stepbox, right=0.25cm of sim] (err) {error\\MA/MSD};
-            \node[unknownbox, right=0.25cm of err] (gap) {\textcolor{kit-red100}{\textbf{?}}\\mapeo};
-            \node[stepbox, right=0.25cm of gap] (map) {mapa de\\defectos};
-            \node[stepbox, right=0.25cm of map] (cnn) {CNN $\to$\\$P(\text{defecto})$};
+    \resizebox{0.92\linewidth}{!}{
+    \begin{tikzpicture}[
+        block/.style={rectangle, draw=mnnwInk, line width=0.5pt, rounded corners=2pt, minimum height=1.2cm, minimum width=2.5cm, align=center, font=\small},
+        oBlock/.style={block, fill=kit-yellow!35},
+        modBlock/.style={block, fill=reticleFill},
+        yieldBlock/.style={block, fill=waferFill},
+        dec/.style={diamond, draw=mnnwInk, line width=0.5pt, aspect=2.2, fill=kit-lightgreen100!25, font=\small, align=center, inner sep=2pt},
+        grp/.style={draw=mnnwMute, dashed, line width=0.4pt, rounded corners=4pt, inner sep=12pt},
+        flow/.style={-{Stealth[scale=1.1]}, line width=0.7pt, mnnwInk},
+        gapflow/.style={-{Stealth[scale=1.1]}, line width=1.1pt, kit-red100, dashed}
+    ]
+        \node[modBlock] (traj) {Trayectoria\\(cuarto orden)};
+        \node[modBlock, right=0.7cm of traj] (mass) {Simulación\\multicuerpo};
+        \node[modBlock, right=0.7cm of mass] (err) {Error\\MA / MSD};
 
-            \draw[ar] (traj) -- (sim);
-            \draw[ar] (sim) -- (err);
-            \draw[ar] (err) -- (gap);
-            \draw[ar] (gap) -- (map);
-            \draw[ar] (map) -- (cnn);
+        \node[yieldBlock, right=1.2cm of err] (map) {Mapa de\\defectos};
+        \node[yieldBlock, right=0.7cm of map] (cls) {CNN\\$\widehat{P}_{\text{defecto}}$};
 
-            \node[font=\footnotesize\bfseries, text=kit-red100, anchor=south, fill=white, inner sep=1pt] at ([yshift=8pt]gap.north) {brecha};
+        \node[oBlock, below=1.6cm of mass] (pso) {Algoritmo bio-inspirado\\sobre $(v,a,j,s)_{\max}$};
+        \node[dec, right=1.2cm of pso] (cost) {Función\\de costo};
 
-            \node[solbox] (sa) at (-1.5,-2.6) {\textbf{Física --- \textit{dose mapping}}\\MA/MSD locales $\to$ variación de dosis $\to$ umbral};
-            \node[solbox, right=0.5cm of sa] (sb) {\textbf{Datos --- \textit{paired learning}}\\pares (error, mapa) $\to$ generador condicional aprendido};
+        \draw[flow] (traj) -- (mass);
+        \draw[flow] (mass) -- (err);
+        \draw[gapflow] (err) -- (map) node[midway, above, text=kit-red100, font=\small\bfseries, fill=white, inner sep=1pt] {brecha};
+        \draw[flow] (map) -- (cls);
+        \draw[flow] (cls.south) |- (cost.east);
+        \draw[flow] (cost) -- (pso);
+        \draw[flow] (pso.west) -| (traj.south);
 
-            \draw[ar, dashed, kit-red100] (gap.south) to[out=-90, in=90, looseness=0.7] (sa.north);
-            \draw[ar, dashed, kit-red100] (gap.south) to[out=-90, in=90, looseness=0.7] (sb.north);
-        \end{tikzpicture}
+        \node[grp, fit={(traj) (mass) (err)}, label={[font=\small\bfseries]above:Objetivo 1 --- seguimiento}] {};
+        \node[grp, fit={(map) (cls)}, label={[font=\small\bfseries]above:Objetivo 2 --- vínculo predictivo}] {};
+        \node[grp, fit={(pso) (cost)}, label={[font=\small\bfseries]below:Objetivo 3 --- perfiles óptimos}] {};
+    \end{tikzpicture}
+    }
+    \\[0.3cm]
+    {\small \textcolor{kit-red100}{\textbf{Brecha:}} cerrar el mapeo error $\to$ mapa vía \textit{dose mapping} (física) o \textit{paired learning} (datos).}
     \end{center}
-    \vspace{0.1cm}
-    {\footnotesize \centering Ambas vías son compatibles con la simulación actual; el mapeo se formalizará en el siguiente periodo.\par}
 \end{frame}
 
 \begin{frame}[fragile]{Trayectorias de alto orden}
+    \vspace{0.2cm}
     \begin{columns}
         \column{.55\textwidth}
-        \begin{itemize}\setlength\itemsep{1pt}
-            \item Derivadas superiores acotadas (\textit{snap} finito).
-            \item Menor excitación de modos estructurales poco amortiguados.
-            \item Mejor seguimiento $\Rightarrow$ menor error de \textit{overlay} (\cite{Al-Rawashdeh2023_Trajectories}).
-        \end{itemize}
-        \vspace{0.1cm}
-        {\footnotesize\textbf{Métodos candidatos:}
-        \begin{itemize}\setlength\itemsep{0pt}
-            \item Polinomios segmentados óptimos en tiempo (\cite{Lambrechts2003_Trajectories}).
-            \item \textit{Input shaping} convolucional.
-            \item Perfiles cuadrado / bisel / meandro (\cite{Al-Rawashdeh2023_Trajectories}).
-        \end{itemize}}
+        \centering\small
+        \textit{Snap} acotado $\Rightarrow$ menor error de \textit{overlay} (\cite{Al-Rawashdeh2023_Trajectories}).
+        \vspace{0.5cm}
+
+        {\small
+        \begin{tabular}{ll}
+            \toprule
+            \textbf{Método} & \textbf{Fuente} \\
+            \midrule
+            Polinomios segmentados & \cite{Lambrechts2003_Trajectories} \\
+            \textit{Input shaping} & convolucional \\
+            Cuadrado / bisel / meandro & \cite{Al-Rawashdeh2023_Trajectories} \\
+            \bottomrule
+        \end{tabular}}
         \column{.45\textwidth}
         \begin{center}
-          \resizebox{0.78\linewidth}{!}{
-          \begin{tikzpicture}[
+          \begin{tikzpicture}[scale=0.85,
             every node/.style={font=\footnotesize},
             wafer/.style={draw=kit-blue100, line width=0.6pt, fill=kit-blue!5},
             die/.style={draw=mnnwInk, line width=0.3pt, fill=white, postaction={pattern=north east lines, pattern color=mnnwMute!40}},
@@ -792,7 +774,7 @@
 
             \draw[mnnwInk, line width=0.8pt, dashed] (-0.75, -1.25) -- (-0.75, -1.75);
 
-            \begin{scope}[shift={(0.25, 1.35)}]
+            \begin{scope}[shift={(-2.4, -2.7)}]
               \draw[square]  (0, 0.55) -- (0.35, 0.55) node[right, font=\footnotesize] {Cuadrado};
               \draw[fillet]  (0, 0.27) -- (0.35, 0.27) node[right, font=\footnotesize] {Bisel};
               \draw[meander] (0, 0.00) -- (0.35, 0.00) node[right, font=\footnotesize] {Meandro};
@@ -802,23 +784,33 @@
             \draw[axis] (0,0) -- (0,0.4) node[above] {$y$};
 
           \end{tikzpicture}
-          }
         \end{center}
     \end{columns}
 \end{frame}
 
 \section{Trabajo posterior}
 
-\begin{frame}{Siguientes pasos}
-    \begin{itemize}
-        \item Implementar un controlador no lineal en el simulador (\cite{Heertjes2025_NonlinearControl}).
-        \item Integrar un estimador de parámetros para el controlador.
-        \item \textbf{Formalizar el mapeo error servo $\leftrightarrow$ mapa de defectos} (físico o aprendido) y vincularlo a la clasificación de defectos (\cite{Yang2018_Yield}).
-        \item Comparar trayectorias de cuarto orden con polinomios de menor orden (\cite{Al-Rawashdeh2023_Trajectories}).
-    \end{itemize}
-    \vspace{0.3cm}
+\begin{frame}[fragile]{Siguientes pasos}
+    \vspace{0.5cm}
     \begin{center}
-    \textit{Gracias por su atención.}
+    \begin{tikzpicture}[
+        every node/.style={font=\small},
+        stp/.style={draw=opticsEdge, line width=0.7pt, rounded corners=2pt, fill=opticsFlex, minimum width=2.9cm, minimum height=2.0cm, align=center},
+        hi/.style ={draw=kit-red100, line width=1.0pt, rounded corners=2pt, fill=kit-red!8, minimum width=2.9cm, minimum height=2.0cm, align=center},
+        ar/.style={-Stealth, line width=0.9pt, opticsEdge}
+    ]
+        \node[stp] (a) {\textbf{1.}\\Controlador\\no lineal\\\footnotesize\cite{Heertjes2025_NonlinearControl}};
+        \node[stp, right=0.55cm of a] (b) {\textbf{2.}\\Estimador de\\parámetros};
+        \node[hi,  right=0.55cm of b] (c) {\textbf{3.}\\\textbf{Mapeo}\\error $\leftrightarrow$ defecto\\\footnotesize\cite{Yang2018_Yield}};
+        \node[stp, right=0.55cm of c] (d) {\textbf{4.}\\Comparar\\órdenes de\\trayectoria\\\footnotesize\cite{Al-Rawashdeh2023_Trajectories}};
+        \draw[ar] (a) -- (b);
+        \draw[ar] (b) -- (c);
+        \draw[ar] (c) -- (d);
+    \end{tikzpicture}
+    \end{center}
+    \vspace{0.7cm}
+    \begin{center}
+    {\large\itshape Gracias por su atención.}
     \end{center}
 \end{frame}
 
