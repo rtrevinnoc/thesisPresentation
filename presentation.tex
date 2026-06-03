@@ -655,34 +655,106 @@
 \end{frame}
 
 \begin{frame}{Mapas de defectos y CNN}
-    \vspace{0.15cm}
+    \vspace{-0.2cm}
     \begin{columns}[T]
-        \column{.26\textwidth}
+        \column{.42\textwidth}
         \centering
-        \small
-        \textbf{WM-811K} (\cite{Wu2015_WM811K})\\
-        9 clases
-        \vspace{0.35cm}
-        \begin{tabular}{ll}
-            \toprule
-            \textbf{Train} & 138\,360 \\
-            \textbf{Test} & 34\,590 \\
-            \textbf{Arq.} & 3C + 2FC \\
-            \textbf{Entrada} & $64{\times}64$ \\
-            \textbf{Acc.} & \textbf{96.88\,\%} \\
-            \bottomrule
-        \end{tabular}
+        \begin{tikzpicture}[scale=0.42, transform shape]
+            \pic[shift={(0,0,0)}] at (0,0,0)
+                {Box={name=in, caption=mapa, xlabel={{1,}}, zlabel=64, fill=waferFill, height=18, width=1, depth=18}};
+            \pic[shift={(1.4,0,0)}] at (in-east)
+                {Box={name=cr1, caption=C1+Pool, xlabel={{16,}}, zlabel=32, fill=\ConvColor, height=13, width=2, depth=13}};
+            \pic[shift={(1.4,0,0)}] at (cr1-east)
+                {Box={name=cr2, caption=C2+Pool, xlabel={{32,}}, zlabel=16, fill=\ConvColor, height=8, width=3, depth=8}};
+            \pic[shift={(1.4,0,0)}] at (cr2-east)
+                {Box={name=cr3, caption=C3+Pool, xlabel={{64,}}, zlabel=8, fill=\ConvColor, height=5, width=4, depth=5}};
+            \pic[shift={(1.8,0,0)}] at (cr3-east)
+                {Box={name=fc1, caption=FC, xlabel={{,}}, zlabel=128, fill=\FcColor, height=14, width=1, depth=1}};
+            \pic[shift={(1.4,0,0)}] at (fc1-east)
+                {Box={name=fc2, caption=Softmax, xlabel={{,}}, zlabel=9, fill=\SoftmaxColor, height=4, width=1, depth=1}};
+            \foreach \a/\b in {in/cr1,cr1/cr2,cr2/cr3,cr3/fc1,fc1/fc2}
+                \draw[-Stealth, line width=0.7pt, mnnwInk] (\a-east) -- (\b-west);
+        \end{tikzpicture}\\[-0.1cm]
+        {\footnotesize 3 conv + 2 \textit{FC}}
 
-        \column{.36\textwidth}
-        \centering
-        \includegraphics[width=\linewidth,height=0.55\textheight,keepaspectratio]{pictures/wm811k_samples.png}\\[0.05cm]
-        {\footnotesize ejemplos por clase}
+        \vspace{0.1cm}
+        \includegraphics[width=0.55\linewidth,height=0.28\textheight,keepaspectratio]{pictures/wm811k_samples.png}\\[0.05cm]
+        {\footnotesize \textbf{WM-811K} (\cite{Wu2015_WM811K}): 138\,360 obleas, 9 clases}
 
-        \column{.38\textwidth}
+        \column{.58\textwidth}
         \centering
-        \includegraphics[width=\linewidth,height=0.55\textheight,keepaspectratio]{pictures/cnn_confmat.png}\\[0.05cm]
-        {\footnotesize matriz de confusión}
+        \includegraphics[width=\linewidth,height=0.70\textheight,keepaspectratio]{pictures/cnn_confmat.png}\\[0.05cm]
+        {\footnotesize matriz de confusión --- \textbf{96.88\,\%} \textit{accuracy}}
     \end{columns}
+\end{frame}
+
+\begin{frame}[fragile]{La CNN como puente: clase $\to$ costo}
+    \vspace{0.2cm}
+    \begin{center}
+    \begin{tikzpicture}[scale=0.85, every node/.style={font=\footnotesize}]
+        % ---- Panel 1: simulated map thumbnail ----
+        \node[draw=mnnwInk, line width=0.5pt, rounded corners=2pt, minimum width=2.4cm, minimum height=2.4cm, fill=white] (map) at (0,0) {};
+        % wafer disc
+        \fill[waferFlex, draw=waferEdge, line width=0.4pt] (0,0) circle (0.85);
+        % die grid inside wafer
+        \begin{scope}
+            \clip (0,0) circle (0.85);
+            \foreach \x in {-0.7,-0.45,...,0.7}{
+                \foreach \y in {-0.7,-0.45,...,0.7}{
+                    \draw[waferEdge!30, line width=0.2pt] (\x-0.10,\y-0.10) rectangle (\x+0.10,\y+0.10);
+                }
+            }
+        \end{scope}
+        % scratch defect line (red)
+        \draw[kit-red100, line width=0.8pt] (-0.55, 0.35) -- (0.45, -0.40);
+        \node[font=\small, anchor=south] at (0, 1.35) {mapa simulado};
+
+        % Arrow 1: CNN
+        \draw[-Stealth, line width=0.9pt] (1.45, 0) -- (2.55, 0);
+        \node[font=\footnotesize\bfseries, anchor=south] at (2.0, 0.08) {CNN};
+
+        % ---- Panel 2: probability bars ----
+        \begin{scope}[shift={(4.4,0)}]
+            \node[font=\small, anchor=south] at (1.2, 1.35) {$P_c$ por clase};
+            \def\barH{0.20}
+            \def\unit{2.6}
+            \foreach \name/\val/\col/\grp [count=\i] in {%
+                none/0.85/kit-lightgreen100/plaus,
+                scratch/0.10/kit-red100/plaus,
+                edge-local/0.05/kit-blue100/plaus,
+                random/0.00/kit-yellow!85!black/plaus,
+                center/0.00/mnnwHair/etch,
+                donut/0.00/mnnwHair/etch,
+                edge-ring/0.00/mnnwHair/etch,
+                loc/0.00/mnnwHair/etch,
+                near-full/0.00/mnnwHair/etch%
+            }{
+                \pgfmathsetmacro{\y}{(5-\i)*0.27}
+                \ifnum\pdfstrcmp{\grp}{plaus}=0
+                    \node[anchor=east, font=\scriptsize] at (0, \y) {\name};
+                \else
+                    \node[anchor=east, font=\scriptsize, text=mnnwMute] at (0, \y) {\name};
+                \fi
+                \fill[\col] (0.05, \y-\barH/2) rectangle ({0.05+\val*\unit}, \y+\barH/2);
+                \pgfmathsetmacro{\pct}{int(\val*100)}
+                \ifnum\pct>0
+                    \node[anchor=west, font=\scriptsize] at ({0.10+\val*\unit}, \y) {\pct\,\%};
+                \fi
+            }
+        \end{scope}
+
+        % Arrow 2: weighted sum
+        \draw[-Stealth, line width=0.9pt] (7.6, 0) -- (8.7, 0);
+        \node[font=\footnotesize\bfseries, anchor=south] at (8.15, 0.08) {$\sum w_c P_c$};
+
+        % ---- Panel 3: cost ----
+        \node[draw=opticsEdge, line width=0.8pt, rounded corners=3pt, fill=opticsFlex,
+              minimum width=2.6cm, minimum height=2.0cm, align=center, font=\small] (cost) at (10.1, 0)
+              {$\mathcal{J}$ \\ \textbf{0.65\,\%} \\ {\scriptsize pérdida esperada}};
+        \node[font=\small, anchor=south] at (10.1, 1.35) {costo};
+    \end{tikzpicture}\\[0.30cm]
+    {\footnotesize Sólo las clases inducibles por servo (\textit{none, scratch, edge-local, random}) contribuyen a $\mathcal{J}$. Pesos $w_c$ por clase: literatura (\cite{Kim2019_Productivity,Yang2018_Yield}) o calibración.}
+    \end{center}
 \end{frame}
 
 \begin{frame}[fragile]{Conexión trayectoria $\leftrightarrow$ defecto}

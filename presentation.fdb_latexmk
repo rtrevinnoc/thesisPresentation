@@ -1,12 +1,12 @@
 # Fdb version 4
-["biber presentation"] 1780513063.13055 "presentation.bcf" "presentation.bbl" "presentation" 1780513070.69526 0
-  "presentation.bcf" 1780513070.51743 109750 4746a0515b43f5cbe3607069914b326c "pdflatex"
+["biber presentation"] 1780520060.55984 "presentation.bcf" "presentation.bbl" "presentation" 1780520084.30622 0
+  "presentation.bcf" 1780520084.13819 109896 98730256cf277c3e468e3e3ba1803964 "pdflatex"
   "presentation.bib" 1780505987.18882 10219 11aa57f0eda255e09bd5ce479731b192 ""
   (generated)
   "presentation.bbl"
   "presentation.blg"
   (rewritten before read)
-["pdflatex"] 1780513065.00069 "presentation.tex" "presentation.pdf" "presentation" 1780513070.69551 0
+["pdflatex"] 1780520078.16469 "presentation.tex" "presentation.pdf" "presentation" 1780520084.30648 0
   "../PlotNeuralNet/layers/Ball.sty" 1779122722.4952 1197 d1694ae307f11df1994dd7de3c99bc4b ""
   "../PlotNeuralNet/layers/Box.sty" 1779122722.49529 4868 e7b96f9cf8eb0f1db721b3fa8c4c28f5 ""
   "../PlotNeuralNet/layers/RightBandedBox.sty" 1779122722.49537 6111 7d4c65748a884ebf33bc0a676ef40d22 ""
@@ -62,6 +62,7 @@
   "/usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb" 1248133631 32716 08e384dc442464e7285e891af9f45947 ""
   "/usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb" 1248133631 32626 4f5c1b83753b1dd3a97d1b399a005b4b ""
   "/usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy9.pfb" 1248133631 32442 c975af247b6702f7ca0c299af3616b80 ""
+  "/usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex8.pfb" 1248133631 30273 87a352d78b6810ae5cfdc68d2fb827b2 ""
   "/usr/local/texlive/2026/texmf-dist/fonts/type1/public/amsfonts/cmextra/cmex9.pfb" 1248133631 30212 b6aafa449db0097a6b9b890f66741063 ""
   "/usr/local/texlive/2026/texmf-dist/fonts/type1/public/bera/fvmr8a.pfb" 1136849748 29228 440002646d60f9d1a0cdf5878b9a308f ""
   "/usr/local/texlive/2026/texmf-dist/fonts/type1/urw/helvetic/uhvb8a.pfb" 1136849748 35941 f27169cc74234d5bd5e4cca5abafaabb ""
@@ -319,14 +320,14 @@
   "pictures/sim_ma_msd.png" 1780417541.14016 151772 65424d5369d452c36a7f5f190a69a58e ""
   "pictures/sim_tracking.png" 1780417541.14327 153949 ac36b0e92cdde6683fdcdabf4701f388 ""
   "pictures/wm811k_samples.png" 1780495395.1937 13120 c4157d13749a9476c78395c48bf07b72 ""
-  "presentation.aux" 1780513070.51212 7227 d44372a73a5be886f1966d3668f70c91 "pdflatex"
-  "presentation.bbl" 1780513064.98632 25369 d8d9cbef350864cc11413f6910d692ea "biber presentation"
-  "presentation.nav" 1780513070.51851 2989 b0aff2751a468e3f0c569ecdf2fa7989 "pdflatex"
-  "presentation.out" 1780513070.51471 827 b4caec0150a24734062f6117b8680ffe "pdflatex"
-  "presentation.run.xml" 1780513070.51843 2366 669c91ca38ef8bf801f5a5c74041d0da "pdflatex"
-  "presentation.tex" 1780513057.40126 42885 2fa2f8c68cfe24b17576e9df2af0c695 ""
-  "presentation.toc" 1780513070.51854 266 69805e1ac1c61a99c623013480c8a1ca "pdflatex"
-  "presentation.vrb" 1780513069.60353 164 f4541a3f7dd6cdc5562206b5ef1c3faa "pdflatex"
+  "presentation.aux" 1780520084.13263 7591 687b3e85437ac98a6f20cd2f9afb3aae "pdflatex"
+  "presentation.bbl" 1780520065.49245 28034 23e412f93d392b420d5ebc09a3bcf8e7 "biber presentation"
+  "presentation.nav" 1780520084.13903 3081 0df0569a7c72a7dca0a935c3c5080dc9 "pdflatex"
+  "presentation.out" 1780520084.13541 827 b4caec0150a24734062f6117b8680ffe "pdflatex"
+  "presentation.run.xml" 1780520084.13895 2366 669c91ca38ef8bf801f5a5c74041d0da "pdflatex"
+  "presentation.tex" 1780520052.63257 47225 5cd94bd15db5df87e9226e72f552f3cc ""
+  "presentation.toc" 1780520084.13907 266 251fc596622a3798e92e4da9db3dcc53 "pdflatex"
+  "presentation.vrb" 1780520083.20866 164 f4541a3f7dd6cdc5562206b5ef1c3faa "pdflatex"
   "sdqbeamer.cls" 1778891060 32729 25ddf09757a8e5ffc28babc874d47f95 ""
   (generated)
   "presentation.aux"
