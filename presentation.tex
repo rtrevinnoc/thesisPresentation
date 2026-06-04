@@ -395,7 +395,7 @@
     \end{center}
 \end{frame}
 
-\begin{frame}[t,fragile]{Antecedentes --- análisis de literatura}
+\begin{frame}[t,fragile]{Antecedentes}
     \footnotesize PRISMA 2020--2025 $\cdot$ 1\,180 artículos filtrados $\cdot$ póster IEEE LARS/LARC 2025 (\cite{Trevino2025_LARSPoster}).
 
     \vspace{0.1cm}
@@ -632,7 +632,11 @@
 
 \begin{frame}{Dinámica}
     \begin{center}\footnotesize
-    16 cuerpos $\cdot$ $N_1{=}7$ retícula, $N_2{=}4$ óptica, $N_3{=}7$ oblea $\cdot$ 6 estados/cuerpo $\Rightarrow x\in\mathbb{R}^{96}$
+    $\underbrace{1_{\mathcal{F}_0} + \textstyle\sum_{j=1}^{3}(N_j{-}1)}_{=\,16\text{ cuerpos}}$ 
+    $\ \big|\ $ 
+    $N_1{=}7$ retícula, $N_2{=}4$ óptica, $N_3{=}7$ oblea 
+    $\ \big|\ $ 
+    6 estados/cuerpo $\Rightarrow x\in\mathbb{R}^{96}$
     \end{center}
 
     \begin{equation*}
@@ -665,9 +669,9 @@
         $u^0_{i_j}$: fuerza externa sobre $i_j$
     \end{column}
     \begin{column}{0.50\textwidth}\scriptsize
-        $\bar m_{i_j}$: masa agregada (Steiner)\\[1pt]
+        $\bar m_{i_j}$: masa\\[1pt]
         $\bar C,\bar K$: enlace $(i{-}1){\to}i$\\[1pt]
-        $\hat C,\hat K$: acoplamiento aguas abajo \;$\cdot$\; Casos frontera: tesis
+        $\hat C,\hat K$: acoplamiento hacia abajo
     \end{column}
     \end{columns}
 \end{frame}
@@ -676,13 +680,18 @@
 
 \begin{frame}{Simulación --- resultados}
     \begin{center}\footnotesize
-    \textbf{MuJoCo} (\cite{todorov2012mujoco}) $\cdot$ parámetros (\cite{Al-Rawashdeh2022_Caracterization}) $\cdot$ umbrales MA $\geq 1\,$nm, MSD $\geq 7\,$nm (\cite{Butler2011_PositionControl})
+    parámetros (\cite{Al-Rawashdeh2022_Caracterization}) $\cdot$ umbrales MA $\in[-1.25,{+}2]\,$nm, MSD $\leq 7\,$nm (\cite{Butler2011_PositionControl})
     \end{center}
-    \begin{center}
-        \includegraphics[width=0.46\linewidth,height=0.55\textheight,keepaspectratio]{pictures/sim_combined_y.png}\hfill%
-        \includegraphics[width=0.46\linewidth,height=0.55\textheight,keepaspectratio]{pictures/scanning_3d.png}\\[0.05cm]
-        {\footnotesize Error $e_{syn}$, MA y MSD (dir.\ Y) \quad$|$\quad Entorno MuJoCo}
-    \end{center}
+    \begin{columns}[c]
+        \column{.58\textwidth}
+        \centering
+        \includegraphics[width=\linewidth,height=0.58\textheight,keepaspectratio]{pictures/sim_combined_y.png}\\[1pt]
+        {\footnotesize Error $e_{syn}$, MA y MSD (dir.\ Y)}
+        \column{.40\textwidth}
+        \centering
+        \includegraphics[width=\linewidth,height=0.52\textheight,keepaspectratio]{pictures/scanning_3d.png}\\[1pt]
+        {\footnotesize Entorno de simulación MuJoCo}
+    \end{columns}
 \end{frame}
 
 \begin{frame}{Mapas de defectos y CNN}
@@ -710,12 +719,12 @@
 
         \vspace{0.1cm}
         \includegraphics[width=0.55\linewidth,height=0.28\textheight,keepaspectratio]{pictures/wm811k_samples.png}\\[0.05cm]
-        {\footnotesize \textbf{WM-811K} (\cite{Wu2015_WM811K}): 138\,360 obleas, 9 clases}
+        {\footnotesize \textbf{WM-811K} (\cite{Wu2015_WM811K}): 138\,360 obleas}
 
         \column{.58\textwidth}
         \centering
-        \includegraphics[width=\linewidth,height=0.70\textheight,keepaspectratio]{pictures/cnn_confmat.png}\\[0.05cm]
-        {\footnotesize matriz de confusión --- \textbf{96.88\,\%} \textit{accuracy}}
+        \includegraphics[width=\linewidth,height=0.75\textheight,keepaspectratio]{pictures/cnn_confmat.png}\\[0.05cm]
+        % {\footnotesize matriz de confusión --- \textbf{96.88\,\%} \textit{accuracy}}
     \end{columns}
 \end{frame}
 

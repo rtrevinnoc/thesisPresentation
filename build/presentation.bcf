@@ -2380,19 +2380,18 @@
     <bcf:citekey order="5" intorder="1">Kim2017_Market</bcf:citekey>
     <bcf:citekey order="5" intorder="2">Kim2019_Productivity</bcf:citekey>
     <bcf:citekey order="6" intorder="1">Al-Rawashdeh2022_Caracterization</bcf:citekey>
-    <bcf:citekey order="7" intorder="1">todorov2012mujoco</bcf:citekey>
-    <bcf:citekey order="8" intorder="1">Al-Rawashdeh2022_Caracterization</bcf:citekey>
-    <bcf:citekey order="9" intorder="1">Butler2011_PositionControl</bcf:citekey>
-    <bcf:citekey order="10" intorder="1">Wu2015_WM811K</bcf:citekey>
-    <bcf:citekey order="11" intorder="1">Kim2017_Market</bcf:citekey>
-    <bcf:citekey order="11" intorder="2">Kim2019_Productivity</bcf:citekey>
-    <bcf:citekey order="11" intorder="3">Yang2018_Yield</bcf:citekey>
-    <bcf:citekey order="12" intorder="1">Al-Rawashdeh2023_Trajectories</bcf:citekey>
-    <bcf:citekey order="13" intorder="1">Lambrechts2003_Trajectories</bcf:citekey>
-    <bcf:citekey order="14" intorder="1">Al-Rawashdeh2023_Trajectories</bcf:citekey>
-    <bcf:citekey order="15" intorder="1">Heertjes2025_NonlinearControl</bcf:citekey>
-    <bcf:citekey order="16" intorder="1">Yang2018_Yield</bcf:citekey>
-    <bcf:citekey order="17" intorder="1">Al-Rawashdeh2023_Trajectories</bcf:citekey>
+    <bcf:citekey order="7" intorder="1">Al-Rawashdeh2022_Caracterization</bcf:citekey>
+    <bcf:citekey order="8" intorder="1">Butler2011_PositionControl</bcf:citekey>
+    <bcf:citekey order="9" intorder="1">Wu2015_WM811K</bcf:citekey>
+    <bcf:citekey order="10" intorder="1">Kim2017_Market</bcf:citekey>
+    <bcf:citekey order="10" intorder="2">Kim2019_Productivity</bcf:citekey>
+    <bcf:citekey order="10" intorder="3">Yang2018_Yield</bcf:citekey>
+    <bcf:citekey order="11" intorder="1">Al-Rawashdeh2023_Trajectories</bcf:citekey>
+    <bcf:citekey order="12" intorder="1">Lambrechts2003_Trajectories</bcf:citekey>
+    <bcf:citekey order="13" intorder="1">Al-Rawashdeh2023_Trajectories</bcf:citekey>
+    <bcf:citekey order="14" intorder="1">Heertjes2025_NonlinearControl</bcf:citekey>
+    <bcf:citekey order="15" intorder="1">Yang2018_Yield</bcf:citekey>
+    <bcf:citekey order="16" intorder="1">Al-Rawashdeh2023_Trajectories</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="nty">
