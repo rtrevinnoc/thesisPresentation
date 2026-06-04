@@ -41,7 +41,7 @@
 \headcommand {\slideentry {4}{0}{1}{15/15}{}{0}}
 \headcommand {\beamer@framepages {15}{15}}
 \headcommand {\gdef \insertmainframenumber {15}}
-\headcommand {\partentry {Ap\'{e}ndice}{1}}
+\headcommand {\partentry {Apéndice}{1}}
 \headcommand {\beamer@partpages {1}{15}}
 \headcommand {\beamer@sectionpages {15}{15}}
 \headcommand {\beamer@subsectionpages {15}{15}}
@@ -57,8 +57,10 @@
 \headcommand {\beamer@framepages {17}{18}}
 \headcommand {\slideentry {5}{0}{0}{17/19}{}{1}}
 \headcommand {\beamer@framepages {17}{19}}
-\headcommand {\beamer@partpages {16}{19}}
-\headcommand {\beamer@subsectionpages {16}{19}}
-\headcommand {\beamer@sectionpages {16}{19}}
-\headcommand {\beamer@documentpages {19}}
+\headcommand {\slideentry {5}{0}{0}{17/20}{}{1}}
+\headcommand {\beamer@framepages {17}{20}}
+\headcommand {\beamer@partpages {16}{20}}
+\headcommand {\beamer@subsectionpages {16}{20}}
+\headcommand {\beamer@sectionpages {16}{20}}
+\headcommand {\beamer@documentpages {20}}
 \headcommand {\gdef \inserttotalframenumber {15}}
