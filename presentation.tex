@@ -678,7 +678,7 @@
 
 \section{Metodología}
 
-\begin{frame}{Simulación --- resultados}
+\begin{frame}{Simulación}
     \begin{center}\footnotesize
     parámetros (\cite{Al-Rawashdeh2022_Caracterization}) $\cdot$ umbrales MA $\in[-1.25,{+}2]\,$nm, MSD $\leq 7\,$nm (\cite{Butler2011_PositionControl})
     \end{center}
@@ -729,14 +729,14 @@
 \end{frame}
 
 \begin{frame}[fragile]{La CNN como puente: clase $\to$ costo}
-    \vspace{0.2cm}
+    \vspace{0.1cm}
     \begin{center}
-    \begin{tikzpicture}[scale=0.85, every node/.style={font=\footnotesize}]
-        % ---- Panel 1: simulated map thumbnail ----
-        \node[draw=mnnwInk, line width=0.5pt, rounded corners=2pt, minimum width=2.4cm, minimum height=2.4cm, fill=white] (map) at (0,0) {};
-        % wafer disc
+    \begin{tikzpicture}[scale=0.90, every node/.style={font=\footnotesize}]
+
+        % ---- Panel 1: simulated map ----
+        \node[draw=mnnwInk, line width=0.5pt, rounded corners=2pt,
+              minimum width=2.4cm, minimum height=2.4cm, fill=white] at (0,0) {};
         \fill[waferFlex, draw=waferEdge, line width=0.4pt] (0,0) circle (0.85);
-        % die grid inside wafer
         \begin{scope}
             \clip (0,0) circle (0.85);
             \foreach \x in {-0.7,-0.45,...,0.7}{
@@ -745,19 +745,18 @@
                 }
             }
         \end{scope}
-        % scratch defect line (red)
         \draw[kit-red100, line width=0.8pt] (-0.55, 0.35) -- (0.45, -0.40);
-        \node[font=\small, anchor=south] at (0, 1.35) {mapa simulado};
+        \node[font=\small, anchor=south] at (0, 1.45) {mapa simulado};
 
-        % Arrow 1: CNN
+        % Arrow 1
         \draw[-Stealth, line width=0.9pt] (1.45, 0) -- (2.55, 0);
         \node[font=\footnotesize\bfseries, anchor=south] at (2.0, 0.08) {CNN};
 
-        % ---- Panel 2: probability bars ----
-        \begin{scope}[shift={(4.4,0)}]
-            \node[font=\small, anchor=south] at (1.2, 1.35) {$P_c$ por clase};
-            \def\barH{0.20}
-            \def\unit{2.6}
+        % ---- Panel 2: single-column probability bars ----
+        \begin{scope}[shift={(4.2,0)}]
+            \node[font=\small, anchor=south] at (1.1, 1.75) {$P_c$ por clase};
+            \def\barH{0.22}
+            \def\unit{1.8}
             \foreach \name/\val/\col/\grp [count=\i] in {%
                 none/0.85/kit-lightgreen100/plaus,
                 scratch/0.10/kit-red100/plaus,
@@ -769,31 +768,40 @@
                 loc/0.00/mnnwHair/etch,
                 near-full/0.00/mnnwHair/etch%
             }{
-                \pgfmathsetmacro{\y}{(5-\i)*0.27}
+                \pgfmathsetmacro{\yy}{(5-\i)*0.38}
                 \ifnum\pdfstrcmp{\grp}{plaus}=0
-                    \node[anchor=east, font=\scriptsize] at (0, \y) {\name};
+                    \node[anchor=east, font=\scriptsize] at (0, \yy) {\name};
                 \else
-                    \node[anchor=east, font=\scriptsize, text=mnnwMute] at (0, \y) {\name};
+                    \node[anchor=east, font=\scriptsize, text=mnnwMute] at (0, \yy) {\name};
                 \fi
-                \fill[\col] (0.05, \y-\barH/2) rectangle ({0.05+\val*\unit}, \y+\barH/2);
+                \fill[\col] (0.05, \yy-\barH/2) rectangle ({0.05+\val*\unit}, \yy+\barH/2);
                 \pgfmathsetmacro{\pct}{int(\val*100)}
                 \ifnum\pct>0
-                    \node[anchor=west, font=\scriptsize] at ({0.10+\val*\unit}, \y) {\pct\,\%};
+                    \node[anchor=west, font=\scriptsize] at ({0.10+\val*\unit}, \yy) {\pct\,\%};
                 \fi
             }
+            % Dashed divider between plausible and non-plausible
+            \draw[mnnwHair, line width=0.4pt, dashed] (-1.1, 0.19) -- (2.1, 0.19);
         \end{scope}
 
-        % Arrow 2: weighted sum
-        \draw[-Stealth, line width=0.9pt] (7.6, 0) -- (8.7, 0);
-        \node[font=\footnotesize\bfseries, anchor=south] at (8.15, 0.08) {$\sum w_c P_c$};
+        % Arrow 2 — starts right after bar panel, label centred above
+        \draw[-Stealth, line width=0.9pt] (6.6, 0) -- (9.1, 0);
+        \node[font=\footnotesize\bfseries, anchor=south] at (7.875, 0.12)
+              {$\textstyle\sum_c w_c P_c$};
 
         % ---- Panel 3: cost ----
         \node[draw=opticsEdge, line width=0.8pt, rounded corners=3pt, fill=opticsFlex,
-              minimum width=2.6cm, minimum height=2.0cm, align=center, font=\small] (cost) at (10.1, 0)
-              {$\mathcal{J}$ \\ \textbf{0.65\,\%} \\ {\scriptsize pérdida esperada}};
-        \node[font=\small, anchor=south] at (10.1, 1.35) {costo};
-    \end{tikzpicture}\\[0.30cm]
-    {\footnotesize Sólo las clases inducibles por servo (\textit{none, scratch, edge-local, random}) contribuyen a $\mathcal{J}$. Pesos $w_c$ por clase: literatura (\cite{Kim2017_Market,Kim2019_Productivity,Yang2018_Yield}) o calibración.}
+              minimum width=2.5cm, minimum height=2.0cm, align=center, font=\small]
+              at (10.65, 0) {$\mathcal{J}$ \\ \textbf{0.65\,\%} \\ {\scriptsize pérdida esperada}};
+        \node[font=\small, anchor=south] at (10.65, 1.45) {costo};
+
+    \end{tikzpicture}
+    \end{center}
+
+    \vspace{0.05cm}
+    \begin{center}\footnotesize
+        Clases inducibles (\textit{none, scratch, edge-local, random}) contribuyen a $\mathcal{J}$.\\[2pt]
+        Pesos $w_c$ por clase de literatura \parencite{Kim2017_Market,Kim2019_Productivity,Yang2018_Yield} o calibración.
     \end{center}
 \end{frame}
 
@@ -815,7 +823,7 @@
         \node[modBlock, right=0.7cm of traj] (mass) {Simulación\\multicuerpo};
         \node[modBlock, right=0.7cm of mass] (err) {Error\\MA / MSD};
 
-        \node[yieldBlock, right=1.2cm of err] (map) {Mapa de\\defectos};
+        \node[yieldBlock, right=2.1cm of err] (map) {Mapa de\\defectos};
         \node[yieldBlock, right=0.7cm of map] (cls) {CNN\\$\widehat{P}_{\text{defecto}}$};
 
         \node[oBlock, below=1.6cm of mass] (pso) {Algoritmo bio-inspirado\\sobre $(v,a,j,s)_{\max}$};
@@ -823,7 +831,7 @@
 
         \draw[flow] (traj) -- (mass);
         \draw[flow] (mass) -- (err);
-        \draw[gapflow] (err) -- (map) node[midway, above, text=kit-red100, font=\small\bfseries, fill=white, inner sep=1pt] {brecha};
+        \draw[gapflow] (err) -- (map) node[midway, above, text=kit-red100, font=\small\bfseries, fill=white, inner sep=4pt] {brecha};
         \draw[flow] (map) -- (cls);
         \draw[flow] (cls.south) |- (cost.east);
         \draw[flow] (cost) -- (pso);
@@ -834,45 +842,82 @@
         \node[grp, fit={(pso) (cost)}, label={[font=\small\bfseries]below:Objetivo 3 --- perfiles óptimos}] {};
     \end{tikzpicture}
     }
-    \\[0.3cm]
-    {\small \textcolor{kit-red100}{\textbf{Brecha:}} cerrar el mapeo error $\to$ mapa vía \textit{dose mapping} (física) o \textit{paired learning} (datos).}
+    \\[0.05cm]
+    {\footnotesize\textcolor{kit-red100}{\textbf{Brecha:}} conectar \textit{error de sincronización} $\to$ \textit{patrón de defecto}.}
     \end{center}
 \end{frame}
 
 \begin{frame}[fragile]{Trayectorias de alto orden}
-    \vspace{0.2cm}
-    \begin{columns}
+    \vspace{0.05cm}
+    \begin{columns}[T]
         \column{.55\textwidth}
-        \centering\small
-        \textit{Snap} acotado $\Rightarrow$ menor error de \textit{overlay} (\cite{Al-Rawashdeh2023_Trajectories}).
-        \vspace{0.5cm}
+        \vspace{0.05cm}
+        {\small La trayectoria es la \textbf{señal de referencia}, y el perfil indica qué derivadas están acotadas \parencite{Lambrechts2003_Trajectories};
+        \parencite{Al-Rawashdeh2023_Trajectories}}
 
-        {\small
-        \begin{tabular}{ll}
-            \toprule
-            \textbf{Método} & \textbf{Fuente} \\
-            \midrule
-            Polinomios segmentados & \cite{Lambrechts2003_Trajectories} \\
-            \textit{Input shaping} & convolucional \\
-            Cuadrado / bisel / meandro & \cite{Al-Rawashdeh2023_Trajectories} \\
-            \bottomrule
-        \end{tabular}}
+        \vspace{0.18cm}
+        \begin{center}
+        \begin{tikzpicture}[scale=0.78, every node/.style={font=\scriptsize}]
+            % Turn-window highlight
+            \fill[kit-yellow!18] (2.0,-1.4) rectangle (3.8,1.4);
+            \node[text=mnnwMute, font=\scriptsize] at (2.9,1.25) {vuelta};
+
+            % ±v reference lines
+            \draw[mnnwHair, line width=0.3pt, dashed] (-0.2,1.0) -- (5.85,1.0);
+            \draw[mnnwHair, line width=0.3pt, dashed] (-0.2,-1.0) -- (5.85,-1.0);
+
+            % Axes
+            \draw[-Stealth, line width=0.5pt] (-0.2,0) -- (6.05,0)
+                node[right,font=\scriptsize] {$t$};
+            \draw[-Stealth, line width=0.5pt] (0,-1.52) -- (0,1.62)
+                node[above,font=\scriptsize] {$\dot{y}(t)$};
+            \node[left,text=mnnwMute] at (0, 1.0) {$+v$};
+            \node[left,text=mnnwMute] at (0,-1.0) {$-v$};
+
+            % Cuadrado: instant reversal
+            \draw[mnnwInk, line width=1.3pt]
+                (0.3,1.0) -- (2.0,1.0) -- (2.0,-1.0) -- (5.6,-1.0);
+
+            % Bisel: linear ramp
+            \draw[mnnwSignal, line width=1.3pt]
+                (0.3,1.0) -- (2.0,1.0) -- (3.8,-1.0) -- (5.6,-1.0);
+
+            % Meandro: cosine turn
+            \draw[opticsEdge, line width=1.3pt] (0.3,1.0) -- (2.0,1.0);
+            \draw[opticsEdge, line width=1.3pt, domain=2.0:3.8, samples=50, smooth]
+                plot(\x, {cos((\x-2.0)*100)});
+            \draw[opticsEdge, line width=1.3pt] (3.8,-1.0) -- (5.6,-1.0);
+
+            % Legend + derivative annotation
+            \begin{scope}[shift={(0.15,-1.90)}]
+                \draw[mnnwInk,   line width=1.3pt] (0,0.27)  -- (0.45,0.27);
+                \node[right] at (0.45,0.27)  {Cuadrada};
+                \draw[mnnwSignal,line width=1.3pt] (0,0.00)  -- (0.45,0.00);
+                \node[right] at (0.45,0.00)  {Biselada};
+                \draw[opticsEdge,line width=1.3pt] (0,-0.27) -- (0.45,-0.27);
+                \node[right] at (0.45,-0.27) {Alto Orden};
+
+                \node[right,text=mnnwMute] at (2.85, 0.27)  {\textit{acceleración}\,$\to\infty$};
+                \node[right,text=mnnwMute] at (2.85, 0.00)  {\textit{jerk}\,$\to\infty$};
+                \node[right,text=kit-lightgreen100!70!black] at (2.85,-0.27)
+                    {\textit{snap} acotado};
+            \end{scope}
+        \end{tikzpicture}
+        \end{center}
+
         \column{.45\textwidth}
         \begin{center}
           \begin{tikzpicture}[scale=0.85,
             every node/.style={font=\footnotesize},
             wafer/.style={draw=kit-blue100, line width=0.6pt, fill=kit-blue!5},
-            die/.style={draw=mnnwInk, line width=0.3pt, fill=white, postaction={pattern=north east lines, pattern color=mnnwMute!40}},
-            square/.style={draw=mnnwInk, line width=0.8pt},
-            fillet/.style={draw=mnnwSignal, line width=0.8pt},
-            meander/.style={draw=opticsEdge, line width=0.8pt},
+            die/.style={draw=mnnwInk, line width=0.3pt, fill=white,
+                        postaction={pattern=north east lines, pattern color=mnnwMute!40}},
+            square/.style={draw=mnnwInk,    line width=0.9pt},
+            fillet/.style={draw=mnnwSignal, line width=0.9pt},
+            meander/.style={draw=opticsEdge,line width=0.9pt},
             axis/.style={draw=mnnwInk, -Stealth}
           ]
-
-            % Wafer boundary
             \draw[wafer] (0,0) circle (2.2cm);
-
-            % Grid of dies clipped to wafer
             \begin{scope}
               \clip (0,0) circle (2.2cm);
               \foreach \x in {-1.75,-1.25,...,1.75} {
@@ -881,32 +926,16 @@
                 }
               }
             \end{scope}
-
-            \draw[mnnwInk, line width=0.8pt, dashed] (-1.25, -1.75) -- (-1.25, -1.25);
-
-            % Square Profile
-            \draw[square] (-1.25, -1.25) -- (-1.25, -1.0) -- (-0.75, -1.0) -- (-0.75, -1.25);
-
-            % Fillet Profile
-            \draw[fillet] (-1.25, -1.25) -- (-1.25, -1.12)
-                          arc(180:90:0.12) -- (-0.87, -1.0)
-                          arc(90:0:0.12) -- (-0.75, -1.12)
-                          -- (-0.75, -1.25);
-
-            % Meander Profile
-            \draw[meander] (-1.25, -1.25) to[out=90, in=180] (-1.0, -1.0) to[out=0, in=90] (-0.75, -1.25);
-
-            \draw[mnnwInk, line width=0.8pt, dashed] (-0.75, -1.25) -- (-0.75, -1.75);
-
-            \begin{scope}[shift={(-2.4, -2.7)}]
-              \draw[square]  (0, 0.55) -- (0.35, 0.55) node[right, font=\footnotesize] {Cuadrado};
-              \draw[fillet]  (0, 0.27) -- (0.35, 0.27) node[right, font=\footnotesize] {Bisel};
-              \draw[meander] (0, 0.00) -- (0.35, 0.00) node[right, font=\footnotesize] {Meandro};
-            \end{scope}
-
+            \draw[mnnwInk, line width=0.8pt, dashed] (-1.25,-1.75) -- (-1.25,-1.25);
+            \draw[square]  (-1.25,-1.25) -- (-1.25,-1.0) -- (-0.75,-1.0) -- (-0.75,-1.25);
+            \draw[fillet]  (-1.25,-1.25) -- (-1.25,-1.12)
+                           arc(180:90:0.12) -- (-0.87,-1.0)
+                           arc(90:0:0.12) -- (-0.75,-1.12) -- (-0.75,-1.25);
+            \draw[meander] (-1.25,-1.25) to[out=90,in=180] (-1.0,-1.0)
+                           to[out=0,in=90] (-0.75,-1.25);
+            \draw[mnnwInk, line width=0.8pt, dashed] (-0.75,-1.25) -- (-0.75,-1.75);
             \draw[axis] (0,0) -- (0.4,0) node[right] {$x$};
             \draw[axis] (0,0) -- (0,0.4) node[above] {$y$};
-
           \end{tikzpicture}
         \end{center}
     \end{columns}
@@ -924,12 +953,10 @@
         ar/.style={-Stealth, line width=0.9pt, opticsEdge}
     ]
         \node[stp] (a) {\textbf{1.}\\Controlador\\no lineal\\\footnotesize\cite{Heertjes2025_NonlinearControl}};
-        \node[stp, right=0.55cm of a] (b) {\textbf{2.}\\Estimador de\\parámetros};
-        \node[hi,  right=0.55cm of b] (c) {\textbf{3.}\\\textbf{Mapeo}\\error $\leftrightarrow$ defecto\\\footnotesize\cite{Yang2018_Yield}};
-        \node[stp, right=0.55cm of c] (d) {\textbf{4.}\\Comparar\\órdenes de\\trayectoria\\\footnotesize\cite{Al-Rawashdeh2023_Trajectories}};
+        \node[hi,  right=0.55cm of a] (b) {\textbf{2.}\\\textbf{Mapeo}\\error $\leftrightarrow$ defecto\\\footnotesize\cite{Yang2018_Yield}};
+        \node[stp, right=0.55cm of b] (c) {\textbf{3.}\\Comparar suaves trayectorias\\en la literatura actual\\\footnotesize\cite{Al-Rawashdeh2023_Trajectories}};
         \draw[ar] (a) -- (b);
         \draw[ar] (b) -- (c);
-        \draw[ar] (c) -- (d);
     \end{tikzpicture}
     \end{center}
     \vspace{0.7cm}
