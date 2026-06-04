@@ -8,7 +8,7 @@
 \groupname{Maestría en Ciencias de la Ingeniería Eléctrica}
 \groupnamewidth{75mm}
 
-\title[LGAC en Mecatrónica]{Optimización de Trayectorias de Orden Superior Informadas por el Rendimiento de la Oblea para Sistemas \textit{Step-and-Scan}}
+\title[LGAC en Mecatrónica]{Optimización de Trayectorias de Orden Superior con un Enfoque Basado en Datos para Sistemas \textit{Step-and-Scan}}
 \subtitle{Seminario I}
 \author[R. Treviño]{Roberto Treviño Cervantes}
 \newcommand{\shorttoday}{\ifnum\day<10 0\fi\number\day/\ifnum\month<10 0\fi\number\month/\number\year}
@@ -151,12 +151,12 @@
     \begin{textblock*}{\paperwidth}(2mm,60mm)
       \centering\includegraphics[height=30mm]{logos/metroframe-etc.png}%
     \end{textblock*}%
-    \begin{textblock*}{22mm}(\dimexpr\paperwidth-28mm\relax,85.5mm)
-      \begin{tikzpicture}
-        \node[opacity=0.28, inner sep=0pt]{%
-          \includegraphics[width=22mm]{logos/mnnw_logo.png}};
-      \end{tikzpicture}%
-    \end{textblock*}%
+    % \begin{textblock*}{22mm}(\dimexpr\paperwidth-28mm\relax,85.5mm)
+    %   \begin{tikzpicture}
+    %     \node[opacity=0.28, inner sep=0pt]{%
+    %       \includegraphics[width=22mm]{logos/mnnw_logo.png}};
+    %   \end{tikzpicture}%
+    % \end{textblock*}%
   \end{frame}
 }
 
@@ -427,13 +427,13 @@
     \end{center}
     \vspace{-0.3cm}
     \begin{purpleblock}{Brecha}
-        \footnotesize Métricas \textbf{servo-mecánicas} (MSE) que no consideran el impacto \textbf{morfológico} en el rendimiento (\textit{yield}); existe el proceso inverso en \cite{Lam2015_Fingerprint} pero no ofrece un enfoque predictivo.
+        \footnotesize Métricas de posicionamiento (MA, MSD) que no consideran el impacto \textbf{morfológico} en el rendimiento (\textit{yield}); existe el proceso inverso en \cite{Lam2015_Fingerprint} pero no ofrece un enfoque predictivo.
     \end{purpleblock}
 \end{frame}
 
 \begin{frame}[fragile]{Hipótesis y objetivos}
     \begin{purpleblock}{Hipótesis}
-        Una CNN entrenada sobre datos industriales, usada como función de costo, permite seleccionar parámetros cinemáticos de trayectorias de cuarto orden que \textbf{minimicen la probabilidad de defecto} sujeto a una \textbf{restricción de productividad} (\cite{Kim2017_Market,Kim2019_Productivity}).
+        Es posible \textbf{optimizar los parámetros cinemáticos} de trayectorias de cuarto orden, sujeto a una \textbf{restricción de productividad}, mediante una función de costo basada en la \textbf{distribución de probabilidad sobre las clases de defecto} estimada por una CNN entrenada sobre datos industriales (\cite{Kim2017_Market,Kim2019_Productivity}).
     \end{purpleblock}
 
     \vspace{0.3cm}
