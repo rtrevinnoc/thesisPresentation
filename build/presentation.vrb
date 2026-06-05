@@ -1,6 +1,4 @@
-\frametitle{Apéndice: esquema multi-cuerpo detallado}
+\frametitle{Apéndice: cadena de la retícula}
 \begin{center}
-        \begin{turn}{90}
-        \detailedMultibodyFigure
-        \end{turn}
+        \reticleChainFigure
     \end{center}
